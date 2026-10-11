@@ -14,7 +14,7 @@ export default function TestimonialsSection({ company }: { company: import("@/da
             Perjalanan ibadah terasa lebih tenang ketika orang, tempat, dan prosesnya terlihat jelas.
           </p>
           <Link href="/dokumentasi" className="mt-4 inline-flex min-h-11 items-center text-sm font-bold text-teal-primary hover:text-gold-hover">
-            Buka dokumentasi lengkap <span aria-hidden="true" className="ml-2">→</span>
+            Buka dokumentasi perjalanan
           </Link>
         </div>
 

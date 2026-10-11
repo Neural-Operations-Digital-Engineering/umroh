@@ -86,26 +86,24 @@ export default function WhyUsSection() {
         </div>
 
         {/* ── 4-Point Feature Grid: 2 kolom desktop / 1 mobile ── */}
-        <div className="mobile-rail sm:grid-cols-2 gap-3 lg:gap-5">
+        <div className="mobile-rail sm:grid-cols-2 gap-4 lg:gap-6">
           {features.map((f) => (
             <div
               key={f.id}
-              className="group p-4 sm:p-6 rounded-card border border-warm-border bg-warm-bg hover:border-teal-primary/25 hover:shadow-card hover:-translate-y-0.5 transition-all duration-200 flex flex-col sm:flex-row items-start gap-3 sm:gap-4"
+              className="p-5 sm:p-6 rounded-card border border-warm-border bg-warm-bg flex flex-col sm:flex-row items-start gap-4"
             >
-              {/* Icon Container with subtle step number index */}
+              {/* Icon Container */}
               <div className="relative shrink-0">
-                <div className="w-14 h-14 rounded-card bg-teal-primary/8 text-teal-primary group-hover:bg-teal-primary group-hover:text-white flex items-center justify-center transition-all duration-200 shadow-xs">
+                <div className="w-12 h-12 rounded-card bg-teal-primary/10 text-teal-primary flex items-center justify-center">
                   {f.icon}
                 </div>
               </div>
 
               {/* Text content */}
               <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-1.5">
-                  <h3 className="font-serif text-lg font-bold text-teal-primary group-hover:text-teal-700 transition-colors">
-                    {f.title}
-                  </h3>
-                </div>
+                <h3 className="font-sans text-base sm:text-lg font-bold text-teal-primary mb-1">
+                  {f.title}
+                </h3>
                 <p className="font-sans text-sm text-slate-body leading-relaxed">
                   {f.desc}
                 </p>

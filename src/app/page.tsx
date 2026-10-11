@@ -1,5 +1,7 @@
 import React from "react";
 import HeroSection from "@/components/HeroSection";
+import PackageFinderWidget from "@/components/PackageFinderWidget";
+import TrustBar from "@/components/TrustBar";
 import FeaturedPackagesSection from "@/components/FeaturedPackagesSection";
 import DestinationShowcaseSection from "@/components/DestinationShowcaseSection";
 import WhyUsSection from "@/components/WhyUsSection";
@@ -12,33 +14,52 @@ import { getSiteData } from "@/lib/cms/store";
 export default async function BerandaPage() {
   const { company, packages } = await getSiteData();
 
+  // Extract actual available months and cities from packages data
+  const availableMonths = Array.from(
+    new Set(packages.map((p) => p.departureMonth).filter(Boolean))
+  );
+  const availableCities = Array.from(
+    new Set(packages.map((p) => p.departureCity).filter(Boolean))
+  );
+
   return (
-    <main>
-      {/* 1. Top Hero Section (Konsep Ventour: Video/Atmospheric background, Center Brand, Floating 4 Trust Pillars) */}
+    <main className="bg-warm-bg">
+      {/* 1. Atmospheric Hero Section with Video/Photo & Service Signals */}
       <HeroSection company={company} />
 
-      {/* 2. Featured Packages Section (Pilihan Paket Terpopuler) */}
+      {/* 2. Interactive Package Finder Widget (Search Engine) */}
+      <PackageFinderWidget
+        availableMonths={availableMonths.length > 0 ? availableMonths : undefined}
+        cities={availableCities.length > 0 ? availableCities : undefined}
+      />
+
+      {/* 3. Official Trust & Legality Credibility Strip */}
+      <div className="pt-8 sm:pt-10">
+        <TrustBar company={company} />
+      </div>
+
+      {/* 4. Featured Packages Section with Tabs & Horizontal Snap Rail on Mobile */}
       <FeaturedPackagesSection packages={packages} />
 
-      {/* 3. Middle Destination Showcase Section (Konsep Ventour: Interactive Destination Slider with Auto-Scroll) */}
+      {/* 5. Destination Showcase (Halal Tour & Ziarah) */}
       <DestinationShowcaseSection company={company} />
 
-      {/* 4. Kenapa Memilih Kami (Why Us) */}
+      {/* 6. Kenapa Memilih Kami (Editorial Service Standard) */}
       <WhyUsSection />
 
-      {/* 5. Alur Keberangkatan */}
+      {/* 7. Alur Keberangkatan (Praktis & Jelas) */}
       <HowItWorksSection company={company} />
 
-      {/* 6. Teaser Legalitas */}
+      {/* 8. Teaser Bukti Legalitas PPIU & PIHK Resmi */}
       <LegalityTeaser company={company} />
 
-      {/* 7. Dokumentasi Perjalanan */}
+      {/* 9. Dokumentasi Tim & Jemaah Nyata */}
       <TestimonialsSection company={company} />
 
-      {/* 8. FAQ (Accordion) */}
+      {/* 10. FAQ Tanya Jawab Jemaah */}
       <FaqSection company={company} compact />
 
-      {/* 9. CTA Penutup */}
+      {/* 11. CTA Penutup */}
       <CtaBannerSection company={company} />
     </main>
   );
