@@ -221,12 +221,9 @@ export default function PackageCard({
               <Link
                 href={`/${pkg.isHaji ? "haji" : "umroh"}/${pkg.slug}`}
                 id={`detail-list-${pkg.id}`}
-                className="min-h-10 px-4 py-2 rounded-button bg-gold-accent hover:bg-gold-hover text-slate-dark text-xs font-bold transition-all shadow-card flex items-center gap-1.5"
+                className="min-h-10 px-4 py-2 rounded-button bg-gold-accent hover:bg-gold-hover text-slate-dark text-xs font-bold transition-all shadow-card flex items-center justify-center"
               >
                 <span>Lihat Detail</span>
-                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
               </Link>
             </div>
           </div>
@@ -391,12 +388,9 @@ export default function PackageCard({
             <Link
               href={`/${pkg.isHaji ? "haji" : "umroh"}/${pkg.slug}`}
               id={`detail-${pkg.id}`}
-              className="col-span-4 min-h-11 rounded-button bg-gold-accent hover:bg-gold-hover active:scale-[0.98] text-slate-dark text-xs font-bold transition-all shadow-card flex items-center justify-center gap-1.5"
+              className="col-span-4 min-h-11 rounded-button bg-gold-accent hover:bg-gold-hover active:scale-[0.98] text-slate-dark text-xs font-bold transition-all shadow-card flex items-center justify-center"
             >
               <span>Lihat Detail Paket</span>
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
             </Link>
           </div>
         </div>

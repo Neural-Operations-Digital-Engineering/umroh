@@ -14,54 +14,54 @@ export default function HeroSection({ company }: { company: CompanyProfile }) {
 
   const trustPillars = [
     {
-      title: "Keberangkatan Pasti",
-      desc: "Sesuai jadwal",
-      fullDesc: "Keberangkatan sesuai jadwal",
+      title: "Jadwal Terkonfirmasi",
+      desc: "Tanggal & maskapai pasti",
+      fullDesc: "Tanggal rilis & maskapai penerbangan terkonfirmasi",
       icon: (
         <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gold-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={1.75}
-            d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
           />
         </svg>
       ),
     },
     {
-      title: "Harga Kompetitif",
-      desc: "Fasilitas terbaik",
-      fullDesc: "Biaya hemat, fasilitas terbaik",
+      title: "Biaya Transparan",
+      desc: "Pilihan kamar jelas",
+      fullDesc: "Pilihan Quad, Triple, Double tanpa biaya tersembunyi",
       icon: (
         <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gold-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={1.75}
-            d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
           />
         </svg>
       ),
     },
     {
-      title: "Pelayanan Responsif",
-      desc: "Cepat dan ramah",
-      fullDesc: "Pelayanan cepat dan ramah",
+      title: "Muthowwif Berizin",
+      desc: "Bimbingan sesuai sunnah",
+      fullDesc: "Pendampingan ibadah oleh muthowwif berkompeten",
       icon: (
         <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gold-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={1.75}
-            d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"
+            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
           />
         </svg>
       ),
     },
     {
-      title: "Perlengkapan Eksklusif",
-      desc: "Fasilitas lengkap",
-      fullDesc: "Fasilitas premium lengkap",
+      title: "Perlengkapan Lengkap",
+      desc: "Koper & busana ibadah",
+      fullDesc: "Koper bagasi, kabin, ihram/mukena, dan buku doa",
       icon: (
         <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gold-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
@@ -169,16 +169,14 @@ export default function HeroSection({ company }: { company: CompanyProfile }) {
           </div>
 
           {/* ── Official Legal Badges Strip ── */}
-          <div className="pt-2 flex flex-wrap items-center justify-center gap-2 text-[10px] sm:text-xs text-white/80 font-medium">
-            <span className="inline-flex items-center gap-1 rounded-full bg-white/10 px-3 py-1 border border-white/15">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          <div className="pt-2 flex flex-wrap items-center justify-center gap-2 text-[10px] sm:text-xs text-white/90 font-medium">
+            <span className="inline-flex items-center rounded-button bg-white/10 px-3 py-1 border border-white/20">
               SK PPIU: {company.legal.ppiu}
             </span>
-            <span className="inline-flex items-center gap-1 rounded-full bg-white/10 px-3 py-1 border border-white/15">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <span className="inline-flex items-center rounded-button bg-white/10 px-3 py-1 border border-white/20">
               {company.legal.pihk}
             </span>
-            <span className="inline-flex items-center gap-1 rounded-full bg-white/10 px-3 py-1 border border-white/15">
+            <span className="inline-flex items-center rounded-button bg-white/10 px-3 py-1 border border-white/20">
               Akreditasi {company.certification.accreditation} (KAN)
             </span>
           </div>

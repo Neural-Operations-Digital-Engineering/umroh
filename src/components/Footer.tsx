@@ -129,10 +129,12 @@ export default function Footer({ company }: { company: CompanyProfile }) {
         {/* ── Bottom Bar: Copyright & Attribution ── */}
         <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#72857e]">
           <p>© {currentYear} {company.brandName} ({company.legalName}). Seluruh hak cipta dilindungi.</p>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
             <Link href="/legalitas" className="hover:text-white transition-colors">Legalitas</Link>
             <span>•</span>
-            <Link href="/faq" className="hover:text-white transition-colors">Ketentuan &amp; Syarat</Link>
+            <Link href="/terms" className="hover:text-white transition-colors">Syarat &amp; Ketentuan</Link>
+            <span>•</span>
+            <Link href="/privacy-policy" className="hover:text-white transition-colors">Kebijakan Privasi</Link>
             <span>•</span>
             <a href={`https://instagram.com/${company.instagramHandle.replace("@", "")}`} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
               Instagram {company.instagramHandle}

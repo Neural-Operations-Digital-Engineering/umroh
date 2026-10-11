@@ -687,7 +687,7 @@ export default function PackageCatalogView({
                     Reset Filter Pencarian
                   </button>
                   <a
-                    href="https://wa.me/6281234567890?text=Assalamu'alaikum%20Admin,%20saya%20mencari%20jadwal%20keberangkatan%20khusus"
+                    href="https://wa.me/6281272230999?text=Assalamu'alaikum%20Admin%20Risalah%20Madina%20Tour,%20saya%20mencari%20jadwal%20keberangkatan%20khusus"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-4 py-2.5 rounded-button border border-warm-border bg-warm-bg text-slate-dark font-sans text-xs font-bold hover:bg-warm-muted transition-all"
@@ -746,9 +746,6 @@ export default function PackageCatalogView({
                 }`}
               >
                 <span>Bandingkan {comparePackages.length >= 2 ? "Sekarang" : "(Pilih Min 2)"}</span>
-                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
               </button>
             </div>
           </div>
@@ -1058,9 +1055,6 @@ export default function PackageCatalogView({
                 className="w-full min-h-12 py-3 px-6 rounded-button bg-teal-primary hover:bg-teal-900 active:scale-[0.98] text-white font-sans text-sm font-bold shadow-card flex items-center justify-center gap-2 transition-all"
               >
                 <span>Tampilkan {sortedPackages.length} Paket</span>
-                <svg className="w-4 h-4 text-gold-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
               </button>
             </div>
 

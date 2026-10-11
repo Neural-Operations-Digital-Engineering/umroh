@@ -68,27 +68,28 @@ export default async function PackageDetailPage({ params }: PageProps) {
 
   const roomPrices = pkg.roomPricing || [];
   const galleryItems = pkg.gallery || [];
-
-
   const itineraryDays = pkg.itinerary || [];
   const facilitiesIncluded = pkg.facilitiesIncluded || [];
   const facilitiesExcluded = pkg.facilitiesExcluded || [];
   const whatsappUrl = getPackageWhatsAppUrl(company.phone, pkg);
-  const lifecycleLabel = pkg.lifecycle === "sold_out" || pkg.statusType === "soldout"
-    ? "Kuota terisi penuh"
-    : pkg.lifecycle === "departed"
+
+  const lifecycleLabel =
+    pkg.lifecycle === "sold_out" || pkg.statusType === "soldout"
+      ? "Kuota terisi penuh"
+      : pkg.lifecycle === "departed"
       ? "Telah berangkat"
       : pkg.statusType === "pending"
-        ? "Perlu dikonfirmasi"
-        : pkg.statusType === "warning"
-          ? "Kuota terbatas"
-          : "Jadwal tersedia";
+      ? "Perlu dikonfirmasi"
+      : pkg.statusType === "warning"
+      ? "Kuota terbatas"
+      : "Jadwal tersedia";
+
   return (
-    <div className="bg-warm-bg min-h-screen py-6 sm:py-10 font-sans">
+    <div className="bg-warm-bg min-h-screen py-6 sm:py-10 pb-28 lg:pb-16 font-sans">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
 
         {/* ── 1. BREADCRUMBS ── */}
         <nav aria-label="Breadcrumb" className="text-xs font-sans text-slate-caption flex items-center gap-2">
@@ -105,414 +106,417 @@ export default async function PackageDetailPage({ params }: PageProps) {
           </span>
         </nav>
 
-        {/* ── 2. HEADER TITLE & META BADGES ── */}
-        <div className="space-y-3">
-          <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
-            {/* Category */}
-            <span className={`px-2.5 sm:px-3 py-1 text-[11px] sm:text-xs font-bold text-white uppercase tracking-wider rounded-badge shadow-xs ${pkg.categoryColor}`}>
-              {pkg.category}
-            </span>
-
-            {/* Quota Status */}
-            <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-badge text-[11px] sm:text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
-              {lifecycleLabel}
-            </span>
-
-            {/* Flight Type Badge */}
-            <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-badge text-[11px] sm:text-xs font-semibold bg-teal-primary/8 text-teal-primary border border-teal-primary/15 font-sans">
-              <svg className="w-3.5 h-3.5 text-gold-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-              </svg>
-              {pkg.flightType || "Tipe penerbangan belum dicantumkan"}
-            </span>
-
-          </div>
-
-          <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-teal-primary leading-tight">
-            {pkg.name}
-          </h1>
-
-          <p className="font-sans text-sm sm:text-base text-slate-body leading-relaxed max-w-4xl">
-            Perjalanan ibadah {pkg.duration} dari {pkg.departureCity} dengan {pkg.flightType.toLowerCase()} bersama <strong className="text-teal-primary">{pkg.airline}</strong>. Tinjau itinerary, fasilitas, akomodasi, dan tipe kamar pada halaman ini sebelum mendaftar.
-          </p>
-          <div className="flex flex-wrap gap-3 pt-2">
-            <SharePackageButton title={pkg.name} />
-            <InquiryDialog href={whatsappUrl} packageId={pkg.id} packageName={pkg.name} label="Konsultasi paket ini" className="inline-flex min-h-11 items-center rounded-button bg-teal-primary px-4 py-2.5 text-sm font-bold text-white hover:bg-teal-900" />
-          </div>
-        </div>
-
-        {/* ── 3. Galeri paket ── */}
-        {galleryItems.length > 0 && (
-        <section aria-labelledby="gallery-heading" className="space-y-3">
-          <h2 id="gallery-heading" className="sr-only">Galeri Dokumentasi Paket</h2>
+        {/* ── MAIN 2-COLUMN SPLIT LAYOUT (Desktop: 8 cols content + 4 cols sticky sidebar) ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4">
-            {/* Slot 1 (Besar - Kiri) */}
-            <div className="md:col-span-6 relative rounded-card overflow-hidden border border-warm-border bg-warm-surface shadow-card">
-              <div className="aspect-4/3 w-full bg-linear-to-br from-teal-900 via-teal-primary to-teal-950 flex flex-col items-center justify-center p-6 text-center relative group">
-                {galleryItems[0].imageUrl && <Image src={galleryItems[0].imageUrl} alt={galleryItems[0].alt || galleryItems[0].label} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />}
-                {galleryItems[0].imageUrl && <div className="absolute inset-0 bg-black/35" />}
-                <div className="relative z-10 w-14 h-14 rounded-full bg-white/10 border border-white/20 flex items-center justify-center mb-3">
-                  <svg className="w-7 h-7 text-gold-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                  </svg>
-                </div>
-                <p className="relative z-10 font-serif text-white font-bold text-sm sm:text-base leading-snug">
-                  {galleryItems[0].label}
-                </p>
-                <p className="relative z-10 font-sans text-gold-accent text-xs font-semibold mt-1">
-                  {galleryItems[0].tag}
-                </p>
-                  <span className="absolute top-3 left-3 px-2.5 py-1 bg-black/70 rounded-badge text-white font-mono text-[10px] font-bold">
-                  Foto 1 / 4
-                </span>
-                <span className="absolute bottom-3 inset-x-3 text-[11px] text-white/70 font-sans text-center truncate">
-                  {galleryItems[0].caption}
-                </span>
-              </div>
-            </div>
-
-            {/* Slot 2, 3, 4 (Kanan) */}
-            <div className="md:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-              {galleryItems.slice(1, 4).map((item, idx) => (
-                <div
-                  key={item.id}
-                  className={`relative rounded-card overflow-hidden border border-warm-border bg-warm-surface shadow-card ${
-                    idx === 2 ? "sm:col-span-2" : ""
-                  }`}
-                >
-                  <div className={`aspect-4/3 sm:aspect-auto ${idx === 2 ? "sm:h-44" : "sm:h-44"} w-full bg-linear-to-br from-teal-800 to-teal-900 flex flex-col items-center justify-center p-4 text-center relative`}>
-                    {item.imageUrl && <Image src={item.imageUrl} alt={item.alt || item.label} fill sizes="(max-width: 768px) 100vw, 25vw" className="object-cover" />}
-                    {item.imageUrl && <div className="absolute inset-0 bg-black/35" />}
-                    <p className="relative z-10 font-serif text-white font-bold text-xs sm:text-sm leading-snug">
-                      {item.label}
-                    </p>
-                    <p className="relative z-10 font-sans text-gold-accent text-[11px] font-semibold mt-0.5">
-                      {item.tag}
-                    </p>
-                    <span className="absolute top-2.5 left-2.5 px-2 py-0.5 bg-black/70 rounded-badge text-white font-mono text-[10px] font-bold">
-                      Foto {idx + 2} / 4
-                    </span>
-                    <span className="absolute bottom-2 inset-x-2 text-[10px] text-white/60 font-sans text-center truncate">
-                      {item.caption}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <p className="text-[11px] text-slate-caption font-sans text-right italic">
-            *Dokumentasi asli akomodasi &amp; kegiatan jemaah akan dimuat sesuai izin publikasi
-          </p>
-        </section>
-        )}
-
-        {/* ── 4. KEY SPECIFICATIONS SUMMARY STRIP ── */}
-        <section aria-labelledby="specs-heading" className="bg-warm-surface rounded-card border border-warm-border p-5 sm:p-7 shadow-card">
-          <h2 id="specs-heading" className="text-xs font-bold uppercase tracking-wider text-slate-caption font-sans mb-4">
-            Informasi Kunci Keberangkatan
-          </h2>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6 divide-y sm:divide-y-0 sm:divide-x divide-warm-border">
+          {/* ════════════════════════════════════════════════════════════════════════════════
+              LEFT COLUMN (8 COLS): Rich Content, Specifications, Itinerary, Rooms, Facilities
+             ════════════════════════════════════════════════════════════════════════════════ */}
+          <div className="lg:col-span-8 space-y-8">
             
-            {/* Tanggal */}
-            <div className="pt-2 sm:pt-0 sm:px-3 first:px-0">
-              <span className="text-[11px] text-slate-muted block font-sans">Tanggal Berangkat</span>
-              <span className="font-sans font-bold text-sm text-teal-primary mt-0.5 block">
-                {pkg.departureDate}
-              </span>
-              <span className="text-[10px] text-slate-muted block font-mono">Konfirmasi sebelum daftar</span>
-            </div>
-
-            {/* Durasi */}
-            <div className="pt-2 sm:pt-0 sm:px-3">
-              <span className="text-[11px] text-slate-muted block font-sans">Durasi Paket</span>
-              <span className="font-sans font-bold text-sm text-teal-primary mt-0.5 block">
-                {pkg.duration}
-              </span>
-              <span className="text-[10px] text-slate-caption block font-mono">Makkah &amp; Madinah</span>
-            </div>
-
-            {/* Maskapai */}
-            <div className="pt-2 sm:pt-0 sm:px-3">
-              <span className="text-[11px] text-slate-muted block font-sans">Penerbangan</span>
-              <span className="font-sans font-bold text-sm text-teal-primary mt-0.5 block truncate" title={pkg.airline}>
-                {pkg.airline}
-              </span>
-              <span className="text-[10px] text-emerald-700 font-semibold block">{pkg.flightType}</span>
-            </div>
-
-            {/* Embarkasi */}
-            <div className="pt-2 sm:pt-0 sm:px-3">
-              <span className="text-[11px] text-slate-muted block font-sans">Kota Embarkasi</span>
-              <span className="font-sans font-bold text-sm text-teal-primary mt-0.5 block">
-                {pkg.departureCity}
-              </span>
-              <span className="text-[10px] text-slate-caption block">Bandara Soetta</span>
-            </div>
-
-            {/* Hotel Makkah */}
-            <div className="pt-2 sm:pt-0 sm:px-3">
-              <span className="text-[11px] text-slate-muted block font-sans">Hotel Makkah</span>
-              <span className="font-sans font-bold text-xs text-teal-primary mt-0.5 block truncate" title={pkg.hotelMakkah}>
-                {pkg.hotelMakkah}
-              </span>
-              <span className="text-[10px] text-slate-muted font-semibold block">Nama &amp; jarak dikonfirmasi</span>
-            </div>
-
-            {/* Hotel Madinah */}
-            <div className="pt-2 sm:pt-0 sm:px-3">
-              <span className="text-[11px] text-slate-muted block font-sans">Hotel Madinah</span>
-              <span className="font-sans font-bold text-xs text-teal-primary mt-0.5 block truncate" title={pkg.hotelMadinah}>
-                {pkg.hotelMadinah}
-              </span>
-              <span className="text-[10px] text-slate-muted font-semibold block">Nama &amp; jarak dikonfirmasi</span>
-            </div>
-
-          </div>
-        </section>
-
-        {/* ── 5. RINCIAN HARGA PER TIPE KAMAR (STACKED CARDS ON MOBILE) ── */}
-        {roomPrices.length > 0 && <section aria-labelledby="pricing-heading" className="space-y-5">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-warm-border pb-3">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-badge bg-gold-light text-teal-primary text-xs font-bold uppercase tracking-wider mb-1 border border-gold-accent/20">
-                <span className="w-1.5 h-1.5 rounded-full bg-gold-accent" />
-                Transparansi Biaya
-              </div>
-              <h2 id="pricing-heading" className="font-serif text-2xl sm:text-3xl font-bold text-teal-primary">
-                Rincian Harga Paket per Tipe Kamar
-              </h2>
-            </div>
-            <p className="text-xs text-slate-muted font-sans">
-              Harga per jemaah dan komponen biaya
-            </p>
-          </div>
-
-          {/*
-            RESPONSIVE PRICING STRUCTURE:
-            Mobile: Stacked vertical cards with clear pricing breakdown without horizontal scrolling.
-            Desktop: 3-column side-by-side comparison cards.
-          */}
-          <div className="mobile-rail sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
-            {roomPrices.map((room) => (
-                <div
-                  key={room.type}
-                  className={`rounded-card border p-6 flex flex-col justify-between transition-all duration-200 relative ${
-                    room.isPopular
-                      ? "bg-warm-surface border-teal-primary shadow-elevated ring-2 ring-teal-primary/20"
-                      : "bg-warm-surface border-warm-border shadow-card hover:border-teal-primary/30"
-                  }`}
-                >
-                  {room.isPopular && (
-                    <span className="absolute -top-3 left-6 px-3 py-0.5 rounded-full bg-gold-accent text-teal-900 text-[10px] font-bold uppercase tracking-wider shadow-xs">
-                      Paling Diminati
-                    </span>
-                  )}
-
-                  <div>
-                    <div className="flex items-center justify-between gap-2 mb-2">
-                      <h3 className="font-serif text-xl font-bold text-teal-primary">
-                        {room.label}
-                      </h3>
-                      <span className="text-[11px] font-sans font-semibold px-2 py-0.5 rounded-badge bg-teal-primary/8 text-teal-primary">
-                        {room.capacity}
-                      </span>
-                    </div>
-
-                    <p className="font-sans text-xs text-slate-body leading-relaxed mb-4">
-                      {room.description}
-                    </p>
-
-                    <div className="p-3.5 rounded-button bg-warm-bg border border-warm-border mb-4">
-                      <span className="text-[10px] text-slate-caption uppercase font-bold block font-sans">
-                        Biaya Paket / Orang
-                      </span>
-                      <span className="font-sans text-2xl sm:text-[1.65rem] font-bold text-teal-primary block mt-0.5">
-                        {room.price}
-                      </span>
-                      <span className="text-[10px] text-emerald-700 font-semibold block font-sans mt-0.5">
-                        Fasilitas mengikuti daftar paket
-                      </span>
-                    </div>
-                  </div>
-
-                  <p className="pt-2 text-xs text-slate-muted leading-relaxed">
-                    Tipe kamar dikonfirmasi bersama admin sebelum pendaftaran.
-                  </p>
-                </div>
-              ))}
-          </div>
-        </section>}
-
-        {/* ── 6. FASILITAS TERMASUK & TIDAK TERMASUK (BADGES & LIST) ── */}
-        <section aria-labelledby="facilities-heading" className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-          
-          {/* Termasuk (7 Kolom) */}
-          <div className="lg:col-span-7 bg-warm-surface rounded-card border border-warm-border p-6 sm:p-7 shadow-card space-y-4">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-badge bg-emerald-50 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-2 border border-emerald-200">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                Fasilitas Lengkap
-              </div>
-              <h2 id="facilities-heading" className="font-serif text-2xl font-bold text-teal-primary">
-                Fasilitas Termasuk dalam Biaya Paket
-              </h2>
-            </div>
-
-            {/* Featured Highlight Badges */}
-            <div className="flex flex-wrap gap-2 pt-1 pb-2">
-              {facilitiesIncluded.slice(0, 4).map((badge) => (
-                <span
-                  key={badge}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-badge bg-teal-primary text-white text-xs font-bold shadow-xs"
-                >
-                  <span>✓</span>
-                  <span>{badge}</span>
+            {/* Header Title & Meta Badges */}
+            <div className="space-y-3">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
+                <span className={`px-2.5 sm:px-3 py-1 text-[11px] sm:text-xs font-bold text-white uppercase tracking-wider rounded-badge shadow-xs ${pkg.categoryColor}`}>
+                  {pkg.category}
                 </span>
-              ))}
-            </div>
 
-            {/* Detailed Included List */}
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2 border-t border-warm-border/60 font-sans text-xs text-slate-body">
-              {facilitiesIncluded.map((item) => (
-                <li key={item} className="flex items-start gap-2">
-                  <span className="w-4 h-4 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">
-                    ✓
-                  </span>
-                  <span className="leading-snug">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+                <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-badge text-[11px] sm:text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                  {lifecycleLabel}
+                </span>
 
-          {/* Tidak Termasuk (5 Kolom) */}
-          <div className="lg:col-span-5 bg-warm-surface rounded-card border border-warm-border p-6 sm:p-7 shadow-card space-y-4">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-badge bg-red-50 text-red-700 text-xs font-bold uppercase tracking-wider mb-2 border border-red-200">
-                <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
-                Biaya Tambahan
+                <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-badge text-[11px] sm:text-xs font-semibold bg-teal-primary/8 text-teal-primary border border-teal-primary/15 font-sans">
+                  {pkg.flightType || "Penerbangan terkonfirmasi"}
+                </span>
               </div>
-              <h3 className="font-serif text-2xl font-bold text-teal-primary">
-                Biaya Belum Termasuk
-              </h3>
+
+              <h1 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold text-teal-primary leading-tight">
+                {pkg.name}
+              </h1>
+
+              <p className="font-sans text-sm sm:text-base text-slate-body leading-relaxed">
+                Perjalanan ibadah {pkg.duration} dari {pkg.departureCity} bersama <strong className="text-teal-primary">{pkg.airline}</strong>. Akomodasi hotel terkonfirmasi di Makkah dan Madinah dengan bimbingan muthowwif berkompeten.
+              </p>
             </div>
 
-            <p className="font-sans text-sm text-slate-muted leading-relaxed">
-              Komponen yang belum termasuk dalam paket ini:
-            </p>
-
-            <ul className="space-y-2.5 font-sans text-sm text-slate-body">
-              {facilitiesExcluded.map((item) => (
-                <li key={item} className="flex items-start gap-2">
-                  <span className="w-4 h-4 rounded-full bg-red-100 text-red-700 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">
-                    ✕
-                  </span>
-                  <span className="leading-snug">{item}</span>
-                </li>
-              ))}
-            </ul>
-
-            <div className="p-3 bg-warm-muted/70 rounded-button border border-warm-border text-xs text-slate-muted font-sans">
-              Minta rincian tertulis dan ketentuan pembayaran sebelum melakukan transfer.
-            </div>
-          </div>
-
-        </section>
-
-        {/* ── 7. ITINERARY ── */}
-        {itineraryDays.length > 0 && (
-        <section aria-labelledby="itinerary-heading" className="bg-warm-surface rounded-card border border-warm-border p-6 sm:p-8 shadow-card space-y-6">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-badge bg-teal-primary/8 text-teal-primary text-xs font-bold uppercase tracking-wider mb-2 border border-teal-primary/15">
-              <span className="w-1.5 h-1.5 rounded-full bg-gold-accent" />
-              Rencana Perjalanan
-            </div>
-            <h2 id="itinerary-heading" className="font-serif text-2xl sm:text-3xl font-bold text-teal-primary">
-              Itinerary Perjalanan {pkg.duration}
-            </h2>
-            <p className="font-sans text-xs sm:text-sm text-slate-muted mt-1 leading-relaxed">
-              Jadwal tersusun optimal agar jemaah dapat beribadah khusyuk tanpa kelelahan yang berlebihan.
-            </p>
-          </div>
-
-          <div className="space-y-4 border-l-2 border-teal-primary/20 ml-3 sm:ml-4 pl-4 sm:pl-6">
-            {itineraryDays.map((item) => (
-              <div key={item.day} className="relative group">
-                {/* Timeline node dot */}
-                <div className="absolute -left-[25px] sm:-left-[33px] top-1.5 w-4 h-4 rounded-full bg-teal-primary border-2 border-white shadow-xs group-hover:scale-125 transition-transform" />
-
-                <div className="p-4 rounded-card border border-warm-border bg-warm-bg hover:border-teal-primary/30 transition-colors">
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
-                    <h3 className="font-serif font-bold text-base text-teal-primary">
-                      {item.title}
-                    </h3>
-                    <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-badge bg-gold-light text-teal-primary border border-gold-accent/20">
-                      <span aria-hidden="true">Lokasi:</span> {item.location}
-                    </span>
+            {/* Galeri Foto Dokumentasi Paket */}
+            {galleryItems.length > 0 && (
+              <section aria-labelledby="gallery-heading" className="space-y-3">
+                <h2 id="gallery-heading" className="sr-only">Galeri Dokumentasi Paket</h2>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 sm:gap-4">
+                  {/* Slot Utama (Besar) */}
+                  <div className="sm:col-span-7 relative rounded-card overflow-hidden border border-warm-border bg-warm-surface shadow-card">
+                    <div className="aspect-4/3 w-full bg-teal-900 flex flex-col items-center justify-center p-6 text-center relative group">
+                      {galleryItems[0].imageUrl && (
+                        <Image
+                          src={galleryItems[0].imageUrl}
+                          alt={galleryItems[0].alt || galleryItems[0].label}
+                          fill
+                          sizes="(max-width: 1024px) 100vw, 50vw"
+                          className="object-cover"
+                        />
+                      )}
+                      <div className="absolute inset-0 bg-black/40" />
+                      <div className="relative z-10 text-white p-4">
+                        <p className="font-serif font-bold text-lg leading-snug">
+                          {galleryItems[0].label}
+                        </p>
+                        <p className="text-gold-accent text-xs font-semibold mt-1">
+                          {galleryItems[0].tag}
+                        </p>
+                      </div>
+                      <span className="absolute bottom-3 inset-x-3 text-[11px] text-white/80 font-sans text-center truncate">
+                        {galleryItems[0].caption}
+                      </span>
+                    </div>
                   </div>
-                  <p className="font-sans text-xs text-slate-body leading-relaxed">
-                    {item.activity}
-                  </p>
+
+                  {/* Thumbnail Samping */}
+                  <div className="sm:col-span-5 grid grid-cols-2 sm:grid-cols-1 gap-3">
+                    {galleryItems.slice(1, 3).map((item, idx) => (
+                      <div
+                        key={item.id}
+                        className="relative rounded-card overflow-hidden border border-warm-border bg-warm-surface shadow-card h-36 sm:h-auto sm:aspect-16/9"
+                      >
+                        {item.imageUrl && (
+                          <Image
+                            src={item.imageUrl}
+                            alt={item.alt || item.label}
+                            fill
+                            sizes="(max-width: 1024px) 50vw, 25vw"
+                            className="object-cover"
+                          />
+                        )}
+                        <div className="absolute inset-0 bg-black/40" />
+                        <div className="absolute bottom-2.5 left-2.5 right-2.5 text-white">
+                          <p className="font-serif font-bold text-xs sm:text-sm truncate">
+                            {item.label}
+                          </p>
+                          <p className="text-[10px] text-gold-accent font-semibold truncate">
+                            {item.tag}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+            )}
+
+            {/* Key Specifications Grid Strip */}
+            <section aria-labelledby="specs-heading" className="bg-warm-surface rounded-card border border-warm-border p-5 sm:p-6 shadow-card">
+              <h2 id="specs-heading" className="text-xs font-bold uppercase tracking-wider text-slate-caption font-sans mb-4">
+                Spesifikasi Keberangkatan &amp; Fasilitas
+              </h2>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
+                <div className="p-3 rounded-button bg-warm-bg border border-warm-border/60">
+                  <span className="text-[11px] text-slate-muted block font-sans">Tanggal Berangkat</span>
+                  <span className="font-sans font-bold text-sm text-teal-primary mt-1 block">
+                    {pkg.departureDate}
+                  </span>
+                  <span className="text-[10px] text-slate-muted block font-mono">Jadwal pasti</span>
+                </div>
+
+                <div className="p-3 rounded-button bg-warm-bg border border-warm-border/60">
+                  <span className="text-[11px] text-slate-muted block font-sans">Durasi Paket</span>
+                  <span className="font-sans font-bold text-sm text-teal-primary mt-1 block">
+                    {pkg.duration}
+                  </span>
+                  <span className="text-[10px] text-slate-muted block font-mono">Makkah &amp; Madinah</span>
+                </div>
+
+                <div className="p-3 rounded-button bg-warm-bg border border-warm-border/60">
+                  <span className="text-[11px] text-slate-muted block font-sans">Penerbangan</span>
+                  <span className="font-sans font-bold text-sm text-teal-primary mt-1 block truncate" title={pkg.airline}>
+                    {pkg.airline}
+                  </span>
+                  <span className="text-[10px] text-emerald-700 font-semibold block">{pkg.flightType}</span>
+                </div>
+
+                <div className="p-3 rounded-button bg-warm-bg border border-warm-border/60">
+                  <span className="text-[11px] text-slate-muted block font-sans">Kota Embarkasi</span>
+                  <span className="font-sans font-bold text-sm text-teal-primary mt-1 block">
+                    {pkg.departureCity}
+                  </span>
+                  <span className="text-[10px] text-slate-muted block">Bandara Soetta</span>
+                </div>
+
+                <div className="p-3 rounded-button bg-warm-bg border border-warm-border/60">
+                  <span className="text-[11px] text-slate-muted block font-sans">Hotel Makkah</span>
+                  <span className="font-sans font-bold text-xs text-teal-primary mt-1 block truncate" title={pkg.hotelMakkah}>
+                    {pkg.hotelMakkah}
+                  </span>
+                  <span className="text-[10px] text-slate-muted font-semibold block">Dekat Masjidil Haram</span>
+                </div>
+
+                <div className="p-3 rounded-button bg-warm-bg border border-warm-border/60">
+                  <span className="text-[11px] text-slate-muted block font-sans">Hotel Madinah</span>
+                  <span className="font-sans font-bold text-xs text-teal-primary mt-1 block truncate" title={pkg.hotelMadinah}>
+                    {pkg.hotelMadinah}
+                  </span>
+                  <span className="text-[10px] text-slate-muted font-semibold block">Dekat Masjid Nabawi</span>
                 </div>
               </div>
-            ))}
+            </section>
+
+            {/* Rincian Harga per Tipe Kamar */}
+            {roomPrices.length > 0 && (
+              <section aria-labelledby="pricing-heading" className="space-y-4">
+                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-warm-border pb-3">
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-[0.14em] text-gold-hover mb-1">Pilihan Kamar</p>
+                    <h2 id="pricing-heading" className="font-serif text-2xl sm:text-3xl font-bold text-teal-primary">
+                      Rincian Biaya per Tipe Kamar
+                    </h2>
+                  </div>
+                  <p className="text-xs text-slate-muted font-sans">
+                    Biaya per orang (Quad, Triple, Double)
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  {roomPrices.map((room) => (
+                    <div
+                      key={room.type}
+                      className={`rounded-card border p-5 flex flex-col justify-between transition-all bg-warm-surface shadow-card ${
+                        room.isPopular
+                          ? "border-teal-primary ring-2 ring-teal-primary/20"
+                          : "border-warm-border"
+                      }`}
+                    >
+                      <div>
+                        <div className="flex items-center justify-between gap-2 mb-2">
+                          <h3 className="font-serif text-lg font-bold text-teal-primary">
+                            {room.label}
+                          </h3>
+                          <span className="text-[10px] font-sans font-semibold px-2 py-0.5 rounded-badge bg-teal-primary/8 text-teal-primary">
+                            {room.capacity}
+                          </span>
+                        </div>
+
+                        <p className="font-sans text-xs text-slate-body leading-relaxed mb-4">
+                          {room.description}
+                        </p>
+
+                        <div className="p-3 rounded-button bg-warm-bg border border-warm-border mb-3">
+                          <span className="text-[10px] text-slate-caption uppercase font-bold block">
+                            Biaya Paket / Orang
+                          </span>
+                          <span className="font-sans text-xl sm:text-2xl font-bold text-teal-primary block mt-0.5">
+                            {room.price}
+                          </span>
+                        </div>
+                      </div>
+
+                      <p className="text-[11px] text-slate-muted">
+                        Kapasitas &amp; ketersediaan kamar dikonfirmasi saat pendaftaran.
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Fasilitas Termasuk & Belum Termasuk */}
+            <section aria-labelledby="facilities-heading" className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-start">
+              
+              {/* Termasuk */}
+              <div className="bg-warm-surface rounded-card border border-warm-border p-6 shadow-card space-y-4">
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 block mb-1">
+                    Fasilitas Lengkap
+                  </span>
+                  <h3 id="facilities-heading" className="font-serif text-xl font-bold text-teal-primary">
+                    Biaya Sudah Termasuk
+                  </h3>
+                </div>
+
+                <ul className="space-y-2.5 font-sans text-xs sm:text-sm text-slate-body border-t border-warm-border pt-4">
+                  {facilitiesIncluded.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5">
+                      <span className="w-4 h-4 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">
+                        ✓
+                      </span>
+                      <span className="leading-snug">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Belum Termasuk */}
+              <div className="bg-warm-surface rounded-card border border-warm-border p-6 shadow-card space-y-4">
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-status-soldout block mb-1">
+                    Biaya Tambahan
+                  </span>
+                  <h3 className="font-serif text-xl font-bold text-teal-primary">
+                    Biaya Belum Termasuk
+                  </h3>
+                </div>
+
+                <ul className="space-y-2.5 font-sans text-xs sm:text-sm text-slate-body border-t border-warm-border pt-4">
+                  {facilitiesExcluded.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5">
+                      <span className="w-4 h-4 rounded-full bg-red-100 text-status-soldout flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">
+                        ✕
+                      </span>
+                      <span className="leading-snug">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="p-3 bg-warm-muted/70 rounded-button border border-warm-border text-xs text-slate-muted">
+                  Konfirmasi rincian tertulis sebelum pembayaran pendaftaran.
+                </div>
+              </div>
+
+            </section>
+
+            {/* Itinerary Perjalanan Harian */}
+            {itineraryDays.length > 0 && (
+              <section aria-labelledby="itinerary-heading" className="bg-warm-surface rounded-card border border-warm-border p-6 sm:p-8 shadow-card space-y-6">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-gold-hover mb-1">Rencana Perjalanan</p>
+                  <h2 id="itinerary-heading" className="font-serif text-2xl sm:text-3xl font-bold text-teal-primary">
+                    Itinerary Perjalanan {pkg.duration}
+                  </h2>
+                  <p className="font-sans text-xs sm:text-sm text-slate-muted mt-1 leading-relaxed">
+                    Alur bimbingan ibadah dan city tour tersusun rapi untuk kenyamanan fisik seluruh jemaah keluarga.
+                  </p>
+                </div>
+
+                <div className="space-y-4 border-l-2 border-teal-primary/20 ml-3 sm:ml-4 pl-4 sm:pl-6">
+                  {itineraryDays.map((item) => (
+                    <div key={item.day} className="relative group">
+                      <div className="absolute -left-[25px] sm:-left-[33px] top-1.5 w-4 h-4 rounded-full bg-teal-primary border-2 border-white shadow-xs" />
+
+                      <div className="p-4 rounded-card border border-warm-border bg-warm-bg hover:border-teal-primary/30 transition-colors">
+                        <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                          <h3 className="font-sans font-bold text-sm sm:text-base text-teal-primary">
+                            Hari {item.day}: {item.title}
+                          </h3>
+                          <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-badge bg-gold-light text-teal-primary border border-gold-border">
+                            {item.location}
+                          </span>
+                        </div>
+                        <p className="font-sans text-xs sm:text-sm text-slate-body leading-relaxed">
+                          {item.activity}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <p className="text-[11px] text-slate-caption font-sans italic pt-2">
+                  *Jadwal itinerary dapat disesuaikan di lapangan mengikuti kondisi lalu lintas, tasreh Raudhah (Nusuk), dan kebijakan otoritas Arab Saudi tanpa mengurangi hak ibadah jemaah.
+                </p>
+              </section>
+            )}
+
           </div>
 
-          <p className="text-[11px] text-slate-caption font-sans italic pt-2">
-            *Jadwal itinerary dapat disesuaikan di lapangan mengikuti kondisi lalu lintas, izin tasreh Raudhah (Nusuk), dan kebijakan otoritas Arab Saudi tanpa mengurangi hak ibadah jemaah.
-          </p>
-        </section>
-        )}
+          {/* ════════════════════════════════════════════════════════════════════════════════
+              RIGHT COLUMN (4 COLS): Sticky Booking & Consultation Widget (Desktop Only)
+             ════════════════════════════════════════════════════════════════════════════════ */}
+          <aside className="hidden lg:block lg:col-span-4 sticky top-24 space-y-5">
+            
+            {/* Primary Sticky Booking Card */}
+            <div className="rounded-card border border-warm-border bg-warm-surface p-6 shadow-elevated space-y-5">
+              
+              <div>
+                <span className="text-xs uppercase font-bold text-slate-caption block font-sans">
+                  Mulai Dari / Orang (Quad)
+                </span>
+                <span className="font-serif text-3xl font-bold text-teal-primary block mt-1">
+                  {pkg.discountedPrice}
+                </span>
+                <span className="inline-flex items-center gap-1.5 text-xs text-emerald-700 font-semibold mt-1">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                  {lifecycleLabel}
+                </span>
+              </div>
 
-        {/* ── 8. LARGE CTA BOX ── */}
-        <section aria-labelledby="cta-heading" className="rounded-box bg-teal-primary text-white p-8 sm:p-12 shadow-elevated relative overflow-hidden text-center">
-          <div className="max-w-3xl mx-auto space-y-4 relative z-10">
-            <p className="text-xs font-bold uppercase tracking-[0.14em] text-gold-accent">Konsultasi dan pendaftaran resmi</p>
+              {/* Quick Specs Micro-List */}
+              <div className="border-y border-warm-border py-4 space-y-2.5 text-xs">
+                <div className="flex justify-between items-center text-slate-body">
+                  <span className="text-slate-muted">Keberangkatan:</span>
+                  <span className="font-bold text-teal-primary">{pkg.departureDate}</span>
+                </div>
+                <div className="flex justify-between items-center text-slate-body">
+                  <span className="text-slate-muted">Durasi:</span>
+                  <span className="font-bold text-teal-primary">{pkg.duration}</span>
+                </div>
+                <div className="flex justify-between items-center text-slate-body">
+                  <span className="text-slate-muted">Penerbangan:</span>
+                  <span className="font-bold text-teal-primary truncate max-w-[170px]" title={pkg.airline}>{pkg.airline}</span>
+                </div>
+                <div className="flex justify-between items-center text-slate-body">
+                  <span className="text-slate-muted">Hotel Makkah:</span>
+                  <span className="font-medium text-slate-dark truncate max-w-[170px]" title={pkg.hotelMakkah}>{pkg.hotelMakkah}</span>
+                </div>
+              </div>
 
-            <h2 id="cta-heading" className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-warm-bg leading-tight">
-              Tertarik dengan Paket {pkg.name}?
-            </h2>
+              {/* Action Buttons */}
+              <div className="space-y-3 pt-1">
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full min-h-12 px-5 py-3 rounded-button bg-gold-accent hover:bg-gold-hover text-slate-dark font-sans font-bold text-sm shadow-card flex items-center justify-center gap-2 transition-all active:scale-[0.98]"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.12.553 4.111 1.523 5.842l-1.615 5.9 6.046-1.587c1.668.91 3.57 1.435 5.597 1.435 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z" />
+                  </svg>
+                  <span>Konsultasi Paket Ini</span>
+                </a>
 
-            <p className="font-sans text-sm sm:text-base text-slate-100/90 leading-relaxed max-w-xl mx-auto">
-              Periksa kembali detail paket, komponen biaya, dokumen, dan pilihan kamar sebelum menghubungi kanal resmi.
-            </p>
+                <InquiryDialog
+                  href={whatsappUrl}
+                  packageId={pkg.id}
+                  packageName={pkg.name}
+                  label="Tanyakan Ketersediaan Kuota"
+                  className="w-full min-h-11 px-4 py-2.5 rounded-button border border-teal-primary text-teal-primary hover:bg-teal-primary hover:text-white font-sans font-bold text-xs flex items-center justify-center transition-all"
+                />
 
-            {/* One clear next step with package context already prepared. */}
-            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3.5">
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                id="cta-detail-katalog"
-                className="w-full sm:w-auto min-h-13 px-7 py-3.5 rounded-button bg-gold-accent hover:bg-gold-hover text-teal-900 font-sans font-bold text-sm shadow-card flex items-center justify-center gap-2.5 transition-all active:scale-[0.98]"
-              >
-                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z" />
-                </svg>
-                <span>Konsultasi Paket Ini</span>
-              </a>
+                <div className="pt-2 flex justify-center">
+                  <SharePackageButton title={pkg.name} />
+                </div>
+              </div>
 
-              <Link
-                href="/umroh"
-                id="cta-detail-paket-lain"
-                className="w-full sm:w-auto min-h-13 px-7 py-3.5 rounded-button border border-white/30 hover:bg-white/10 text-white font-sans font-semibold text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98]"
-              >
-                <span>Lihat Paket Lain</span>
-              </Link>
+              {/* Trust Signal Note */}
+              <div className="p-3 bg-warm-muted rounded-button border border-warm-border text-[11px] text-slate-muted leading-relaxed">
+                Pembayaran pendaftaran resmi hanya ditransfer ke rekening an. <strong className="text-teal-primary">{company.legalName}</strong>.
+              </div>
+
             </div>
 
-            <p className="text-xs text-white/70 font-sans pt-2">
-              Pesan WhatsApp sudah menyertakan nama paket, tanggal, dan durasi agar konsultasi lebih cepat.
-            </p>
-          </div>
-        </section>
+            {/* Assistance Card */}
+            <div className="rounded-card border border-warm-border bg-warm-surface p-5 shadow-card text-center space-y-2">
+              <p className="font-serif font-bold text-base text-teal-primary">
+                Butuh Informasi Tambahan?
+              </p>
+              <p className="text-xs text-slate-muted leading-relaxed">
+                Tim Risalah Madina Tour siap menjelaskan rincian berkas visa, paspor, dan manasik.
+              </p>
+              <a
+                href={`tel:${company.phone.replace(/\D/g, "")}`}
+                className="inline-block pt-1 text-xs font-bold text-teal-primary hover:underline"
+              >
+                Telepon: {company.phone}
+              </a>
+            </div>
+
+          </aside>
+
+        </div>
 
       </div>
 
-      {/* ── 9. STICKY BOTTOM BAR FOR MOBILE HIGH-CONVERSION ── */}
-      <div className="sm:hidden fixed bottom-0 inset-x-0 z-40 bg-warm-surface border-t border-warm-border p-3.5 px-4 shadow-elevated flex items-center justify-between gap-3">
+      {/* ── STICKY BOTTOM BAR FOR MOBILE (Thumb-friendly high conversion) ── */}
+      <div className="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-warm-surface border-t border-warm-border p-3.5 px-4 shadow-elevated flex items-center justify-between gap-3">
         <div className="min-w-0">
           <span className="text-[10px] text-slate-caption block uppercase font-bold font-sans">
             Mulai Dari (Quad)
@@ -526,13 +530,13 @@ export default async function PackageDetailPage({ params }: PageProps) {
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          id="mobile-sticky-cta-katalog"
+          id="mobile-sticky-cta"
           className="min-h-11 px-5 py-2.5 rounded-button bg-teal-primary text-white font-sans text-xs font-bold shadow-card flex items-center gap-2 shrink-0 active:scale-[0.98]"
         >
           <svg className="w-4 h-4 text-emerald-400 fill-current" viewBox="0 0 24 24">
-            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z" />
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.12.553 4.111 1.523 5.842l-1.615 5.9 6.046-1.587c1.668.91 3.57 1.435 5.597 1.435 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z" />
           </svg>
-          <span>WhatsApp admin</span>
+          <span>WhatsApp Konsultasi</span>
         </a>
       </div>
 
