@@ -52,8 +52,8 @@ export function AboutPageContent({ company }: { company: CompanyProfile }) {
             <div className="content-panel overflow-hidden">
               <div className="relative aspect-4/3 w-full bg-teal-900">
                 <Image
-                  src={company.media?.aboutUrl || "/images/travel-team.jpg"}
-                  alt="Tim dan Pembimbing Risalah Madina Tour"
+                  src={company.media?.aboutUrl && company.media.aboutUrl !== "/images/travel-team.jpg" ? company.media.aboutUrl : "/images/kaaba-courtyard.png"}
+                  alt="Pelataran Ka'bah di Masjidil Haram"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"

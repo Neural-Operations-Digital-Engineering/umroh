@@ -20,10 +20,10 @@ export default function CompanyProfileSection({ company }: { company: CompanyPro
           <div className="lg:col-span-5 order-2 lg:order-1">
             <div className="relative rounded-card overflow-hidden shadow-elevated border border-warm-border bg-warm-surface">
               <div className="relative aspect-4/3 overflow-hidden bg-teal-primary">
-                <Image src={company.media?.aboutUrl || "/images/travel-team.jpg"} alt="Tim layanan travel yang mendampingi jemaah" fill sizes="(max-width: 1024px) 100vw, 42vw" className="object-cover" />
+                <Image src={company.media?.aboutUrl && company.media.aboutUrl !== "/images/travel-team.jpg" ? company.media.aboutUrl : "/images/kaaba-courtyard.png"} alt="Pelataran Ka'bah di Masjidil Haram" fill sizes="(max-width: 1024px) 100vw, 42vw" className="object-cover" />
                 <div className="absolute inset-0 bg-linear-to-t from-teal-900/80 via-transparent to-transparent" />
                 <div className="absolute left-4 top-4 rounded-badge border border-white/20 bg-teal-900/85 px-3 py-1.5 text-[10px] font-bold text-white">
-                  Tim pendamping jemaah
+                  Dokumentasi perjalanan
                 </div>
                 <p className="absolute bottom-4 left-5 right-5 font-serif text-lg font-bold leading-tight text-white">
                   Hadir sebelum berangkat, mendampingi sampai pulang

@@ -2,9 +2,11 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function CookieNotice() {
   const [isVisible, setIsVisible] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     // Only show if user hasn't acknowledged before
@@ -14,6 +16,8 @@ export default function CookieNotice() {
       return () => clearTimeout(timer);
     }
   }, []);
+
+  if (pathname.startsWith("/admin")) return null;
 
   const handleDismiss = () => {
     window.localStorage.setItem("rm_cookie_consent", "true");

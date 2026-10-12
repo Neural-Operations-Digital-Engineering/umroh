@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import type { CompanyProfile } from "@/data/company";
 import { getGeneralWhatsAppUrl } from "@/lib/contact";
 
@@ -13,6 +14,9 @@ import { getGeneralWhatsAppUrl } from "@/lib/contact";
 export default function Footer({ company }: { company: CompanyProfile }) {
   const currentYear = new Date().getFullYear();
   const waUrl = getGeneralWhatsAppUrl(company.phone);
+  const pathname = usePathname();
+
+  if (pathname.startsWith("/admin")) return null;
 
   return (
     <footer className="relative overflow-hidden border-t border-[#263d34] bg-[#071e17] pt-14 pb-10 font-sans text-[#d6dedb]">

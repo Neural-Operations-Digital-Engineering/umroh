@@ -137,7 +137,7 @@ function normalizeSiteData(value: SiteData): SiteData {
   next.company.media = next.company.media || {
     heroUrl: "/images/minaret-hero.jpg",
     heroVideoUrl: "https://ventour-wp.s3.ap-southeast-3.amazonaws.com/wp-content/uploads/2026/04/30054426/REVISI-VIDEO-WEBSITE-IT_2.mp4",
-    aboutUrl: "/images/travel-team.jpg",
+    aboutUrl: "/images/kaaba-courtyard.png",
     documentationUrls: [
       "/images/destinations/turki.jpg",
       "/images/destinations/dubai.jpg",
@@ -433,7 +433,7 @@ function MediaManager({
             <div className="mt-5">
               <CmsMediaUpload
                 label="Foto Kantor / Tim Pendamping"
-                value={company.media?.aboutUrl || "/images/travel-team.jpg"}
+                value={company.media?.aboutUrl || "/images/kaaba-courtyard.png"}
                 folder="site/about"
                 supabase={supabase}
                 onChange={(value) => updateCompany("media.aboutUrl", value)}

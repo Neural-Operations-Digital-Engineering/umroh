@@ -122,7 +122,7 @@ export default function HeroSection({ company }: { company: CompanyProfile }) {
   return (
     <section className="site-hero relative overflow-hidden text-white" style={{ minHeight: "min(760px, 82svh)" }}>
       <div className="mx-auto grid min-h-[min(760px,82svh)] max-w-[1500px] lg:grid-cols-[0.86fr_1.14fr]">
-        <div className="site-hero__copy flex flex-col justify-between px-5 py-10 sm:px-10 sm:py-14 lg:px-16 lg:py-16">
+        <div className="site-hero__copy order-2 flex flex-col justify-between px-5 py-10 sm:px-10 sm:py-14 lg:order-none lg:px-16 lg:py-16">
           <div className="flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/60">
             <span className="flex h-10 w-10 items-center justify-center border border-gold-accent/50 text-sm font-bold text-gold-accent">RM</span>
             <span>{company.brandName}<br /><span className="text-white/40">Sejak perjalanan pertama</span></span>
@@ -146,7 +146,7 @@ export default function HeroSection({ company }: { company: CompanyProfile }) {
             ))}
           </div>
         </div>
-        <div className="site-hero__visual min-h-[360px] lg:min-h-0">
+        <div className="site-hero__visual order-1 min-h-[300px] lg:order-none lg:min-h-0">
           <Image src={heroImage} alt={`Suasana ibadah ${company.brandName}`} fill loading="eager" sizes="(max-width: 1023px) 100vw, 57vw" quality={78} fetchPriority="high" className="object-cover object-center" />
           {showVideo && heroVideo && <video ref={videoRef} autoPlay muted loop playsInline preload="none" disablePictureInPicture className="absolute inset-0 h-full w-full object-cover opacity-65 mix-blend-screen pointer-events-none"><source src={heroVideo} type="video/mp4" /></video>}
           <div className="absolute inset-0 bg-[#062c22]/20" />
