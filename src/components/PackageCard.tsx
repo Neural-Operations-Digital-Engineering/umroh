@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { memo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Package, StatusType } from "@/types/package";
@@ -46,7 +46,7 @@ interface PackageCardProps {
   layoutMode?: "grid" | "list";
 }
 
-export default function PackageCard({
+function PackageCardInner({
   pkg,
   compareSelected = false,
   onToggleCompare,
@@ -108,6 +108,7 @@ export default function PackageCard({
             alt={`Dokumentasi ${pkg.name}`}
             fill
             sizes="(max-width: 768px) 100vw, 256px"
+            loading="lazy"
             className="object-cover group-hover:scale-105 transition-transform duration-500"
           />
           <div className="absolute inset-0 bg-linear-to-t md:bg-linear-to-r from-black/70 via-black/20 to-transparent" />
@@ -249,6 +250,7 @@ export default function PackageCard({
           alt={`Dokumentasi ${pkg.name}`}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          loading="lazy"
           className="object-cover group-hover:scale-105 transition-transform duration-500"
         />
         <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/25 to-black/30" />
@@ -398,3 +400,8 @@ export default function PackageCard({
     </article>
   );
 }
+
+// Memoize to avoid re-renders when parent filter state changes but this card's data hasn't.
+// With ~5 packages the gain is small, but it scales correctly if the CMS grows.
+const PackageCard = memo(PackageCardInner);
+export default PackageCard;

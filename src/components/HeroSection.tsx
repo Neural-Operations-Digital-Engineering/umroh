@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import type { CompanyProfile } from "@/data/company";
 
@@ -11,6 +11,10 @@ import type { CompanyProfile } from "@/data/company";
  */
 export default function HeroSection({ company }: { company: CompanyProfile }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  // showVideo stays false until useEffect confirms: desktop + no save-data + no reduced-motion.
+  // Prevents video element (and its src) from being rendered on mobile or during SSR.
+  const [showVideo, setShowVideo] = useState(false);
 
   const trustPillars = [
     {
@@ -76,49 +80,96 @@ export default function HeroSection({ company }: { company: CompanyProfile }) {
   ];
 
   const heroImage = company.media?.heroUrl || "/images/minaret-hero.jpg";
-  const heroVideo = company.media?.heroVideoUrl || "https://ventour-wp.s3.ap-southeast-3.amazonaws.com/wp-content/uploads/2026/04/30054426/REVISI-VIDEO-WEBSITE-IT_2.mp4";
 
-  // The video is ambient documentation, not a required interaction. The poster
-  // image remains the fallback when a browser or battery saver blocks autoplay.
+  // ⚠️  PRODUCTION NOTE: This video URL currently hotlinks a third-party S3 bucket (ventour-wp).
+  // Replace with your own hosted video via NEXT_PUBLIC_HERO_VIDEO_URL env variable before going live.
+  // Target spec: <= 3 MB, H.264/WebM, 720p, no audio.
+  // Compress with: ffmpeg -i input.mp4 -vf scale=1280:720 -c:v libx264 -crf 28 -an -movflags +faststart hero.mp4
+  // WebM alternative: ffmpeg -i input.mp4 -vf scale=1280:720 -c:v libvpx-vp9 -crf 35 -b:v 0 -an hero.webm
+  const heroVideo =
+    process.env.NEXT_PUBLIC_HERO_VIDEO_URL ||
+    company.media?.heroVideoUrl ||
+    ""; // empty string disables video
+
   useEffect(() => {
-    if (videoRef.current) {
+    // Skip video entirely on: mobile viewports, save-data mode, reduced-motion, or missing URL.
+    if (!heroVideo) return;
+
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    const nav = navigator as Navigator & { connection?: { saveData?: boolean } };
+    const saveData = nav.connection?.saveData === true;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (isMobile || saveData || reducedMotion) return;
+
+    // Desktop: defer video load until browser is idle — avoids blocking initial paint.
+    if (typeof requestIdleCallback !== "undefined") {
+      requestIdleCallback(() => setShowVideo(true), { timeout: 3000 });
+    } else {
+      setTimeout(() => setShowVideo(true), 500);
+    }
+  }, [heroVideo]);
+
+  // Trigger autoplay once the video element mounts.
+  useEffect(() => {
+    if (showVideo && videoRef.current) {
       videoRef.current.play().catch(() => {
-        // Fallback gracefully to poster image if battery saver / strict policy blocks autoplay
+        // Silently ignore if autoplay is blocked (battery saver / strict browser policy).
       });
     }
-  }, []);
+  }, [showVideo]);
 
   return (
-    <section className="relative min-h-[68svh] sm:min-h-[520px] lg:min-h-[640px] w-full flex flex-col justify-between overflow-hidden bg-slate-dark text-white">
-      
-      {/* ── Background Video with Seamless Mobile Autoplay + High-Res Poster ── */}
+    <section
+      className="relative min-h-[68svh] sm:min-h-[520px] lg:min-h-[640px] w-full flex flex-col justify-between overflow-hidden bg-slate-dark text-white"
+      style={{
+        // Explicit aspect-ratio provides a stable height hint for browsers before
+        // svh/dvh units resolve, preventing a layout shift (CLS) on the first paint.
+        // The min-h Tailwind classes take over as soon as the viewport is known.
+        aspectRatio: "16 / 9",
+        minHeight: "68svh",
+      }}
+    >
+
+      {/* ── Background: LCP Image (always) + deferred video overlay (desktop only) ── */}
       <div className="absolute inset-0 z-0 overflow-hidden">
+        {/*
+          Single LCP hero image — no poster duplication.
+          The <Image> covers the full background so even if video never loads,
+          the layout stays correct. quality=75 balances size vs fidelity for hero images.
+        */}
         <Image
           src={heroImage}
           alt={`Suasana Ibadah ${company.brandName}`}
           fill
           priority
           sizes="100vw"
+          quality={75}
+          fetchPriority="high"
           className="object-cover object-center"
         />
 
-        {heroVideo && (
+        {/*
+          Video is rendered only on desktop, after idle callback fires.
+          No `poster` attribute — avoids fetching the hero image a second time.
+          preload="none" means no bytes are fetched until play() is called.
+        */}
+        {showVideo && heroVideo && (
           <video
             ref={videoRef}
             autoPlay
             muted
             loop
             playsInline
-            preload="auto"
+            preload="none"
             disablePictureInPicture
             className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-screen pointer-events-none"
-            poster={heroImage}
           >
             <source src={heroVideo} type="video/mp4" />
           </video>
         )}
 
-        {/* A single scrim keeps the headline legible over changing footage. */}
+        {/* Gradient scrim keeps the headline legible over changing footage. */}
         <div className="absolute inset-0 bg-linear-to-b from-black/55 via-black/25 to-black/80 pointer-events-none" />
       </div>
 
@@ -128,10 +179,9 @@ export default function HeroSection({ company }: { company: CompanyProfile }) {
       {/* ── Center Content: Responsive, Proportional Brand Typography (Clamp Sizing) ── */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 py-4 sm:py-8 my-auto">
         <div className="max-w-3xl mx-auto flex flex-col items-center space-y-2 sm:space-y-3.5">
-          
+
           {/* Brand Logo & Name */}
           <div className="flex items-center justify-center gap-2 sm:gap-3.5">
-            {/* Existing brand monogram, reused without inventing a second logo. */}
             <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-button border border-gold-accent/50 bg-teal-primary/80 text-sm font-bold text-gold-accent sm:h-11 sm:w-11 sm:text-base">
               RM
             </div>
@@ -216,4 +266,3 @@ export default function HeroSection({ company }: { company: CompanyProfile }) {
     </section>
   );
 }
-

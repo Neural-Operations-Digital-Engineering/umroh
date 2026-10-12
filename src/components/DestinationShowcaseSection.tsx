@@ -70,27 +70,36 @@ export default function DestinationShowcaseSection({ company }: { company: Compa
       onFocus={() => setIsPaused(true)}
     >
       {/* ── Background Crossfade ── */}
-      {destinations.map((dest, idx) => (
-        <div
-          key={dest.id}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-            idx === current ? "opacity-100 scale-100" : "opacity-0 scale-105 pointer-events-none"
-          }`}
-          style={{ transitionProperty: "opacity, transform" }}
-        >
-          <Image
-            src={dest.img}
-            alt={`Latar ${dest.title}`}
-            fill
-            sizes="100vw"
-            priority={idx === 0}
-            className="object-cover object-center"
-          />
-          {/* Natural Film Vignette */}
-          <div className="absolute inset-0 bg-linear-to-r from-black/90 via-black/60 to-black/40" />
-          <div className="absolute inset-0 bg-linear-to-t from-[#0b1015] via-transparent to-black/40" />
-        </div>
-      ))}
+      {/* Only render the active slide and the next one (preload for smooth transition).
+          All other slides are unmounted to avoid fetching their images. */}
+      {destinations.map((dest, idx) => {
+        const isActive = idx === current;
+        const isNext = idx === (current + 1) % destinations.length;
+        // Render only the active and next slide; keep previous active briefly via CSS opacity.
+        if (!isActive && !isNext) return null;
+        return (
+          <div
+            key={dest.id}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              isActive ? "opacity-100 scale-100" : "opacity-0 scale-105 pointer-events-none"
+            }`}
+            style={{ transitionProperty: "opacity, transform" }}
+          >
+            <Image
+              src={dest.img}
+              alt={`Latar ${dest.title}`}
+              fill
+              sizes="100vw"
+              priority={idx === 0}
+              loading={idx === 0 ? undefined : "lazy"}
+              className="object-cover object-center"
+            />
+            {/* Natural Film Vignette */}
+            <div className="absolute inset-0 bg-linear-to-r from-black/90 via-black/60 to-black/40" />
+            <div className="absolute inset-0 bg-linear-to-t from-[#0b1015] via-transparent to-black/40" />
+          </div>
+        );
+      })}
 
       {/* ── Left Timeline Dots (Ventour Design) ── */}
       <div className="hidden lg:flex flex-col items-center justify-between absolute left-8 xl:left-14 top-1/2 -translate-y-1/2 h-64 z-20">
@@ -189,6 +198,7 @@ export default function DestinationShowcaseSection({ company }: { company: Compa
                         alt={item.title}
                         fill
                         sizes="(max-width: 640px) 260px, 320px"
+                        loading={index === 0 ? undefined : "lazy"}
                         className="object-cover"
                       />
                       <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
