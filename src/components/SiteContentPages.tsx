@@ -47,7 +47,7 @@ export function AboutPageContent({ company }: { company: CompanyProfile }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           
           {/* Left Column (6 cols): Profile Card, 5 Pasti Umrah */}
-          <div className="lg:col-span-6 space-y-6">
+          <div className="min-w-0 lg:col-span-6 space-y-6">
             
             <div className="content-panel overflow-hidden">
               <div className="relative aspect-4/3 w-full bg-teal-900">
@@ -246,7 +246,7 @@ export function LegalityPageContent({ company }: { company: CompanyProfile }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Left Column (7 cols): Formal Government Credentials */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="min-w-0 lg:col-span-7 space-y-6">
             <div className="content-panel space-y-5 p-6">
               <div className="border-b border-warm-border pb-3">
                 <span className="text-xs font-bold uppercase tracking-[0.14em] text-gold-hover font-sans block mb-1">
@@ -283,7 +283,7 @@ export function LegalityPageContent({ company }: { company: CompanyProfile }) {
           </div>
 
           {/* Right Column (5 cols): Rekening Resmi Anti-Penipuan */}
-          <div className="lg:col-span-5 space-y-6">
+          <div className="min-w-0 lg:col-span-5 space-y-6">
             
             {/* Anti-Fraud Warning Box */}
             <div className="rounded-card border-2 border-red-200 bg-red-50/70 p-5 shadow-xs space-y-2">
@@ -494,14 +494,14 @@ export function DocumentationPageContent({ company }: { company: CompanyProfile 
 export function HajiOverviewSection({ company }: { company: CompanyProfile }) {
   return (
     <section className="border-b border-warm-border bg-[#ebe6dc] font-sans">
-      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
-        <div className="grid gap-8 lg:grid-cols-12 items-center">
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
+        <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,0.56fr)] lg:gap-12">
           
-          <div className="lg:col-span-8 space-y-3">
+          <div className="min-w-0 space-y-3">
             <span className="text-xs font-bold uppercase tracking-[0.14em] text-gold-hover block">
               Program Haji Khusus Berizin Kemenag
             </span>
-            <h1 className="editorial-title !text-3xl sm:!text-5xl">
+            <h1 className="editorial-title max-w-4xl !text-3xl sm:!text-5xl">
               Program Haji Khusus &amp; Kuota Resmi
             </h1>
             <p className="text-sm sm:text-base leading-relaxed text-slate-body max-w-3xl">
@@ -509,22 +509,22 @@ export function HajiOverviewSection({ company }: { company: CompanyProfile }) {
             </p>
           </div>
 
-          <div className="content-panel space-y-3 p-5 sm:p-6">
+          <div className="content-panel w-full min-w-0 space-y-4 p-5 sm:p-6">
             <span className="text-xs font-bold uppercase tracking-wider text-slate-muted block">
               Ringkasan Data Haji
             </span>
-            <div className="space-y-2 text-xs">
-              <div className="flex justify-between items-center text-slate-body">
+            <div className="grid gap-3 text-xs">
+              <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,auto)] items-start gap-3 text-slate-body">
                 <span className="text-slate-muted">Izin PIHK:</span>
-                <span className="font-bold text-teal-primary">{company.legal.pihk}</span>
+                <span className="min-w-0 break-words text-right font-bold text-teal-primary">{company.legal.pihk}</span>
               </div>
-              <div className="flex justify-between items-center text-slate-body">
+              <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,auto)] items-start gap-3 text-slate-body">
                 <span className="text-slate-muted">DP Porsi:</span>
-                <span className="font-bold text-teal-primary">{company.financing.hajjDp}</span>
+                <span className="min-w-0 break-words text-right font-bold text-teal-primary">{company.financing.hajjDp}</span>
               </div>
-              <div className="flex justify-between items-center text-slate-body">
+              <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,auto)] items-start gap-3 text-slate-body">
                 <span className="text-slate-muted">Masa Tunggu Acuan:</span>
-                <span className="font-bold text-teal-primary">6-7 Tahun</span>
+                <span className="min-w-0 break-words text-right font-bold text-teal-primary">6-7 Tahun</span>
               </div>
             </div>
             <div className="pt-2">
@@ -532,7 +532,7 @@ export function HajiOverviewSection({ company }: { company: CompanyProfile }) {
                 href={getGeneralWhatsAppUrl(company.phone)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full min-h-11 inline-flex items-center justify-center rounded-button bg-teal-primary hover:bg-teal-900 text-white text-xs font-bold transition-colors"
+                className="inline-flex min-h-11 w-full items-center justify-center whitespace-normal rounded-button bg-teal-primary px-3 text-center text-xs font-bold leading-4 text-white transition-colors hover:bg-teal-900"
               >
                 Konsultasi Porsi Haji Khusus
               </a>

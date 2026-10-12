@@ -124,7 +124,7 @@ export default function DestinationShowcaseSection({ company }: { company: Compa
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
           {/* ── Left Descriptive Column ── */}
-          <div className="lg:col-span-5 space-y-4 sm:space-y-6">
+          <div className="min-w-0 lg:col-span-5 space-y-4 sm:space-y-6">
             <h2 className="font-sans text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-none drop-shadow-md">
               {activeDest.title}
             </h2>
@@ -150,7 +150,7 @@ export default function DestinationShowcaseSection({ company }: { company: Compa
           </div>
 
           {/* ── Right Carousel Cards Column ── */}
-          <div className="lg:col-span-7 overflow-hidden">
+          <div className="min-w-0 lg:col-span-7 overflow-hidden">
             <div
               className="flex gap-4 sm:gap-6 transition-transform duration-700 ease-in-out py-2"
               style={{

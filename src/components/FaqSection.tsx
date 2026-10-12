@@ -127,7 +127,7 @@ export default function FaqSection({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
             {/* Left Column (4 cols sticky): Category Sidebar & Help Card */}
-            <aside className="lg:col-span-4 lg:sticky lg:top-24 space-y-6">
+            <aside className="min-w-0 lg:col-span-4 lg:sticky lg:top-24 space-y-6">
               
               {/* Category Filter Widget */}
               <div className="rounded-card border border-warm-border bg-warm-bg p-5 shadow-card space-y-3">
@@ -199,7 +199,7 @@ export default function FaqSection({
             </aside>
 
             {/* Right Column (8 cols): Search Box & Accordion List */}
-            <div className="lg:col-span-8 space-y-4">
+            <div className="min-w-0 lg:col-span-8 space-y-4">
               
               {/* Search Box */}
               <div className="relative">

@@ -112,7 +112,7 @@ export default async function PackageDetailPage({ params }: PageProps) {
           {/* ════════════════════════════════════════════════════════════════════════════════
               LEFT COLUMN (8 COLS): Rich Content, Specifications, Itinerary, Rooms, Facilities
              ════════════════════════════════════════════════════════════════════════════════ */}
-          <div className="lg:col-span-8 space-y-8">
+          <div className="min-w-0 lg:col-span-8 space-y-8">
             
             {/* Header Title & Meta Badges */}
             <div className="space-y-3">
@@ -421,7 +421,7 @@ export default async function PackageDetailPage({ params }: PageProps) {
           {/* ════════════════════════════════════════════════════════════════════════════════
               RIGHT COLUMN (4 COLS): Sticky Booking & Consultation Widget (Desktop Only)
              ════════════════════════════════════════════════════════════════════════════════ */}
-          <aside className="hidden lg:block lg:col-span-4 sticky top-24 space-y-5">
+          <aside className="hidden min-w-0 lg:block lg:col-span-4 sticky top-24 space-y-5">
             
             {/* Primary Sticky Booking Card */}
             <div className="rounded-card border border-warm-border bg-warm-surface p-6 shadow-elevated space-y-5">

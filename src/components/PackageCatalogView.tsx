@@ -507,7 +507,7 @@ export default function PackageCatalogView({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
           
           {/* ── DESKTOP SIDEBAR FILTER (≥1024px) ── */}
-          <aside className="hidden lg:block lg:col-span-4 bg-warm-surface rounded-card border border-warm-border p-5 shadow-card sticky top-24 space-y-5">
+          <aside className="hidden min-w-0 lg:block lg:col-span-4 bg-warm-surface rounded-card border border-warm-border p-5 shadow-card sticky top-24 space-y-5">
             <div className="flex items-center justify-between pb-3 border-b border-warm-border">
               <div className="flex items-center gap-2 font-serif font-bold text-base text-teal-primary">
                 <svg className="w-4 h-4 text-gold-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -645,7 +645,7 @@ export default function PackageCatalogView({
           </aside>
 
           {/* ── RESULTS: Responsive Vertical Grid or List (No forced horizontal rail) ── */}
-          <div className="lg:col-span-8 space-y-5">
+          <div className="min-w-0 lg:col-span-8 space-y-5">
             {sortedPackages.length > 0 ? (
               <div
                 className={
