@@ -39,7 +39,7 @@ export default function FaqSection({
   };
 
   return (
-    <section id="faq" className="scroll-mt-24 py-10 sm:py-16 bg-warm-surface border-t border-warm-border font-sans">
+    <section id="faq" className="site-shell scroll-mt-24 border-t border-warm-border py-10 font-sans sm:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
         {/* Breadcrumb if standalone page */}
@@ -55,15 +55,15 @@ export default function FaqSection({
 
         {/* Section Header */}
         <div className={compact ? "text-center max-w-2xl mx-auto mb-8" : "max-w-3xl space-y-2"}>
-          <p className="text-xs font-bold uppercase tracking-[0.14em] text-gold-hover">
+          <p className="eyebrow">
             Pusat Informasi &amp; Panduan
           </p>
           {isHeadingH1 ? (
-            <h1 className="font-serif text-3xl sm:text-5xl font-bold text-teal-primary leading-tight">
+            <h1 className="editorial-title">
               Pertanyaan yang Sering Diajukan
             </h1>
           ) : (
-            <h2 className="font-serif text-2xl sm:text-4xl font-bold text-teal-primary leading-tight">
+            <h2 className="editorial-title !text-3xl sm:!text-4xl">
               Pertanyaan yang Sering Diajukan
             </h2>
           )}
@@ -81,7 +81,7 @@ export default function FaqSection({
                 return (
                   <div
                     key={faq.id}
-                    className={`rounded-card border transition-all duration-200 overflow-hidden ${
+                    className={`faq-panel overflow-hidden border transition-all duration-200 ${
                       isOpen
                         ? "border-teal-primary/30 bg-warm-bg shadow-xs"
                         : "border-warm-border bg-warm-bg hover:border-teal-primary/20"
@@ -275,7 +275,7 @@ export default function FaqSection({
                   return (
                     <article
                       key={faq.id}
-                      className={`rounded-card border transition-all duration-200 overflow-hidden ${
+                      className={`faq-panel overflow-hidden border transition-all duration-200 ${
                         isOpen
                           ? "border-teal-primary/40 bg-warm-bg shadow-sm"
                           : "border-warm-border bg-warm-bg hover:border-teal-primary/20"

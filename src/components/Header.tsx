@@ -44,6 +44,8 @@ export default function Header({ company }: { company: CompanyProfile }) {
     }
   }, [isMobileMenuOpen]);
 
+  if (pathname.startsWith("/admin")) return null;
+
   // Helper for active matching
   const checkIsActive = (href: string) => {
     if (href === "/") return pathname === "/";
@@ -53,13 +55,19 @@ export default function Header({ company }: { company: CompanyProfile }) {
   return (
     <>
       <header
-        className={`sticky top-0 z-40 w-full transition-all duration-300 border-b ${
+        className={`sticky top-0 z-40 w-full transition-all duration-300 border-b border-[#dcd7cc] ${
           isScrolled
-            ? "bg-warm-bg border-warm-border shadow-card py-3"
-            : "bg-warm-bg border-warm-border/60 py-4"
+            ? "bg-[#f5f1e9]/95 shadow-[0_10px_30px_rgba(30,41,35,0.08)] backdrop-blur-md"
+            : "bg-[#f5f1e9]"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="hidden border-b border-[#dcd7cc]/80 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#66716b] md:block">
+          <div className="mx-auto flex max-w-7xl items-center justify-between">
+            <span>Jawa Barat · Indonesia</span>
+            <span className="text-teal-primary">Pendampingan ibadah yang tenang dan terukur</span>
+          </div>
+        </div>
+        <div className={`mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 ${isScrolled ? "py-3" : "py-4"}`}>
           {/* Logo Section */}
           <Link
             href="/"
@@ -67,7 +75,7 @@ export default function Header({ company }: { company: CompanyProfile }) {
             aria-label={`${company.brandName} Beranda`}
           >
             {/* Monogram */}
-            <div className="w-10 h-10 rounded-button bg-teal-primary text-gold-accent font-serif font-bold text-xl flex items-center justify-center shadow-sm group-hover:bg-teal-900 transition-colors">
+            <div className="flex h-10 w-10 items-center justify-center rounded-[0.7rem] border border-[#91ad3e]/50 bg-teal-primary font-serif text-xl font-bold text-gold-accent shadow-[0_6px_16px_rgba(6,44,34,0.18)] transition-transform group-hover:-translate-y-0.5">
               RM
             </div>
             <div className="flex flex-col">
@@ -88,10 +96,10 @@ export default function Header({ company }: { company: CompanyProfile }) {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`px-3 py-2 rounded-button text-xs font-semibold font-sans transition-all duration-200 ${
+              className={`px-3 py-2 text-xs font-semibold font-sans transition-all duration-200 ${
                     isActive
-                      ? "text-teal-primary bg-warm-muted font-bold"
-                      : "text-slate-body hover:text-teal-primary hover:bg-warm-muted/60"
+                      ? "text-teal-primary border-b-2 border-gold-accent font-bold"
+                      : "text-slate-body hover:text-teal-primary"
                   }`}
                 >
                   {link.name}
@@ -106,7 +114,7 @@ export default function Header({ company }: { company: CompanyProfile }) {
               href={getGeneralWhatsAppUrl(company.phone)}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2.5 rounded-button bg-gold-accent hover:bg-gold-hover text-slate-dark font-sans text-xs font-semibold shadow-card transition-all duration-200 flex items-center gap-2"
+              className="flex items-center gap-2 border border-gold-accent bg-gold-accent px-4 py-2.5 font-sans text-xs font-semibold text-slate-dark shadow-[0_6px_16px_rgba(102,125,44,0.16)] transition-all duration-200 hover:bg-gold-hover"
             >
               <svg className="w-3.5 h-3.5 text-slate-dark fill-current" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.12.553 4.111 1.523 5.842l-1.615 5.9 6.046-1.587c1.668.91 3.57 1.435 5.597 1.435 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z" />
@@ -129,7 +137,7 @@ export default function Header({ company }: { company: CompanyProfile }) {
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               type="button"
-              className="w-11 h-11 rounded-button bg-warm-muted hover:bg-warm-border text-teal-primary flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-teal-primary"
+              className="flex h-11 w-11 items-center justify-center rounded-button border border-warm-border bg-warm-surface text-teal-primary transition-colors hover:bg-warm-muted focus:outline-none focus:ring-2 focus:ring-teal-primary"
               aria-expanded={isMobileMenuOpen}
               aria-label="Buka menu navigasi"
             >
@@ -173,7 +181,7 @@ export default function Header({ company }: { company: CompanyProfile }) {
 
         {/* Drawer Content Panel */}
         <div
-          className={`absolute top-0 right-0 w-full max-w-sm h-full bg-warm-bg shadow-elevated border-l border-warm-border flex flex-col justify-between transition-transform duration-300 ease-out ${
+          className={`absolute top-0 right-0 flex h-full w-full max-w-sm flex-col justify-between border-l border-warm-border bg-[#f5f1e9] shadow-elevated transition-transform duration-300 ease-out ${
             isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >

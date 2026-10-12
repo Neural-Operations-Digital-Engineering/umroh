@@ -290,17 +290,17 @@ export default function PackageCatalogView({
   const comparePackages = initialPackages.filter((pkg) => compareIds.includes(pkg.id));
 
   return (
-    <div className="bg-warm-bg min-h-screen py-6 sm:py-10 max-w-full overflow-x-clip">
+    <div id="katalog" className="site-shell min-h-screen max-w-full overflow-x-clip py-6 sm:py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8">
         
         {/* ── Page Header Banner ── */}
-        <div className="bg-warm-surface rounded-card sm:rounded-box border border-warm-border p-5 sm:p-8 lg:p-10 shadow-card relative overflow-hidden">
+        <div className="page-intro relative overflow-hidden">
           <div className="relative z-10 max-w-3xl">
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.14em] text-gold-hover">{badgeLabel}</p>
-            <h1 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold text-teal-primary leading-tight">
+            <p className="eyebrow mb-3">{badgeLabel}</p>
+            <h1 className="editorial-title max-w-4xl">
               {title}
             </h1>
-            <p className="font-sans text-xs sm:text-sm text-slate-muted mt-2.5 leading-relaxed max-w-2xl">
+            <p className="editorial-lede mt-4">
               {subtitle}
             </p>
           </div>
@@ -328,7 +328,7 @@ export default function PackageCatalogView({
         </div>
 
         {/* ── Search Bar & Controls Bar ── */}
-        <div className="bg-warm-surface rounded-card border border-warm-border p-3.5 sm:p-4 shadow-card flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+        <div className="catalog-panel flex flex-col items-stretch justify-between gap-3 p-3.5 sm:flex-row sm:items-center sm:p-4">
           
           {/* Quick Search */}
           <div className="relative flex-1">

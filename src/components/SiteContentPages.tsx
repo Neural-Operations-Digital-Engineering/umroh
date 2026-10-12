@@ -11,7 +11,7 @@ import { getGeneralWhatsAppUrl } from "@/lib/contact";
    ════════════════════════════════════════════════════════════════════════════════ */
 export function AboutPageContent({ company }: { company: CompanyProfile }) {
   return (
-    <main className="bg-warm-bg font-sans min-h-screen py-8 sm:py-14 pb-20">
+    <main className="site-shell min-h-screen pb-20 pt-8 font-sans sm:pt-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-10">
         
         {/* Breadcrumb */}
@@ -34,7 +34,7 @@ export function AboutPageContent({ company }: { company: CompanyProfile }) {
             </span>
           </div>
 
-          <h1 className="font-serif text-3xl sm:text-5xl font-bold leading-tight text-teal-primary">
+          <h1 className="editorial-title">
             Melayani Tamu Allah dengan Amanah &amp; Kepastian Ibadah
           </h1>
 
@@ -49,7 +49,7 @@ export function AboutPageContent({ company }: { company: CompanyProfile }) {
           {/* Left Column (6 cols): Profile Card, 5 Pasti Umrah */}
           <div className="lg:col-span-6 space-y-6">
             
-            <div className="overflow-hidden rounded-card border border-warm-border bg-warm-surface shadow-card">
+            <div className="content-panel overflow-hidden">
               <div className="relative aspect-4/3 w-full bg-teal-900">
                 <Image
                   src={company.media?.aboutUrl || "/images/travel-team.jpg"}
@@ -71,7 +71,7 @@ export function AboutPageContent({ company }: { company: CompanyProfile }) {
             </div>
 
             {/* 5 Pasti Umrah Framework */}
-            <div className="rounded-card border border-warm-border bg-warm-surface p-6 shadow-card space-y-4">
+            <div className="content-panel space-y-4 p-6">
               <div className="border-b border-warm-border pb-3">
                 <span className="text-xs font-bold uppercase tracking-[0.14em] text-gold-hover font-sans block mb-1">
                   Standar Kementerian Agama RI
@@ -210,7 +210,7 @@ export function LegalityPageContent({ company }: { company: CompanyProfile }) {
   ];
 
   return (
-    <main className="bg-warm-bg font-sans min-h-screen py-8 sm:py-14 pb-20">
+    <main className="site-shell min-h-screen pb-20 pt-8 font-sans sm:pt-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-10">
         
         {/* Breadcrumb */}
@@ -233,7 +233,7 @@ export function LegalityPageContent({ company }: { company: CompanyProfile }) {
             </span>
           </div>
 
-          <h1 className="font-serif text-3xl sm:text-5xl font-bold leading-tight text-teal-primary">
+          <h1 className="editorial-title">
             Legalitas Resmi &amp; Rekening Perusahaan
           </h1>
 
@@ -247,7 +247,7 @@ export function LegalityPageContent({ company }: { company: CompanyProfile }) {
           
           {/* Left Column (7 cols): Formal Government Credentials */}
           <div className="lg:col-span-7 space-y-6">
-            <div className="rounded-card border border-warm-border bg-warm-surface p-6 shadow-card space-y-5">
+            <div className="content-panel space-y-5 p-6">
               <div className="border-b border-warm-border pb-3">
                 <span className="text-xs font-bold uppercase tracking-[0.14em] text-gold-hover font-sans block mb-1">
                   Dokumen Legalitas Terverifikasi
@@ -387,7 +387,7 @@ export function DocumentationPageContent({ company }: { company: CompanyProfile 
   const filteredItems = filter === "all" ? documentationItems : documentationItems.filter(item => item.category === filter);
 
   return (
-    <main id="dokumentasi" className="bg-warm-bg font-sans min-h-screen py-8 sm:py-14 pb-20">
+    <main id="dokumentasi" className="site-shell min-h-screen pb-20 pt-8 font-sans sm:pt-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
         
         {/* Breadcrumb */}
@@ -405,7 +405,7 @@ export function DocumentationPageContent({ company }: { company: CompanyProfile 
             Galeri Keberangkatan Asli
           </span>
 
-          <h1 className="font-serif text-3xl sm:text-5xl font-bold leading-tight text-teal-primary">
+          <h1 className="editorial-title">
             Dokumentasi Perjalanan Ibadah &amp; Wisata Halal
           </h1>
 
@@ -493,7 +493,7 @@ export function DocumentationPageContent({ company }: { company: CompanyProfile 
    ════════════════════════════════════════════════════════════════════════════════ */
 export function HajiOverviewSection({ company }: { company: CompanyProfile }) {
   return (
-    <section className="border-b border-warm-border bg-warm-surface font-sans">
+    <section className="border-b border-warm-border bg-[#ebe6dc] font-sans">
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-12 items-center">
           
@@ -501,7 +501,7 @@ export function HajiOverviewSection({ company }: { company: CompanyProfile }) {
             <span className="text-xs font-bold uppercase tracking-[0.14em] text-gold-hover block">
               Program Haji Khusus Berizin Kemenag
             </span>
-            <h1 className="font-serif text-3xl sm:text-5xl font-bold leading-tight text-teal-primary">
+            <h1 className="editorial-title !text-3xl sm:!text-5xl">
               Program Haji Khusus &amp; Kuota Resmi
             </h1>
             <p className="text-sm sm:text-base leading-relaxed text-slate-body max-w-3xl">
@@ -509,7 +509,7 @@ export function HajiOverviewSection({ company }: { company: CompanyProfile }) {
             </p>
           </div>
 
-          <div className="lg:col-span-4 rounded-card border border-warm-border bg-warm-bg p-5 sm:p-6 space-y-3">
+          <div className="content-panel space-y-3 p-5 sm:p-6">
             <span className="text-xs font-bold uppercase tracking-wider text-slate-muted block">
               Ringkasan Data Haji
             </span>
@@ -557,7 +557,7 @@ export function HowItWorksSection({ company }: { company: CompanyProfile }) {
   ];
 
   return (
-    <section className="border-t border-warm-border bg-warm-surface py-12 sm:py-16 font-sans">
+    <section className="border-t border-warm-border bg-[#fffdf8] py-12 font-sans sm:py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
         
         <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
@@ -565,7 +565,7 @@ export function HowItWorksSection({ company }: { company: CompanyProfile }) {
             <span className="text-xs font-bold uppercase tracking-[0.14em] text-gold-hover block mb-1">
               Alur Perjalanan
             </span>
-            <h2 className="font-serif text-2xl sm:text-4xl font-bold text-teal-primary">
+            <h2 className="editorial-title !text-2xl sm:!text-4xl">
               Langkah Menuju Baitullah Bersama Kami
             </h2>
             <p className="mt-2 max-w-2xl text-xs sm:text-sm leading-relaxed text-slate-muted">
@@ -584,7 +584,7 @@ export function HowItWorksSection({ company }: { company: CompanyProfile }) {
           {steps.map((step) => (
             <div
               key={step.num}
-              className="p-5 rounded-card border border-warm-border bg-warm-bg space-y-2 hover:border-teal-primary/30 transition-colors"
+              className="content-panel space-y-2 p-5 transition-colors hover:border-teal-primary/30"
             >
               <span className="font-mono text-xs font-bold text-gold-hover bg-gold-light w-7 h-7 rounded-full flex items-center justify-center">
                 {step.num}

@@ -76,24 +76,24 @@ const getTrustItems = (company: CompanyProfile) => [
 export default function TrustBar({ company }: { company: CompanyProfile }) {
   const trustItems = getTrustItems(company);
   return (
-    <div className="bg-warm-surface border-y border-warm-border py-5">
+    <div className="border-y border-[#214b3d] bg-teal-deep py-5 text-white sm:py-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ── Desktop: flex row dengan dividers ── */}
-        <div className="hidden md:flex items-stretch justify-between gap-0 divide-x divide-warm-border">
+        <div className="hidden items-stretch justify-between gap-0 divide-x divide-white/15 md:flex">
           {trustItems.map((item) => (
             <div
               key={item.id}
-              className="flex-1 flex flex-col items-center gap-2 px-4 py-3 text-center group hover:bg-teal-primary/3 transition-colors rounded-md"
+              className="group flex-1 flex flex-col items-center gap-2 px-4 py-3 text-center transition-colors hover:bg-white/5"
             >
-              <div className="text-teal-primary/70 group-hover:text-teal-primary transition-colors">
+              <div className="text-gold-accent/80 transition-colors group-hover:text-gold-accent">
                 {item.icon}
               </div>
               <div>
-                <p className="font-sans font-bold text-[13px] text-teal-primary leading-tight">
+                <p className="font-sans text-[13px] font-bold leading-tight text-white">
                   {item.label}
                 </p>
-                <p className="font-sans text-[11px] text-slate-caption mt-0.5 leading-tight">
+                <p className="mt-0.5 font-sans text-[11px] leading-tight text-white/55">
                   {item.sublabel}
                 </p>
               </div>
@@ -103,20 +103,20 @@ export default function TrustBar({ company }: { company: CompanyProfile }) {
 
         {/* ── Mobile: horizontal scroll-snap ── */}
         <div
-          className="md:hidden flex gap-0 overflow-x-auto snap-x snap-mandatory scrollbar-hide divide-x divide-warm-border"
+          className="scrollbar-none flex gap-0 overflow-x-auto snap-x snap-mandatory divide-x divide-white/15 md:hidden"
           style={{ WebkitOverflowScrolling: "touch" }}
         >
           {trustItems.map((item) => (
             <div
               key={item.id}
-              className="shrink-0 snap-start w-[72vw] max-w-60 flex flex-col items-center gap-2 px-4 py-3 text-center"
+              className="flex w-[72vw] max-w-60 shrink-0 snap-start flex-col items-center gap-2 px-4 py-3 text-center"
             >
-              <div className="text-teal-primary/70">{item.icon}</div>
+              <div className="text-gold-accent/80">{item.icon}</div>
               <div>
-                <p className="font-sans font-bold text-[13px] text-teal-primary leading-tight">
+                <p className="font-sans text-[13px] font-bold leading-tight text-white">
                   {item.label}
                 </p>
-                <p className="font-sans text-[11px] text-slate-caption mt-0.5 leading-tight">
+                <p className="mt-0.5 font-sans text-[11px] leading-tight text-white/55">
                   {item.sublabel}
                 </p>
               </div>

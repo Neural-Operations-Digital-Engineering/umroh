@@ -237,12 +237,12 @@ function MediaManager({
   const selectedPackage = data.packages.find((item) => item.id === selectedPackageId) || null;
 
   return (
-    <main className="min-h-screen bg-[#f4f1e9] px-4 py-6 text-slate-dark sm:px-7 sm:py-10 font-sans">
+    <main className="cms-shell min-h-screen px-4 py-6 text-slate-dark sm:px-7 sm:py-10 font-sans">
       <div className="mx-auto max-w-7xl space-y-6">
         <div className="flex flex-col justify-between gap-4 border-b border-warm-border pb-6 sm:flex-row sm:items-end">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-gold-hover">CMS Media Management</p>
-            <h1 className="mt-1 font-serif text-3xl font-bold text-teal-primary sm:text-4xl">Galeri &amp; Aset Media</h1>
+            <p className="eyebrow">CMS Media Management</p>
+            <h1 className="editorial-title mt-4 !text-3xl sm:!text-4xl">Galeri &amp; Aset Media</h1>
             <p className="mt-1.5 max-w-2xl text-xs sm:text-sm leading-relaxed text-slate-muted">
               Kelola foto latar hero, video sinematik, kartu destinasi wisata halal, dokumentasi jemaah, profil pimpinan, dan cover paket.
             </p>
@@ -876,13 +876,13 @@ export default function CmsDashboard() {
 
   if (busy)
     return (
-      <main className="min-h-screen bg-warm-bg px-4 py-20 text-center text-slate-muted font-sans">
+      <main className="cms-shell min-h-screen px-4 py-20 text-center text-slate-muted font-sans">
         Memuat ruang kerja CMS…
       </main>
     );
   if (!data)
     return (
-      <main className="min-h-screen bg-warm-bg px-4 py-20 text-center text-red-700 font-sans">
+      <main className="cms-shell min-h-screen px-4 py-20 text-center text-red-700 font-sans">
         {error || "Data CMS tidak tersedia."}
       </main>
     );
@@ -916,11 +916,11 @@ export default function CmsDashboard() {
   if (tab === "inquiries") return <InquiryManager sessionToken={sessionToken} />;
 
   return (
-    <main className="min-h-screen bg-[#f4f1e9] text-slate-dark font-sans">
+    <main className="cms-shell min-h-screen text-slate-dark font-sans">
       <div className="mx-auto grid max-w-[1600px] lg:grid-cols-[250px_1fr]">
         
         {/* CMS Sidebar */}
-        <aside className="bg-teal-primary p-5 text-white lg:min-h-screen lg:p-6 flex flex-col justify-between">
+        <aside className="cms-sidebar flex flex-col justify-between p-5 text-white lg:min-h-screen lg:p-6">
           <div>
             <div className="flex items-center gap-3">
               <span className="flex h-10 w-10 items-center justify-center rounded-button border border-gold-accent/40 bg-teal-900 font-serif text-lg font-bold text-gold-accent shadow-xs">
@@ -982,7 +982,7 @@ export default function CmsDashboard() {
         </aside>
 
         {/* CMS Content Body */}
-        <section className="min-w-0 p-4 sm:p-7 lg:p-8 space-y-6">
+        <section className="cms-workspace min-w-0 space-y-6 p-4 sm:p-7 lg:p-8">
           <header className="flex flex-col gap-4 border-b border-[#d8d2c4] pb-5 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.14em] text-gold-hover">Content Management System</p>
@@ -1014,7 +1014,7 @@ export default function CmsDashboard() {
           </header>
 
           {isSupabaseConfigured && (
-            <section className="rounded-card border border-teal-primary/20 bg-teal-primary/5 p-4">
+            <section className="cms-panel border-teal-primary/20 bg-teal-primary/5 p-4">
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <p className="text-xs font-bold uppercase tracking-wider text-teal-primary">Status Autentikasi CMS</p>

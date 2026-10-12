@@ -1,12 +1,16 @@
 "use client";
 
 import React, { useState } from "react";
+import { usePathname } from "next/navigation";
 import type { CompanyProfile } from "@/data/company";
 import { getGeneralWhatsAppUrl } from "@/lib/contact";
 
 export default function FloatingWhatsApp({ company }: { company: CompanyProfile }) {
   const [showTooltip, setShowTooltip] = useState(true);
+  const pathname = usePathname();
   const waUrl = getGeneralWhatsAppUrl(company.phone);
+
+  if (pathname.startsWith("/admin")) return null;
 
   return (
     <div className="fixed bottom-5 right-4 sm:right-6 z-40 flex items-center gap-2.5 font-sans pointer-events-auto">
