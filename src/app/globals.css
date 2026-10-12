@@ -188,7 +188,7 @@ body {
 
 .page-intro {
   border-bottom: 1px solid var(--line);
-  padding: clamp(2.8rem, 7vw, 6.5rem) 0 clamp(2.4rem, 5vw, 4.5rem);
+  padding: clamp(2rem, 4vw, 4rem) 0 clamp(2rem, 3.5vw, 3.5rem);
 }
 
 .page-intro__grid {

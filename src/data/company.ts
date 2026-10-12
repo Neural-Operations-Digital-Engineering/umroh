@@ -126,7 +126,7 @@ export const companyProfile = {
   media: {
     heroUrl: "/images/minaret-hero.jpg",
     heroVideoUrl: "https://ventour-wp.s3.ap-southeast-3.amazonaws.com/wp-content/uploads/2026/04/30054426/REVISI-VIDEO-WEBSITE-IT_2.mp4",
-    aboutUrl: "/images/travel-team.jpg",
+    aboutUrl: "/images/kaaba-courtyard.png",
     documentationUrls: [
       "/images/destinations/turki.jpg",
       "/images/destinations/dubai.jpg",
