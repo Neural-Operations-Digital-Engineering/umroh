@@ -30,18 +30,22 @@ export default function PackageFinderWidget({
   };
 
   return (
-    <div className="relative z-20 -mt-6 sm:-mt-8 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="relative z-20 -mt-8 mx-auto max-w-6xl px-4 sm:-mt-12 sm:px-6 lg:px-8">
       <form
         onSubmit={handleSearch}
-        className="rounded-card sm:rounded-box border border-warm-border bg-warm-surface p-4 sm:p-6 shadow-elevated min-h-[80px]"
+        className="morph-panel rounded-[1.25rem] p-4 sm:p-6 lg:p-7"
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 items-end">
+        <div className="mb-5 flex items-end justify-between gap-4 border-b border-warm-border pb-4">
+          <div><p className="eyebrow">Temukan perjalananmu</p><h2 className="mt-2 font-sans text-lg font-bold tracking-tight text-teal-primary sm:text-xl">Mulai dari jadwal yang paling sesuai</h2></div>
+          <span className="hidden text-right text-[10px] leading-4 text-slate-caption sm:block">Pilih kebutuhanmu,<br />kami bantu sisanya.</span>
+        </div>
+        <div className="grid grid-cols-1 items-end gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
           
           {/* 1. Bulan Keberangkatan */}
           <div>
             <label
               htmlFor="finder-month"
-              className="block text-[11px] font-bold uppercase tracking-wider text-slate-muted mb-1.5"
+              className="mb-1.5 block text-[10px] font-bold uppercase tracking-[0.12em] text-slate-muted"
             >
               Bulan Berangkat
             </label>
@@ -49,7 +53,7 @@ export default function PackageFinderWidget({
               id="finder-month"
               value={selectedMonth}
               onChange={(e) => setSelectedMonth(e.target.value)}
-              className="w-full min-h-11 px-3 py-2 rounded-button border border-warm-border bg-warm-bg text-xs sm:text-sm font-medium text-slate-dark focus:border-teal-primary focus:outline-none focus:ring-1 focus:ring-teal-primary"
+              className="min-h-12 w-full rounded-button border border-warm-border bg-warm-bg px-3 py-2 text-xs font-medium text-slate-dark focus:border-teal-primary focus:outline-none focus:ring-1 focus:ring-teal-primary sm:text-sm"
             >
               <option value="all">Semua Bulan</option>
               {availableMonths.map((month) => (
@@ -64,7 +68,7 @@ export default function PackageFinderWidget({
           <div>
             <label
               htmlFor="finder-type"
-              className="block text-[11px] font-bold uppercase tracking-wider text-slate-muted mb-1.5"
+              className="mb-1.5 block text-[10px] font-bold uppercase tracking-[0.12em] text-slate-muted"
             >
               Jenis Program
             </label>
@@ -72,7 +76,7 @@ export default function PackageFinderWidget({
               id="finder-type"
               value={selectedType}
               onChange={(e) => setSelectedType(e.target.value)}
-              className="w-full min-h-11 px-3 py-2 rounded-button border border-warm-border bg-warm-bg text-xs sm:text-sm font-medium text-slate-dark focus:border-teal-primary focus:outline-none focus:ring-1 focus:ring-teal-primary"
+              className="min-h-12 w-full rounded-button border border-warm-border bg-warm-bg px-3 py-2 text-xs font-medium text-slate-dark focus:border-teal-primary focus:outline-none focus:ring-1 focus:ring-teal-primary sm:text-sm"
             >
               <option value="all">Semua Program</option>
               <option value="reguler">Umroh Reguler</option>
@@ -85,7 +89,7 @@ export default function PackageFinderWidget({
           <div>
             <label
               htmlFor="finder-city"
-              className="block text-[11px] font-bold uppercase tracking-wider text-slate-muted mb-1.5"
+              className="mb-1.5 block text-[10px] font-bold uppercase tracking-[0.12em] text-slate-muted"
             >
               Kota Keberangkatan
             </label>
@@ -93,7 +97,7 @@ export default function PackageFinderWidget({
               id="finder-city"
               value={selectedCity}
               onChange={(e) => setSelectedCity(e.target.value)}
-              className="w-full min-h-11 px-3 py-2 rounded-button border border-warm-border bg-warm-bg text-xs sm:text-sm font-medium text-slate-dark focus:border-teal-primary focus:outline-none focus:ring-1 focus:ring-teal-primary"
+              className="min-h-12 w-full rounded-button border border-warm-border bg-warm-bg px-3 py-2 text-xs font-medium text-slate-dark focus:border-teal-primary focus:outline-none focus:ring-1 focus:ring-teal-primary sm:text-sm"
             >
               <option value="all">Semua Kota</option>
               {cities.map((city) => (
@@ -108,7 +112,7 @@ export default function PackageFinderWidget({
           <div>
             <button
               type="submit"
-              className="w-full min-h-11 px-5 py-2.5 rounded-button bg-gold-accent hover:bg-gold-hover text-slate-dark font-sans text-xs sm:text-sm font-bold shadow-card transition-all flex items-center justify-center gap-2 active:scale-[0.98]"
+              className="min-h-12 w-full rounded-button border border-gold-accent bg-gold-accent px-5 py-2.5 font-sans text-xs font-bold text-slate-dark shadow-card transition-all hover:bg-gold-hover active:scale-[0.98] sm:text-sm"
             >
               <svg className="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24" strokeWidth={2}>
                 <circle cx="11" cy="11" r="8" />

@@ -16,7 +16,7 @@ export default function FinancingSection({
   const whatsappUrl = getGeneralWhatsAppUrl(company.phone);
 
   return (
-    <section id="pembiayaan" className="border-t border-warm-border bg-warm-surface py-10 sm:py-16 scroll-mt-24 font-sans">
+    <section id="pembiayaan" className="site-shell scroll-mt-24 border-t border-warm-border py-10 font-sans sm:py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
         
         {/* Breadcrumb if standalone page */}
@@ -44,11 +44,11 @@ export default function FinancingSection({
           </div>
 
           {isHeadingH1 ? (
-            <h1 className="font-serif text-3xl font-bold leading-tight text-teal-primary sm:text-4xl lg:text-5xl">
+            <h1 className="editorial-title !text-3xl sm:!text-4xl lg:!text-5xl">
               Skema Pembiayaan &amp; Tabungan Umroh / Haji
             </h1>
           ) : (
-            <h2 className="font-serif text-2xl font-bold leading-tight text-teal-primary sm:text-3xl lg:text-4xl">
+            <h2 className="editorial-title !text-2xl sm:!text-3xl lg:!text-4xl">
               Kemudahan Menuju Baitullah dengan Tabungan Syariah
             </h2>
           )}
@@ -64,7 +64,7 @@ export default function FinancingSection({
           <div className="lg:col-span-5 space-y-6">
             
             {/* Opsi Pembayaran Card */}
-            <div className="rounded-card border border-warm-border bg-warm-bg p-6 shadow-card space-y-5">
+            <div className="finance-panel space-y-5 p-6">
               <div>
                 <span className="text-xs font-bold uppercase tracking-[0.14em] text-gold-hover font-sans block mb-1">
                   Metode Fleksibel
@@ -110,7 +110,7 @@ export default function FinancingSection({
             </div>
 
             {/* Rekening & Bantuan Langsung */}
-            <div className="rounded-card border border-teal-primary/20 bg-teal-primary p-6 text-white shadow-card space-y-4">
+            <div className="finance-panel space-y-4 border-teal-primary/20 bg-teal-primary p-6 text-white shadow-card">
               <h4 className="font-serif text-lg font-bold">Konsultasi Rencana Tabungan</h4>
               <p className="text-xs text-white/80 leading-relaxed font-sans">
                 Konsultan kami siap membantu menghitungkan simulasi keberangkatan sesuai kemampuan tabungan bulanan keluarga Anda.
@@ -130,7 +130,7 @@ export default function FinancingSection({
           {/* Right Column (7 cols): Interactive Tabungan Umroh & Haji Simulation */}
           <div className="lg:col-span-7 space-y-6">
             
-            <div className="rounded-card border border-warm-border bg-warm-bg p-6 shadow-card space-y-6">
+            <div className="finance-panel space-y-6 p-6">
               
               {/* Tab Selector */}
               <div className="flex border-b border-warm-border gap-2" role="tablist" aria-label="Pilihan Tabungan">
@@ -257,7 +257,7 @@ export default function FinancingSection({
             </div>
 
             {/* Perlengkapan Umroh Premium */}
-            <div className="rounded-card border border-warm-border bg-warm-bg p-6 shadow-card space-y-4">
+            <div className="finance-panel space-y-4 p-6">
               <div>
                 <span className="text-xs font-bold uppercase tracking-[0.14em] text-gold-hover font-sans block mb-1">
                   Fasilitas Jemaah

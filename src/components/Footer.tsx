@@ -15,11 +15,11 @@ export default function Footer({ company }: { company: CompanyProfile }) {
   const waUrl = getGeneralWhatsAppUrl(company.phone);
 
   return (
-    <footer className="bg-[#0e1715] text-[#d6dedb] border-t border-[#1d2b27] pt-12 pb-10 relative overflow-hidden font-sans">
+    <footer className="relative overflow-hidden border-t border-[#263d34] bg-[#071e17] pt-14 pb-10 font-sans text-[#d6dedb]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         
         {/* ── Top Row: Brand & Official Trust Badges ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-10 border-b border-[#1d2b27] items-start">
+        <div className="grid grid-cols-1 items-start gap-8 border-b border-[#263d34] pb-10 lg:grid-cols-12">
           
           {/* Brand & Mission (5 Cols) */}
           <div className="lg:col-span-5 space-y-4">
@@ -37,12 +37,12 @@ export default function Footer({ company }: { company: CompanyProfile }) {
               </div>
             </Link>
 
-            <p className="text-xs text-[#9bb0a8] leading-relaxed max-w-md">
+            <p className="max-w-md text-xs leading-relaxed text-[#9bb0a8]">
               Membimbing ibadah ke Tanah Suci dengan kepastian jadwal, akomodasi hotel yang terverifikasi, transparansi rincian biaya, dan pendampingan muthowwif berkompeten.
             </p>
 
             {/* Official Certification Chip */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-button bg-[#152320] border border-[#233833] text-xs text-[#c0d4cc]">
+            <div className="inline-flex items-center gap-2 rounded-button border border-[#2a463c] bg-[#102a21] px-3 py-1.5 text-xs text-[#c0d4cc]">
               <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0" />
               <span>Izin Resmi PPIU Kemenag RI: <strong className="text-white font-mono">{company.legal.ppiu}</strong></span>
             </div>
@@ -107,7 +107,7 @@ export default function Footer({ company }: { company: CompanyProfile }) {
         </div>
 
         {/* ── Official Bank Account Notice (Anti-Fraud Security Strip) ── */}
-        <div className="bg-[#121c19] border border-[#1d2b27] rounded-card p-4 sm:p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-xs">
+        <div className="flex flex-col items-start justify-between gap-4 rounded-card border border-[#2a463c] bg-[#0d281f] p-4 text-xs sm:p-5 md:flex-row md:items-center">
           <div>
             <span className="text-[10px] font-bold uppercase tracking-wider text-amber-400 block mb-0.5">
               Himbauan Keamanan Pembayaran

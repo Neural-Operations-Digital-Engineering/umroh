@@ -2,11 +2,17 @@
 @config "../../tailwind.config.ts";
 
 :root {
-  --background: #ffffff;
-  --foreground: #111827;
+  --background: #f5f1e9;
+  --foreground: #16211d;
   --teal-ink: #0b3b2e;
-  --gold: #91ad3e;
-  --line: #e5e7eb;
+  --teal-deep: #062c22;
+  --olive: #91ad3e;
+  --olive-dark: #667d2c;
+  --parchment: #f5f1e9;
+  --paper: #fffdf8;
+  --paper-muted: #ebe6dc;
+  --line: #dcd7cc;
+  --ink-muted: #66716b;
 }
 
 html {
@@ -29,7 +35,7 @@ body {
 }
 
 ::selection {
-  background: #dce9e5;
+  background: #d8e4dc;
   color: var(--teal-ink);
 }
 
@@ -77,6 +83,194 @@ body {
 .mobile-rail > * {
   flex: 0 0 min(82vw, 22rem);
   scroll-snap-align: start;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Risalah Madina editorial system                                            */
+/* -------------------------------------------------------------------------- */
+
+.site-shell {
+  background: var(--parchment);
+  color: var(--foreground);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--olive-dark);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: "";
+  display: block;
+  width: 1.8rem;
+  height: 1px;
+  background: currentColor;
+}
+
+.editorial-title {
+  color: var(--teal-ink);
+  font-family: var(--font-sans), 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(2rem, 4.2vw, 4.3rem);
+  font-weight: 760;
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.editorial-lede {
+  color: #53605a;
+  font-size: clamp(0.92rem, 1.2vw, 1.05rem);
+  line-height: 1.75;
+  max-width: 42rem;
+}
+
+.editorial-rule {
+  border-color: var(--line);
+}
+
+.editorial-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  box-shadow: 0 1.25rem 3rem rgba(43, 47, 39, 0.07);
+}
+
+.editorial-card:hover {
+  border-color: #b8c39b;
+}
+
+.morph-panel {
+  background: rgba(255, 253, 248, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.68);
+  box-shadow: 0 1.2rem 3rem rgba(8, 38, 29, 0.14);
+  -webkit-backdrop-filter: blur(18px) saturate(115%);
+  backdrop-filter: blur(18px) saturate(115%);
+}
+
+.morph-panel-dark {
+  background: rgba(6, 44, 34, 0.84);
+  border: 1px solid rgba(255, 255, 255, 0.17);
+  box-shadow: 0 1.2rem 3rem rgba(4, 28, 22, 0.24);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  backdrop-filter: blur(16px) saturate(120%);
+}
+
+.site-hero {
+  background: var(--teal-deep);
+  isolation: isolate;
+}
+
+.site-hero__copy {
+  position: relative;
+  z-index: 2;
+}
+
+.site-hero__visual {
+  position: relative;
+  overflow: hidden;
+  background: #193e32;
+}
+
+.site-hero__visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 44, 34, 0.12);
+  pointer-events: none;
+}
+
+.page-intro {
+  border-bottom: 1px solid var(--line);
+  padding: clamp(2.8rem, 7vw, 6.5rem) 0 clamp(2.4rem, 5vw, 4.5rem);
+}
+
+.page-intro__grid {
+  align-items: end;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: minmax(0, 1.25fr) minmax(16rem, 0.75fr);
+}
+
+.page-intro__aside {
+  border-left: 1px solid var(--line);
+  color: var(--ink-muted);
+  padding-left: 1.5rem;
+}
+
+.catalog-panel,
+.faq-panel,
+.finance-panel,
+.content-panel {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  box-shadow: 0 1.25rem 3rem rgba(43, 47, 39, 0.055);
+}
+
+.admin-shell {
+  background: #e8e3d8;
+  color: var(--foreground);
+}
+
+.cms-shell {
+  background: #ece8df;
+  color: var(--foreground);
+}
+
+.cms-sidebar {
+  background: var(--teal-deep);
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.cms-workspace {
+  background: #f7f4ee;
+}
+
+.cms-panel {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  box-shadow: 0 1rem 2rem rgba(43, 47, 39, 0.06);
+}
+
+.cms-workspace section.rounded-card,
+.cms-shell main section.rounded-card {
+  border-color: var(--line);
+  border-radius: 1rem;
+  box-shadow: 0 1rem 2rem rgba(43, 47, 39, 0.06);
+}
+
+.display-number {
+  color: var(--olive-dark);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+@media (max-width: 767px) {
+  .page-intro__grid {
+    display: block;
+  }
+
+  .page-intro__aside {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    margin-top: 1.5rem;
+    padding-left: 0;
+    padding-top: 1.25rem;
+  }
 }
 
 @media (min-width: 640px) {

@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import Image from "next/image";
 import { createBrowserSupabase, isSupabaseConfigured } from "@/lib/supabase/browser";
 
 export default function AdminLoginForm() {
@@ -37,8 +38,14 @@ export default function AdminLoginForm() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-warm-bg px-4 py-12 text-slate-dark">
-      <section className="w-full max-w-md rounded-card border border-warm-border bg-warm-surface p-6 shadow-elevated sm:p-8">
+    <main className="admin-shell flex min-h-screen items-center justify-center px-4 py-8 text-slate-dark sm:px-8">
+      <section className="grid w-full max-w-5xl overflow-hidden rounded-[1.5rem] border border-[#d5cec0] bg-[#fffdf8] shadow-[0_2rem_5rem_rgba(43,47,39,0.16)] lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="relative hidden min-h-[620px] overflow-hidden bg-teal-deep lg:block">
+          <Image src="/images/minaret-hero.jpg" alt="Suasana Masjidil Haram" fill sizes="40vw" className="object-cover opacity-75" />
+          <div className="absolute inset-0 bg-teal-deep/55" />
+          <div className="absolute inset-x-8 bottom-10 text-white"><p className="eyebrow !text-gold-accent">Ruang kerja perjalanan</p><p className="mt-4 max-w-xs font-sans text-3xl font-bold leading-tight tracking-[-0.04em]">Kerapian di belakang layar terasa di setiap perjalanan.</p><p className="mt-4 max-w-sm text-xs leading-6 text-white/65">Kelola paket, media, dan inquiry jemaah dari satu ruang yang tertata.</p></div>
+        </div>
+        <div className="p-6 sm:p-10 lg:p-14">
         <div className="flex items-center gap-3">
           <span className="flex h-11 w-11 items-center justify-center rounded-button border border-gold-accent/40 bg-teal-primary font-serif text-lg font-bold text-gold-accent">RM</span>
           <div>
@@ -47,8 +54,8 @@ export default function AdminLoginForm() {
           </div>
         </div>
         <div className="mt-8">
-          <p className="text-xs font-bold uppercase tracking-[0.14em] text-gold-hover">Akses terbatas</p>
-          <h1 className="mt-2 font-serif text-3xl font-bold text-teal-primary">Masuk ke CMS</h1>
+          <p className="eyebrow">Akses terbatas</p>
+          <h1 className="mt-4 font-sans text-3xl font-bold tracking-[-0.04em] text-teal-primary">Masuk ke CMS</h1>
           <p className="mt-3 text-sm leading-6 text-slate-body">Gunakan akun Supabase yang sudah terdaftar sebagai admin atau editor.</p>
         </div>
 
@@ -70,11 +77,12 @@ export default function AdminLoginForm() {
               Password
               <input className="mt-2 min-h-11 w-full rounded-button border border-warm-border bg-white px-3 py-2.5 text-sm text-slate-dark outline-none focus:border-teal-primary" type="password" autoComplete="current-password" required value={password} onChange={(event) => setPassword(event.target.value)} />
             </label>
-            <button className="min-h-11 w-full rounded-button bg-teal-primary px-4 py-3 text-sm font-bold text-white transition-colors hover:bg-teal-900 disabled:cursor-wait disabled:opacity-60" disabled={busy} type="submit">
+            <button className="min-h-12 w-full rounded-button bg-teal-primary px-4 py-3 text-sm font-bold text-white transition-colors hover:bg-teal-900 disabled:cursor-wait disabled:opacity-60" disabled={busy} type="submit">
               {busy ? "Memeriksa akses…" : "Masuk ke CMS"}
             </button>
           </form>
         )}
+        </div>
       </section>
     </main>
   );

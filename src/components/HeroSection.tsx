@@ -120,6 +120,46 @@ export default function HeroSection({ company }: { company: CompanyProfile }) {
   }, [showVideo]);
 
   return (
+    <section className="site-hero relative overflow-hidden text-white" style={{ minHeight: "min(760px, 82svh)" }}>
+      <div className="mx-auto grid min-h-[min(760px,82svh)] max-w-[1500px] lg:grid-cols-[0.86fr_1.14fr]">
+        <div className="site-hero__copy flex flex-col justify-between px-5 py-10 sm:px-10 sm:py-14 lg:px-16 lg:py-16">
+          <div className="flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/60">
+            <span className="flex h-10 w-10 items-center justify-center border border-gold-accent/50 text-sm font-bold text-gold-accent">RM</span>
+            <span>{company.brandName}<br /><span className="text-white/40">Sejak perjalanan pertama</span></span>
+          </div>
+          <div className="max-w-xl py-14 lg:py-0">
+            <p className="eyebrow !text-gold-accent">Umroh &amp; Haji resmi</p>
+            <h1 className="mt-6 text-balance font-sans text-[clamp(2.7rem,6.2vw,6.2rem)] font-bold leading-[0.92] tracking-[-0.065em] text-white">Berangkat dengan tenang. Pulang membawa makna.</h1>
+            <p className="mt-7 max-w-lg text-sm leading-7 text-white/72 sm:text-base">{company.brandName} mendampingi keluarga Indonesia dari konsultasi pertama sampai kembali ke rumah, dengan jadwal, biaya, dan bimbingan yang dapat dipahami.</p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <a href="#katalog" id="hero-cta-katalog" className="inline-flex min-h-12 items-center justify-center border border-gold-accent bg-gold-accent px-6 py-3 text-xs font-bold text-slate-dark transition hover:bg-gold-hover sm:text-sm">Lihat paket pilihan</a>
+              <a href={`https://wa.me/${company.phone.replace(/\D/g, "").replace(/^0/, "62")}?text=${encodeURIComponent("Assalamu'alaikum Admin Risalah Madina Tour, saya ingin berkonsultasi mengenai jadwal paket Umroh / Haji.")}`} target="_blank" rel="noopener noreferrer" id="hero-cta-whatsapp" className="inline-flex min-h-12 items-center justify-center border border-white/25 px-5 py-3 text-xs font-semibold text-white transition hover:border-white hover:bg-white/10 sm:text-sm">Konsultasi personal</a>
+            </div>
+          </div>
+          <div className="grid max-w-xl grid-cols-2 gap-x-5 gap-y-4 border-t border-white/15 pt-6 sm:grid-cols-4 sm:gap-x-4">
+            {trustPillars.map((pillar, idx) => (
+              <div key={pillar.title} className={idx > 1 ? "hidden sm:block" : ""}>
+                <div className="display-number mb-2 !text-gold-accent">0{idx + 1}</div>
+                <p className="text-[11px] font-bold leading-tight text-white">{pillar.title}</p>
+                <p className="mt-1 text-[10px] leading-4 text-white/55">{pillar.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="site-hero__visual min-h-[360px] lg:min-h-0">
+          <Image src={heroImage} alt={`Suasana ibadah ${company.brandName}`} fill loading="eager" sizes="(max-width: 1023px) 100vw, 57vw" quality={78} fetchPriority="high" className="object-cover object-center" />
+          {showVideo && heroVideo && <video ref={videoRef} autoPlay muted loop playsInline preload="none" disablePictureInPicture className="absolute inset-0 h-full w-full object-cover opacity-65 mix-blend-screen pointer-events-none"><source src={heroVideo} type="video/mp4" /></video>}
+          <div className="absolute inset-0 bg-[#062c22]/20" />
+          <div className="morph-panel-dark absolute bottom-5 left-5 right-5 z-10 flex items-end justify-between gap-4 p-4 text-white sm:bottom-8 sm:left-8 sm:right-8 sm:p-5">
+            <div><p className="text-[10px] font-bold uppercase tracking-[0.16em] text-gold-accent">Legalitas perjalanan</p><p className="mt-2 text-xs leading-5 text-white/80">SK PPIU {company.legal.ppiu} · {company.legal.pihk}</p></div>
+            <span className="hidden text-right text-[10px] uppercase tracking-[0.12em] text-white/50 sm:block">Akreditasi<br />{company.certification.accreditation}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+
+  if (false) return (
     <section
       className="relative min-h-[68svh] sm:min-h-[520px] lg:min-h-[640px] w-full flex flex-col justify-between overflow-hidden bg-slate-dark text-white"
       style={{
