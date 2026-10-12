@@ -33,7 +33,7 @@ export default function PackageFinderWidget({
     <div className="relative z-20 -mt-6 sm:-mt-8 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <form
         onSubmit={handleSearch}
-        className="rounded-card sm:rounded-box border border-warm-border bg-warm-surface p-4 sm:p-6 shadow-elevated"
+        className="rounded-card sm:rounded-box border border-warm-border bg-warm-surface p-4 sm:p-6 shadow-elevated min-h-[80px]"
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 items-end">
           

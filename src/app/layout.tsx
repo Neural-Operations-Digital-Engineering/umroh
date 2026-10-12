@@ -12,9 +12,13 @@ import "./globals.css";
 
 export const revalidate = 300;
 
+// Variable font covers every weight (100–800) with a single file request instead
+// of one file per weight. This removes the 500-weight file that was previously
+// loaded but is now redundant, and adds coverage for font-extrabold (800) used
+// in HeroSection and DestinationShowcaseSection.
+// Not specifying `weight` loads the variable font file (all weights in one file).
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
   variable: "--font-sans",
   display: "swap",
 });
