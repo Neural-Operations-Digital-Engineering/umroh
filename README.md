@@ -19,8 +19,7 @@ Website publik dan CMS untuk Risalah Madina Tour, biro perjalanan haji dan umroh
 Kode, struktur, desain, copy, dan aset orisinal proyek ini dimaksudkan sebagai material
 proprietary dan tidak dirilis sebagai open-source. Penggunaan komersial, redistribusi,
 modifikasi publik, pembuatan produk turunan, atau pemanfaatan untuk pihak lain memerlukan
-izin tertulis. Lihat [`LICENSE`](LICENSE) dan [`COPYRIGHT`](COPYRIGHT).
-Versi Word dengan format dokumen rapi tersedia di [`LICENSE.docx`](LICENSE.docx).
+izin tertulis. Lihat [`LICENSE.md`](LICENSE.md) dan [`COPYRIGHT`](COPYRIGHT).
 
 Pemegang utama/pengelola kode adalah `NODE (Neural Operations & Digital Engineering)`. `Risalah
 Madina Tour` (RMT) menggunakan situs untuk penjualan jasa umroh dan travel, sedangkan `Yayasan

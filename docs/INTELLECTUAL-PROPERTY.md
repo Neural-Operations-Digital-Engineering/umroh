@@ -20,7 +20,7 @@ penegakan atau penjualan lisensi.
   sebagai identitas bisnis/konten aplikasi, bukan otomatis sebagai pemegang hak cipta.
 - Riwayat Git memberi bukti kronologi pengembangan, tetapi identitas committer bukan dengan
   sendirinya bukti kepemilikan hak cipta.
-- Tidak ditemukan lisensi proyek sebelumnya. `LICENSE` sekarang menetapkan rancangan proprietary,
+- Tidak ditemukan lisensi proyek sebelumnya. `LICENSE.md` sekarang menetapkan rancangan proprietary,
   bukan lisensi open-source.
 
 ## Batas klaim kepemilikan
@@ -64,7 +64,7 @@ sampai provenance-nya diverifikasi. Rincian awal ada di `THIRD_PARTY_NOTICES.md`
 Permintaan penggunaan komersial, redistribusi, modifikasi publik, sublicensing, deployment
 untuk klien, atau pembuatan produk turunan harus memuat identitas pemohon, tujuan, wilayah,
 jangka waktu, pengguna, bentuk distribusi, dan aset yang ingin digunakan. Kirim ke
-`finance.budsteam@gmail.com` atau alamat pengganti yang tercantum pada `LICENSE`. Tidak ada
+`finance.budsteam@gmail.com` atau alamat pengganti yang tercantum pada `LICENSE.md`. Tidak ada
 izin yang dianggap diberikan hanya karena
 repository dapat dilihat atau di-clone.
 
