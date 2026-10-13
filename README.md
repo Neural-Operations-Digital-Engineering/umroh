@@ -1,57 +1,130 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Risalah Madina Tour
 
-## CMS Supabase multi-user
+Website publik dan CMS untuk Risalah Madina Tour, biro perjalanan haji dan umroh. Pengunjung dapat membandingkan paket, membaca detail perjalanan, mengirim pertanyaan, lalu melanjutkan konsultasi melalui WhatsApp. Tim internal mengelola konten, paket, media, dan inquiry dari dashboard admin.
 
-Schema database tersedia di [supabase/migrations/001_cms.sql](/Users/muhammadnizaralfaris/Documents/tour-and-travel/supabase/migrations/001_cms.sql), [002_cms_media.sql](/Users/muhammadnizaralfaris/Documents/tour-and-travel/supabase/migrations/002_cms_media.sql), dan [003_enterprise_security_and_inquiries.sql](/Users/muhammadnizaralfaris/Documents/tour-and-travel/supabase/migrations/003_enterprise_security_and_inquiries.sql). Jalankan berurutan di Supabase SQL Editor.
+## Fitur utama
 
-1. Buat project Supabase.
-2. Jalankan migration SQL.
-3. Salin `.env.example` menjadi `.env.local`, lalu isi `NEXT_PUBLIC_SUPABASE_URL` dan `NEXT_PUBLIC_SUPABASE_ANON_KEY` dari Project Settings → API.
-4. Buat user admin/editor di Authentication → Users.
-5. Masukkan UUID user ke SQL berikut:
+- Homepage editorial dengan informasi layanan, destinasi, paket pilihan, dan CTA konsultasi.
+- Katalog paket Umroh dan Haji dengan pencarian, filter, pengurutan, dan halaman detail.
+- Halaman informasi tentang perusahaan, legalitas, dokumentasi, FAQ, dan pembiayaan.
+- Form inquiry sebelum pengunjung diarahkan ke WhatsApp.
+- CMS untuk mengelola profil perusahaan, paket, konten, media, dan inquiry.
+- Autentikasi Supabase untuk area admin dengan role `admin` dan `editor`.
+- Cache dan invalidasi route setelah perubahan data CMS.
+- Metadata SEO, sitemap, robots, canonical URL, Open Graph, dan structured data untuk halaman paket.
+- Fallback ke data lokal jika Supabase belum dikonfigurasi.
 
-```sql
-insert into public.cms_members (user_id, role)
-values ('UUID_USER_DARI_SUPABASE_AUTH', 'admin');
-```
+## Teknologi
 
-6. Jalankan aplikasi, buka `/admin/login`, login dengan user tersebut, lalu tekan **Simpan perubahan** untuk mengunggah data seed paket dan profil ke Supabase.
+- Next.js 16 dengan App Router dan TypeScript
+- React 19
+- Tailwind CSS 4
+- Supabase Auth, Postgres, Storage, dan Row Level Security
+- ESLint 9
 
-Route `/admin/*` sekarang dilindungi Next.js Proxy dan Supabase Auth. Role `viewer` dapat membaca membership tetapi tidak dapat masuk ke dashboard. Inquiry dari dialog konsultasi disimpan ke `cms_inquiries` sebelum user diarahkan ke WhatsApp.
+## Memulai secara lokal
 
-Jika environment Supabase belum diisi, aplikasi tetap menggunakan CMS file lokal sebagai fallback.
-
-## Getting Started
-
-First, run the development server:
+Persyaratan: Node.js dan npm.
 
 ```bash
+npm install
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Buka [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Perintah yang tersedia:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev      # development server
+npm run lint     # pemeriksaan ESLint
+npm run build    # production build dan type-check
+npm run start    # menjalankan hasil production build
+```
 
-## Learn More
+## Konfigurasi environment
 
-To learn more about Next.js, take a look at the following resources:
+| Variabel | Keterangan |
+| --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | URL publik situs untuk metadata dan sitemap. |
+| `NEXT_PUBLIC_SUPABASE_URL` | URL project Supabase. |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Anon key dari Supabase Project Settings → API. |
+| `CMS_ADMIN_TOKEN` | Token fallback untuk penyimpanan CMS lokal jika Supabase belum digunakan. Gunakan nilai acak yang panjang. |
+| `NEXT_PUBLIC_HERO_VIDEO_URL` | URL video hero self-hosted. Opsional; fallback ke URL media dari CMS. |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Jangan commit `.env.local` atau kredensial apa pun. Gunakan `.env.example` sebagai acuan.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Menyiapkan Supabase CMS
 
-## Deploy on Vercel
+1. Buat project Supabase.
+2. Jalankan migration di Supabase SQL Editor secara berurutan:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```text
+   supabase/migrations/001_cms.sql
+   supabase/migrations/002_cms_media.sql
+   supabase/migrations/003_enterprise_security_and_inquiries.sql
+   supabase/migrations/004_security_hardening.sql
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. Isi `NEXT_PUBLIC_SUPABASE_URL` dan `NEXT_PUBLIC_SUPABASE_ANON_KEY` di `.env.local`.
+4. Buat user admin atau editor melalui Supabase Authentication → Users.
+5. Masukkan UUID user tersebut ke tabel `cms_members`:
+
+   ```sql
+   insert into public.cms_members (user_id, role)
+   values ('UUID_USER_DARI_SUPABASE_AUTH', 'admin');
+   ```
+
+6. Jalankan aplikasi dan buka [`/admin/login`](http://localhost:3000/admin/login).
+
+Role `admin` dapat mengelola seluruh data dan melakukan reset. Role `editor` dapat mengubah konten serta mengunggah media. Data inquiry dibaca dari dashboard setelah pengunjung mengirim form konsultasi.
+
+Tanpa konfigurasi Supabase, situs tetap dapat dijalankan menggunakan data lokal dari [`content/site-data.json`](content/site-data.json). Untuk menyimpan perubahan melalui fallback lokal, isi `CMS_ADMIN_TOKEN`.
+
+## Route penting
+
+| Area | Route |
+| --- | --- |
+| Situs publik | `/` |
+| Katalog Umroh | `/umroh` |
+| Detail Umroh | `/umroh/[slug]` |
+| Katalog Haji | `/haji` |
+| Detail Haji | `/haji/[slug]` |
+| Katalog gabungan | `/paket` |
+| Detail paket | `/paket/[slug]` |
+| Informasi | `/tentang`, `/legalitas`, `/dokumentasi`, `/faq`, `/pembiayaan` |
+| Legal | `/terms`, `/privacy-policy` |
+| Login CMS | `/admin/login` |
+| Dashboard CMS | `/admin` |
+| API CMS | `/api/cms` |
+| API inquiry | `/api/inquiries` |
+
+## Struktur proyek
+
+```text
+src/app/                 route publik, admin, dan API
+src/components/          komponen UI dan CMS
+src/lib/                 akses data, Supabase, kontak, dan structured data
+content/site-data.json   fallback konten lokal
+supabase/migrations/     schema, policy, media, inquiry, dan hardening
+docs/                    arsitektur dan catatan QA
+DESIGN.md                arah visual dan prinsip desain
+```
+
+## Dokumentasi terkait
+
+- [`DESIGN.md`](DESIGN.md): arah visual, tone, tipografi, dan guardrail desain.
+- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md): alur CMS, autentikasi, cache, storage, dan batas keamanan.
+- [`docs/qa/performance-verification-2026-10-12.md`](docs/qa/performance-verification-2026-10-12.md): catatan build, smoke test, dan batasan pengukuran Lighthouse.
+
+## Deploy
+
+Deploy ke platform yang mendukung Next.js dengan menjalankan production build terlebih dahulu:
+
+```bash
+npm run build
+npm run start
+```
+
+Pastikan seluruh variabel environment production sudah diisi di platform deploy dan migration Supabase sudah dijalankan sesuai urutan.
