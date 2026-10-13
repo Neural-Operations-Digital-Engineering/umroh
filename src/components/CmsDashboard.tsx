@@ -213,10 +213,6 @@ function MediaManager({
   updateGalleryItem,
   addGalleryItem,
   removeGalleryItem,
-  saveData,
-  saving,
-  message,
-  error,
 }: {
   data: SiteData;
   setData: React.Dispatch<React.SetStateAction<SiteData | null>>;
@@ -228,46 +224,16 @@ function MediaManager({
   updateGalleryItem: (index: number, key: "label" | "tag" | "caption" | "alt" | "imageUrl", value: string) => void;
   addGalleryItem: () => void;
   removeGalleryItem: (index: number) => void;
-  saveData: () => Promise<void>;
-  saving: boolean;
-  message: string;
-  error: string;
 }) {
   const company = data.company;
   const selectedPackage = data.packages.find((item) => item.id === selectedPackageId) || null;
 
   return (
-    <main className="cms-shell min-h-screen px-4 py-6 text-slate-dark sm:px-7 sm:py-10 font-sans">
+    <div className="space-y-6">
       <div className="mx-auto max-w-7xl space-y-6">
-        <div className="flex flex-col justify-between gap-4 border-b border-warm-border pb-6 sm:flex-row sm:items-end">
-          <div>
-            <p className="eyebrow">CMS Media Management</p>
-            <h1 className="editorial-title mt-4 !text-3xl sm:!text-4xl">Galeri &amp; Aset Media</h1>
-            <p className="mt-1.5 max-w-2xl text-xs sm:text-sm leading-relaxed text-slate-muted">
-              Kelola foto latar hero, video sinematik, kartu destinasi wisata halal, dokumentasi jemaah, profil pimpinan, dan cover paket.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            <button
-              type="button"
-              onClick={() => void saveData()}
-              disabled={saving}
-              className="min-h-10 rounded-button bg-gold-accent px-5 py-2 text-xs font-bold text-slate-dark hover:bg-gold-hover shadow-card disabled:opacity-60 transition-all flex items-center gap-1.5"
-            >
-              <span>{saving ? "Menyimpan…" : "Simpan Semua Media"}</span>
-            </button>
-          </div>
-        </div>
-
-        {(message || error) && (
-          <div
-            className={`rounded-button border px-4 py-3 text-sm ${
-              error ? "border-red-200 bg-red-50 text-red-800" : "border-emerald-200 bg-emerald-50 text-emerald-800"
-            }`}
-          >
-            {error || message}
-          </div>
-        )}
+        <p className="max-w-2xl text-xs leading-relaxed text-slate-muted sm:text-sm">
+          Kelola foto latar hero, video sinematik, kartu destinasi wisata halal, dokumentasi jemaah, profil pimpinan, dan cover paket.
+        </p>
 
         <div className="space-y-6">
           {/* 1. Hero Section Media */}
@@ -616,7 +582,7 @@ function MediaManager({
           </section>
         </div>
       </div>
-    </main>
+    </div>
   );
 }
 
@@ -893,28 +859,6 @@ export default function CmsDashboard() {
   const certification = company.certification;
   const financing = company.financing;
 
-  if (tab === "media")
-    return (
-      <MediaManager
-        data={data}
-        setData={setData}
-        supabase={supabase}
-        selectedPackageId={selectedPackageId}
-        setSelectedPackageId={setSelectedPackageId}
-        updateCompany={updateCompany}
-        updateLeader={updateLeader}
-        updateGalleryItem={updateGalleryItem}
-        addGalleryItem={addGalleryItem}
-        removeGalleryItem={removeGalleryItem}
-        saveData={saveData}
-        saving={saving}
-        message={message}
-        error={error}
-      />
-    );
-
-  if (tab === "inquiries") return <InquiryManager sessionToken={sessionToken} />;
-
   return (
     <main className="cms-shell min-h-screen text-slate-dark font-sans">
       <div className="mx-auto grid max-w-[1600px] lg:grid-cols-[250px_1fr]">
@@ -989,6 +933,8 @@ export default function CmsDashboard() {
               <h1 className="mt-1 font-serif text-2xl sm:text-3xl font-bold text-teal-primary">
                 {tab === "packages" && "Kelola Jadwal & Paket Ibadah"}
                 {tab === "company" && "Profil Perusahaan & Legalitas"}
+                {tab === "media" && "Galeri & Aset Media"}
+                {tab === "inquiries" && "Inquiry Konsultasi"}
                 {tab === "financing" && "Skema Tabungan & Pembiayaan"}
                 {tab === "payments" && "Rekening Resmi Perusahaan"}
                 {tab === "transfer" && "Backup, Import & Pengaturan"}
@@ -1051,6 +997,23 @@ export default function CmsDashboard() {
               {error || message}
             </div>
           )}
+
+          {tab === "media" && (
+            <MediaManager
+              data={data}
+              setData={setData}
+              supabase={supabase}
+              selectedPackageId={selectedPackageId}
+              setSelectedPackageId={setSelectedPackageId}
+              updateCompany={updateCompany}
+              updateLeader={updateLeader}
+              updateGalleryItem={updateGalleryItem}
+              addGalleryItem={addGalleryItem}
+              removeGalleryItem={removeGalleryItem}
+            />
+          )}
+
+          {tab === "inquiries" && <InquiryManager sessionToken={sessionToken} />}
 
           {/* TAB 1: PACKAGES */}
           {tab === "packages" && (

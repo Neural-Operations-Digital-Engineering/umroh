@@ -40,16 +40,11 @@ export default function InquiryManager({ sessionToken }: { sessionToken: string 
   }, [sessionToken]);
 
   return (
-    <main className="min-h-screen bg-warm-bg p-4 text-slate-dark sm:p-7 lg:p-10">
+    <div className="space-y-6">
       <div className="mx-auto max-w-6xl">
-        <header className="flex flex-col gap-4 border-b border-warm-border pb-5 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.14em] text-gold-hover">CMS / Prospek</p>
-            <h1 className="mt-1 font-serif text-3xl font-bold text-teal-primary">Inquiry konsultasi</h1>
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-body">Kontak dan pertanyaan yang diisi sebelum calon jemaah diarahkan ke WhatsApp.</p>
-          </div>
-          <a href="/admin" className="inline-flex min-h-11 items-center justify-center rounded-button border border-teal-primary px-4 py-2.5 text-sm font-bold text-teal-primary hover:bg-teal-primary hover:text-white">Kembali ke CMS</a>
-        </header>
+        <p className="max-w-2xl text-sm leading-6 text-slate-body">
+          Kontak dan pertanyaan yang diisi sebelum calon jemaah diarahkan ke WhatsApp.
+        </p>
 
         {busy && <p className="mt-8 text-sm text-slate-muted">Memuat inquiry…</p>}
         {error && <p className="mt-8 rounded-button border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</p>}
@@ -75,6 +70,6 @@ export default function InquiryManager({ sessionToken }: { sessionToken: string 
           </div>
         )}
       </div>
-    </main>
+    </div>
   );
 }
