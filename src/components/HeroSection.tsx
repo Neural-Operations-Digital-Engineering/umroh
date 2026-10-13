@@ -1,199 +1,60 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import type { CompanyProfile } from "@/data/company";
 
-/**
- * Homepage opening: real travel footage, one clear brand statement, and four
- * concrete service signals. The image and video carry the emotional weight;
- * the interface stays quiet so the content remains readable.
- */
+const trustPillars = [
+  ["Jadwal terkonfirmasi", "Tanggal & maskapai jelas"],
+  ["Biaya transparan", "Pilihan kamar terbuka"],
+  ["Bimbingan berkompeten", "Dari manasik sampai pulang"],
+  ["Perlengkapan lengkap", "Disiapkan sebelum berangkat"],
+] as const;
+
 export default function HeroSection({ company }: { company: CompanyProfile }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-
-  // showVideo stays false until useEffect confirms: desktop + no save-data + no reduced-motion.
-  // Prevents video element (and its src) from being rendered on mobile or during SSR.
   const [showVideo, setShowVideo] = useState(false);
-
-  const trustPillars = [
-    {
-      title: "Jadwal Terkonfirmasi",
-      desc: "Tanggal & maskapai pasti",
-      fullDesc: "Tanggal rilis & maskapai penerbangan terkonfirmasi",
-      icon: (
-        <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gold-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={1.75}
-            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-          />
-        </svg>
-      ),
-    },
-    {
-      title: "Biaya Transparan",
-      desc: "Pilihan kamar jelas",
-      fullDesc: "Pilihan Quad, Triple, Double tanpa biaya tersembunyi",
-      icon: (
-        <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gold-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={1.75}
-            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-          />
-        </svg>
-      ),
-    },
-    {
-      title: "Muthowwif Berizin",
-      desc: "Bimbingan sesuai sunnah",
-      fullDesc: "Pendampingan ibadah oleh muthowwif berkompeten",
-      icon: (
-        <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gold-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={1.75}
-            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-          />
-        </svg>
-      ),
-    },
-    {
-      title: "Perlengkapan Lengkap",
-      desc: "Koper & busana ibadah",
-      fullDesc: "Koper bagasi, kabin, ihram/mukena, dan buku doa",
-      icon: (
-        <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gold-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={1.75}
-            d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-          />
-        </svg>
-      ),
-    },
-  ];
-
   const heroImage = company.media?.heroUrl || "/images/minaret-hero.jpg";
-
-  // ⚠️  PRODUCTION NOTE: This video URL currently hotlinks a third-party S3 bucket (ventour-wp).
-  // Replace with your own hosted video via NEXT_PUBLIC_HERO_VIDEO_URL env variable before going live.
-  // Target spec: <= 3 MB, H.264/WebM, 720p, no audio.
-  // Compress with: ffmpeg -i input.mp4 -vf scale=1280:720 -c:v libx264 -crf 28 -an -movflags +faststart hero.mp4
-  // WebM alternative: ffmpeg -i input.mp4 -vf scale=1280:720 -c:v libvpx-vp9 -crf 35 -b:v 0 -an hero.webm
-  const heroVideo =
-    process.env.NEXT_PUBLIC_HERO_VIDEO_URL ||
-    company.media?.heroVideoUrl ||
-    ""; // empty string disables video
+  const heroVideo = process.env.NEXT_PUBLIC_HERO_VIDEO_URL || company.media?.heroVideoUrl || "";
+  const heroHeight = "clamp(430px, 58svh, 560px)";
 
   useEffect(() => {
-    // Skip video entirely on: mobile viewports, save-data mode, reduced-motion, or missing URL.
     if (!heroVideo) return;
 
     const isMobile = window.matchMedia("(max-width: 767px)").matches;
     const nav = navigator as Navigator & { connection?: { saveData?: boolean } };
-    const saveData = nav.connection?.saveData === true;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    if (isMobile || saveData || reducedMotion) return;
+    if (isMobile || nav.connection?.saveData || reducedMotion) return;
 
-    // Desktop: defer video load until browser is idle — avoids blocking initial paint.
+    const revealVideo = () => setShowVideo(true);
     if (typeof requestIdleCallback !== "undefined") {
-      requestIdleCallback(() => setShowVideo(true), { timeout: 3000 });
-    } else {
-      setTimeout(() => setShowVideo(true), 500);
+      const idleId = requestIdleCallback(revealVideo, { timeout: 2500 });
+      return () => cancelIdleCallback(idleId);
     }
+
+    const timeoutId = window.setTimeout(revealVideo, 600);
+    return () => window.clearTimeout(timeoutId);
   }, [heroVideo]);
 
-  // Trigger autoplay once the video element mounts.
   useEffect(() => {
-    if (showVideo && videoRef.current) {
-      videoRef.current.play().catch(() => {
-        // Silently ignore if autoplay is blocked (battery saver / strict browser policy).
-      });
-    }
+    if (!showVideo || !videoRef.current) return;
+    videoRef.current.play().catch(() => undefined);
   }, [showVideo]);
 
   return (
-    <section className="site-hero relative overflow-hidden text-white" style={{ minHeight: "min(760px, 82svh)" }}>
-      <div className="mx-auto grid min-h-[min(760px,82svh)] max-w-[1500px] lg:grid-cols-[0.86fr_1.14fr]">
-        <div className="site-hero__copy order-2 flex flex-col justify-between px-5 py-10 sm:px-10 sm:py-14 lg:order-none lg:px-16 lg:py-16">
-          <div className="flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/60">
-            <span className="flex h-10 w-10 items-center justify-center border border-gold-accent/50 text-sm font-bold text-gold-accent">RM</span>
-            <span>{company.brandName}<br /><span className="text-white/40">Sejak perjalanan pertama</span></span>
-          </div>
-          <div className="max-w-xl py-14 lg:py-0">
-            <p className="eyebrow !text-gold-accent">Umroh &amp; Haji resmi</p>
-            <h1 className="mt-6 text-balance font-sans text-[clamp(2.7rem,6.2vw,6.2rem)] font-bold leading-[0.92] tracking-[-0.065em] text-white">Berangkat dengan tenang. Pulang membawa makna.</h1>
-            <p className="mt-7 max-w-lg text-sm leading-7 text-white/72 sm:text-base">{company.brandName} mendampingi keluarga Indonesia dari konsultasi pertama sampai kembali ke rumah, dengan jadwal, biaya, dan bimbingan yang dapat dipahami.</p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <a href="#katalog" id="hero-cta-katalog" className="inline-flex min-h-12 items-center justify-center border border-gold-accent bg-gold-accent px-6 py-3 text-xs font-bold text-slate-dark transition hover:bg-gold-hover sm:text-sm">Lihat paket pilihan</a>
-              <a href={`https://wa.me/${company.phone.replace(/\D/g, "").replace(/^0/, "62")}?text=${encodeURIComponent("Assalamu'alaikum Admin Risalah Madina Tour, saya ingin berkonsultasi mengenai jadwal paket Umroh / Haji.")}`} target="_blank" rel="noopener noreferrer" id="hero-cta-whatsapp" className="inline-flex min-h-12 items-center justify-center border border-white/25 px-5 py-3 text-xs font-semibold text-white transition hover:border-white hover:bg-white/10 sm:text-sm">Konsultasi personal</a>
-            </div>
-          </div>
-          <div className="grid max-w-xl grid-cols-2 gap-x-5 gap-y-4 border-t border-white/15 pt-6 sm:grid-cols-4 sm:gap-x-4">
-            {trustPillars.map((pillar, idx) => (
-              <div key={pillar.title} className={idx > 1 ? "hidden sm:block" : ""}>
-                <div className="display-number mb-2 !text-gold-accent">0{idx + 1}</div>
-                <p className="text-[11px] font-bold leading-tight text-white">{pillar.title}</p>
-                <p className="mt-1 text-[10px] leading-4 text-white/55">{pillar.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="site-hero__visual order-1 min-h-[300px] lg:order-none lg:min-h-0">
-          <Image src={heroImage} alt={`Suasana ibadah ${company.brandName}`} fill loading="eager" sizes="(max-width: 1023px) 100vw, 57vw" quality={78} fetchPriority="high" className="object-cover object-center" />
-          {showVideo && heroVideo && <video ref={videoRef} autoPlay muted loop playsInline preload="none" disablePictureInPicture className="absolute inset-0 h-full w-full object-cover opacity-65 mix-blend-screen pointer-events-none"><source src={heroVideo} type="video/mp4" /></video>}
-          <div className="absolute inset-0 bg-[#062c22]/20" />
-          <div className="morph-panel-dark absolute bottom-5 left-5 right-5 z-10 flex items-end justify-between gap-4 p-4 text-white sm:bottom-8 sm:left-8 sm:right-8 sm:p-5">
-            <div><p className="text-[10px] font-bold uppercase tracking-[0.16em] text-gold-accent">Legalitas perjalanan</p><p className="mt-2 text-xs leading-5 text-white/80">SK PPIU {company.legal.ppiu} · {company.legal.pihk}</p></div>
-            <span className="hidden text-right text-[10px] uppercase tracking-[0.12em] text-white/50 sm:block">Akreditasi<br />{company.certification.accreditation}</span>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-
-  if (false) return (
-    <section
-      className="relative min-h-[68svh] sm:min-h-[520px] lg:min-h-[640px] w-full flex flex-col justify-between overflow-hidden bg-slate-dark text-white"
-      style={{
-        // Explicit aspect-ratio provides a stable height hint for browsers before
-        // svh/dvh units resolve, preventing a layout shift (CLS) on the first paint.
-        // The min-h Tailwind classes take over as soon as the viewport is known.
-        aspectRatio: "16 / 9",
-        minHeight: "68svh",
-      }}
-    >
-
-      {/* ── Background: LCP Image (always) + deferred video overlay (desktop only) ── */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        {/*
-          Single LCP hero image — no poster duplication.
-          The <Image> covers the full background so even if video never loads,
-          the layout stays correct. quality=75 balances size vs fidelity for hero images.
-        */}
+    <section className="site-hero relative isolate overflow-hidden text-white" style={{ minHeight: heroHeight }}>
+      <div className="absolute inset-0 -z-10 overflow-hidden">
         <Image
           src={heroImage}
-          alt={`Suasana Ibadah ${company.brandName}`}
+          alt={`Suasana ibadah ${company.brandName}`}
           fill
           priority
-          sizes="100vw"
-          quality={75}
           fetchPriority="high"
+          sizes="100vw"
+          quality={80}
           className="object-cover object-center"
         />
-
-        {/*
-          Video is rendered only on desktop, after idle callback fires.
-          No `poster` attribute — avoids fetching the hero image a second time.
-          preload="none" means no bytes are fetched until play() is called.
-        */}
         {showVideo && heroVideo && (
           <video
             ref={videoRef}
@@ -203,106 +64,62 @@ export default function HeroSection({ company }: { company: CompanyProfile }) {
             playsInline
             preload="none"
             disablePictureInPicture
-            className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-screen pointer-events-none"
+            className="absolute inset-0 h-full w-full object-cover opacity-45 mix-blend-screen"
+            aria-hidden="true"
           >
             <source src={heroVideo} type="video/mp4" />
           </video>
         )}
-
-        {/* Gradient scrim keeps the headline legible over changing footage. */}
-        <div className="absolute inset-0 bg-linear-to-b from-black/55 via-black/25 to-black/80 pointer-events-none" />
+        <div className="absolute inset-0 bg-[#062c22]/35" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(6,44,34,0.94)_0%,rgba(6,44,34,0.78)_38%,rgba(6,44,34,0.28)_76%,rgba(6,44,34,0.12)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(6,44,34,0.82)_0%,rgba(6,44,34,0.08)_62%)]" />
       </div>
 
-      {/* ── Top Spacer (Balanced for Navbar) ── */}
-      <div className="h-6 sm:h-12" />
-
-      {/* ── Center Content: Responsive, Proportional Brand Typography (Clamp Sizing) ── */}
-      <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 py-4 sm:py-8 my-auto">
-        <div className="max-w-3xl mx-auto flex flex-col items-center space-y-2 sm:space-y-3.5">
-
-          {/* Brand Logo & Name */}
-          <div className="flex items-center justify-center gap-2 sm:gap-3.5">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-button border border-gold-accent/50 bg-teal-primary/80 text-sm font-bold text-gold-accent sm:h-11 sm:w-11 sm:text-base">
-              RM
-            </div>
-
-            <h1 className="font-sans font-extrabold tracking-tight text-white drop-shadow-lg text-[clamp(1.35rem,5.4vw,3.25rem)] leading-none">
-              {company.brandName}
-            </h1>
-          </div>
-
-          <p className="font-sans text-xs sm:text-sm md:text-base font-medium text-white/90 drop-shadow-md">
-            Pendampingan Umroh dan Haji untuk keluarga Indonesia. Izin Resmi Kemenag RI.
+      <div className="relative mx-auto flex min-h-[clamp(430px,58svh,560px)] max-w-7xl items-end px-5 pb-7 pt-24 sm:px-8 sm:pb-9 lg:px-12 lg:pb-10">
+        <div className="max-w-2xl">
+          <p className="eyebrow !text-gold-accent">Umroh &amp; Haji resmi</p>
+          <h1 className="mt-4 max-w-2xl text-balance font-sans text-[clamp(2.35rem,5vw,5rem)] font-bold leading-[0.95] tracking-[-0.06em] text-white">
+            Berangkat dengan tenang. Pulang membawa makna.
+          </h1>
+          <p className="mt-5 max-w-xl text-sm leading-6 text-white/80 sm:text-base sm:leading-7">
+            {company.brandName} mendampingi keluarga Indonesia dengan jadwal, biaya, dan bimbingan yang dapat dipahami sejak konsultasi pertama.
           </p>
-
-          {/* ── Hero Action CTAs (Primary + Secondary WhatsApp) ── */}
-          <div className="pt-2 sm:pt-4 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-7 flex flex-wrap gap-3">
             <a
               href="#katalog"
               id="hero-cta-katalog"
-              className="inline-flex min-h-12 items-center justify-center rounded-button bg-gold-accent hover:bg-gold-hover px-6 py-3 font-sans text-xs sm:text-sm font-bold text-slate-dark shadow-elevated transition-all active:scale-[0.98]"
+              className="inline-flex min-h-11 items-center justify-center border border-gold-accent bg-gold-accent px-5 py-2.5 text-xs font-bold text-slate-dark transition hover:bg-gold-hover sm:text-sm"
             >
-              Lihat Paket Umroh 2026
+              Lihat paket pilihan
             </a>
             <a
               href={`https://wa.me/${company.phone.replace(/\D/g, "").replace(/^0/, "62")}?text=${encodeURIComponent("Assalamu'alaikum Admin Risalah Madina Tour, saya ingin berkonsultasi mengenai jadwal paket Umroh / Haji.")}`}
               target="_blank"
               rel="noopener noreferrer"
               id="hero-cta-whatsapp"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-button border border-white/30 bg-black/40 hover:bg-black/60 px-5 py-3 font-sans text-xs sm:text-sm font-semibold text-white backdrop-blur-sm transition-all active:scale-[0.98]"
+              className="inline-flex min-h-11 items-center justify-center border border-white/30 px-5 py-2.5 text-xs font-semibold text-white transition hover:border-white hover:bg-white/10 sm:text-sm"
             >
-              <svg className="w-4 h-4 text-emerald-400 fill-current" viewBox="0 0 24 24">
-                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.12.553 4.111 1.523 5.842l-1.615 5.9 6.046-1.587c1.668.91 3.57 1.435 5.597 1.435 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z" />
-              </svg>
-              <span>Konsultasi WhatsApp</span>
+              Konsultasi personal
             </a>
           </div>
 
-          {/* ── Official Legal Badges Strip ── */}
-          <div className="pt-2 flex flex-wrap items-center justify-center gap-2 text-[10px] sm:text-xs text-white/90 font-medium">
-            <span className="inline-flex items-center rounded-button bg-white/10 px-3 py-1 border border-white/20">
-              SK PPIU: {company.legal.ppiu}
-            </span>
-            <span className="inline-flex items-center rounded-button bg-white/10 px-3 py-1 border border-white/20">
-              {company.legal.pihk}
-            </span>
-            <span className="inline-flex items-center rounded-button bg-white/10 px-3 py-1 border border-white/20">
-              Akreditasi {company.certification.accreditation} (KAN)
-            </span>
-          </div>
-
-        </div>
-      </div>
-
-      {/* Four real service signals, kept in a compact reading band. */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-3.5 sm:px-6 lg:px-8 pb-5 sm:pb-8 lg:pb-10">
-        <div className="rounded-card border border-white/20 bg-slate-dark/85 p-3 sm:p-5 lg:p-6 shadow-elevated">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 lg:gap-6 divide-y-0 divide-x-0 lg:divide-x divide-white/10">
-            {trustPillars.map((pillar, idx) => (
-              <div
-                key={pillar.title}
-                className={`flex items-center gap-2 sm:gap-3.5 ${
-                  idx > 0 ? "lg:pl-5" : ""
-                }`}
-              >
-                <div className="p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-white/10 border border-white/15 shrink-0 flex items-center justify-center">
-                  {pillar.icon}
-                </div>
-                <div className="min-w-0 flex-1">
-                  <h3 className="font-sans font-bold text-[11px] sm:text-xs lg:text-sm text-white leading-tight truncate sm:whitespace-normal">
-                    {pillar.title}
-                  </h3>
-                  <p className="font-sans text-[9px] sm:text-[11px] text-white/75 mt-0.5 leading-tight truncate sm:whitespace-normal">
-                    <span className="sm:hidden">{pillar.desc}</span>
-                    <span className="hidden sm:inline">{pillar.fullDesc}</span>
-                  </p>
-                </div>
+          <div className="mt-8 grid max-w-2xl grid-cols-2 gap-x-5 gap-y-3 border-t border-white/20 pt-4 sm:grid-cols-4 sm:gap-x-4">
+            {trustPillars.map(([title, description]) => (
+              <div key={title} className="min-w-0">
+                <p className="text-[10px] font-bold uppercase leading-4 tracking-[0.08em] text-white/90 sm:text-[11px]">{title}</p>
+                <p className="mt-1 text-[10px] leading-4 text-white/55">{description}</p>
               </div>
             ))}
           </div>
         </div>
-      </div>
 
+        <div className="absolute right-5 top-24 hidden w-40 border-l border-white/25 pl-4 text-[10px] leading-5 text-white/65 lg:block xl:right-12">
+          <p className="font-bold uppercase tracking-[0.14em] text-gold-accent">Legalitas perjalanan</p>
+          <p className="mt-2">SK PPIU {company.legal.ppiu}</p>
+          <p>{company.legal.pihk}</p>
+          <p>Akreditasi {company.certification.accreditation}</p>
+        </div>
+      </div>
     </section>
   );
 }

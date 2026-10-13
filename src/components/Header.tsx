@@ -61,13 +61,13 @@ export default function Header({ company }: { company: CompanyProfile }) {
             : "bg-[#f5f1e9]"
         }`}
       >
-        <div className="hidden border-b border-[#dcd7cc]/80 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#66716b] md:block">
+        <div className="hidden border-b border-[#dcd7cc]/80 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#66716b] md:block">
           <div className="mx-auto flex max-w-7xl items-center justify-between">
             <span>Jawa Barat · Indonesia</span>
             <span className="text-teal-primary">Pendampingan ibadah yang tenang dan terukur</span>
           </div>
         </div>
-        <div className={`mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 ${isScrolled ? "py-3" : "py-4"}`}>
+        <div className={`mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 ${isScrolled ? "py-2.5" : "py-3"}`}>
           {/* Logo Section */}
           <Link
             href="/"
@@ -75,11 +75,11 @@ export default function Header({ company }: { company: CompanyProfile }) {
             aria-label={`${company.brandName} Beranda`}
           >
             {/* Monogram */}
-            <div className="flex h-10 w-10 items-center justify-center rounded-[0.7rem] border border-[#91ad3e]/50 bg-teal-primary font-serif text-xl font-bold text-gold-accent shadow-[0_6px_16px_rgba(6,44,34,0.18)] transition-transform group-hover:-translate-y-0.5">
+            <div className="flex h-9 w-9 items-center justify-center rounded-[0.7rem] border border-[#91ad3e]/50 bg-teal-primary font-serif text-lg font-bold text-gold-accent shadow-[0_6px_16px_rgba(6,44,34,0.18)] transition-transform group-hover:-translate-y-0.5">
               RM
             </div>
             <div className="flex flex-col">
-              <span className="font-serif text-lg font-bold text-teal-primary leading-none tracking-tight">
+              <span className="font-serif text-[1.05rem] font-bold text-teal-primary leading-none tracking-tight">
                 {company.brandName}
               </span>
               <span className="text-[10px] font-sans text-slate-muted uppercase tracking-wider font-semibold mt-0.5">
