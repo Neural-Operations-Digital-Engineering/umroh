@@ -1,0 +1,119 @@
+RISALAH MADINA TOUR — LISENSI PERANGKAT LUNAK PROPRIETARI
+Versi 1.0 — Draf untuk pemeriksaan hukum
+
+Hak Cipta © 2026 [NAMA PEMEGANG HAK CIPTA — KONFIRMASI DIPERLUKAN]. Seluruh hak dilindungi.
+
+PENTING: Dokumen ini adalah rancangan lisensi khusus, bukan nasihat hukum. Ganti placeholder
+di atas, alamat kontak, dan domisili hukum sebelum lisensi ini digunakan sebagai dokumen final.
+
+1. RUANG LINGKUP
+
+"Material Berlisensi" berarti kode sumber, struktur proyek, komponen, modul, algoritma,
+konfigurasi khusus proyek, dokumentasi, desain antarmuka, teks, dan aset orisinal yang
+secara sah dimiliki atau dikendalikan oleh Pemegang Hak Cipta dalam repositori ini.
+
+Material Berlisensi tidak mencakup: (a) perangkat lunak pihak ketiga dan dependensinya;
+(b) font, foto, video, ikon, logo, merek, atau materi lain milik pihak ketiga; (c) materi
+di direktori `example_pages` atau aset referensi yang belum dibuktikan haknya; (d) data,
+konten, atau merek milik klien/pemilik usaha yang diberikan kepada proyek; dan (e) materi
+yang secara tegas ditandai memiliki lisensi lain. Setiap materi tersebut tetap tunduk pada
+lisensi atau izin pemiliknya masing-masing.
+
+2. KEPEMILIKAN
+
+Kepemilikan hak cipta atas Material Berlisensi tetap berada pada Pemegang Hak Cipta.
+Pemberian izin terbatas dalam lisensi ini tidak mengalihkan hak cipta, hak moral, merek,
+rahasia dagang, atau hak kekayaan intelektual lainnya. Tidak ada ketentuan dalam lisensi
+ini yang mengklaim kepemilikan atas Material Pihak Ketiga.
+
+3. IZIN TERBATAS
+
+Tanpa perjanjian tertulis lain, setiap penerima memperoleh izin yang terbatas, pribadi,
+tidak eksklusif, tidak dapat dialihkan, tidak dapat disublicensikan, dan dapat dihentikan
+untuk:
+
+  a. membaca dan mengevaluasi Material Berlisensi;
+  b. menjalankan salinan lokal secara pribadi untuk evaluasi, pendidikan, atau penelitian
+     nonkomersial; dan
+  c. membuat perubahan lokal yang tidak dipublikasikan dan tidak diberikan kepada pihak lain
+     untuk tujuan evaluasi, pendidikan, atau penelitian nonkomersial.
+
+Penggunaan situs yang telah dipublikasikan melalui peramban, semata-mata sebagai pengguna
+akhir, tidak memberikan hak untuk memperoleh atau menggunakan kode sumbernya.
+
+4. PEMBATASAN
+
+Kecuali diizinkan secara tegas oleh lisensi ini atau perjanjian tertulis terpisah, penerima
+dilarang:
+
+  a. menyalin, memperbanyak, menerbitkan ulang, menjual, menyewakan, meminjamkan, atau
+     mendistribusikan Material Berlisensi atau bagian substansialnya;
+  b. menyediakan Material Berlisensi sebagai layanan, template, starter kit, produk,
+     repositori, atau komponen untuk pihak lain;
+  c. menggunakan Material Berlisensi sebagai dasar produk, situs, aplikasi, atau proyek
+     turunan untuk diri sendiri atau pihak lain;
+  d. memodifikasi lalu mempublikasikan, menjual, melisensikan, mensublicensikan, atau
+     mendistribusikan hasil modifikasi;
+  e. menghapus atau mengubah pemberitahuan hak cipta, atribusi, watermark, atau penanda
+     kepemilikan;
+  f. melakukan reverse engineering, dekompilasi, atau pembongkaran, sejauh larangan tersebut
+     diperbolehkan oleh hukum yang berlaku; atau
+  g. menggunakan Material Berlisensi untuk melanggar hukum, menipu, merugikan, atau
+     mengeksploitasi pihak lain.
+
+Larangan ini tidak menghapus pengecualian atau pembatasan hak cipta yang diwajibkan oleh
+hukum yang berlaku.
+
+5. PENGGUNAAN KOMERSIAL DAN IZIN TERPISAH
+
+Penggunaan komersial, penggunaan oleh badan usaha, penggunaan untuk klien, deployment
+untuk pihak lain, redistribusi, pembuatan karya turunan, atau integrasi ke produk lain
+memerlukan izin tertulis atau perjanjian lisensi komersial terpisah dari Pemegang Hak Cipta.
+Perjanjian tersebut dapat menetapkan ruang lingkup, wilayah, masa berlaku, biaya, royalti,
+dukungan, kewajiban atribusi, serta hak audit. Permohonan izin dikirim ke:
+
+  [ALAMAT EMAIL PERIZINAN RESMI — KONFIRMASI DIPERLUKAN]
+
+6. PENGAKHIRAN
+
+Izin dalam lisensi ini berakhir otomatis apabila penerima melanggar ketentuannya. Apabila
+pelanggaran dapat diperbaiki, Pemegang Hak Cipta dapat memberikan masa perbaikan tertulis
+selama 14 hari, tanpa mengurangi hak untuk meminta penghentian segera jika pelanggaran
+menimbulkan kerugian atau tidak dapat diperbaiki. Setelah pengakhiran, penerima wajib
+menghentikan penggunaan dan menghapus salinan Material Berlisensi yang berada dalam
+penguasaannya, kecuali penyimpanan yang diwajibkan hukum.
+
+7. TIDAK ADA JAMINAN
+
+MATERIAL BERLISENSI DISEDIAKAN "SEBAGAIMANA ADANYA" SEJAUH DIIZINKAN OLEH HUKUM.
+PEMEGANG HAK CIPTA MENYANGKAL JAMINAN TERSURAT, TERSIRAT, ATAU STATUTER, TERMASUK
+KESESUAIAN UNTUK TUJUAN TERTENTU, KELAYAKAN DIPERDAGANGKAN, KEAMANAN, DAN KETIDAK-
+PELANGGARAN, KECUALI JAMINAN YANG TIDAK DAPAT DITIADAKAN OLEH HUKUM.
+
+8. BATASAN TANGGUNG JAWAB
+
+Sejauh diizinkan oleh hukum, Pemegang Hak Cipta tidak bertanggung jawab atas kerugian
+tidak langsung, insidental, khusus, konsekuensial, kehilangan keuntungan, kehilangan data,
+atau gangguan usaha yang timbul dari penggunaan atau ketidakmampuan menggunakan Material
+Berlisensi. Klausul ini tidak membatasi tanggung jawab yang tidak boleh dibatasi berdasarkan
+hukum yang berlaku, termasuk akibat kesengajaan atau hal lain yang wajib ditanggung menurut
+hukum.
+
+9. HUKUM DAN PENYELESAIAN SENGKETA
+
+Lisensi ini dimaksudkan untuk ditafsirkan berdasarkan hukum Republik Indonesia. Setiap
+ketentuan mengenai forum, domisili, mediasi, arbitrase, atau pengadilan harus dikonfirmasi
+dan disesuaikan oleh profesional hukum dengan domisili Pemegang Hak Cipta serta keadaan
+transaksi yang sebenarnya. Tidak ada bagian lisensi ini yang menjanjikan bahwa suatu upaya
+hukum tertentu pasti tersedia atau pasti dapat ditegakkan.
+
+10. KETENTUAN LAIN
+
+Jika suatu ketentuan dinyatakan tidak berlaku, ketentuan lainnya tetap berlaku sejauh
+diizinkan hukum. Kegagalan menegakkan suatu ketentuan bukan pengesampingan permanen. Lisensi
+ini tidak memberikan hak atas merek, nama dagang, logo, atau konten bisnis yang tidak
+termasuk Material Berlisensi.
+
+Dengan menggunakan, menyalin, atau memodifikasi Material Berlisensi, penerima menyatakan
+telah membaca dan menyetujui ketentuan ini sejauh hukum mengizinkannya. Jika penerima tidak
+menyetujui ketentuan ini, penerima tidak boleh menggunakan Material Berlisensi.

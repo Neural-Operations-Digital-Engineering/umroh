@@ -14,6 +14,19 @@ Website publik dan CMS untuk Risalah Madina Tour, biro perjalanan haji dan umroh
 - Metadata SEO, sitemap, robots, canonical URL, Open Graph, dan structured data untuk halaman paket.
 - Fail-closed di production jika Supabase belum dikonfigurasi atau tidak tersedia.
 
+## Kepemilikan dan lisensi
+
+Kode, struktur, desain, copy, dan aset orisinal proyek ini dimaksudkan sebagai material
+proprietary dan tidak dirilis sebagai open-source. Penggunaan komersial, redistribusi,
+modifikasi publik, pembuatan produk turunan, atau pemanfaatan untuk pihak lain memerlukan
+izin tertulis. Lihat [`LICENSE`](LICENSE) dan [`COPYRIGHT`](COPYRIGHT).
+
+Lisensi ini adalah rancangan yang harus diisi dengan identitas pemegang hak cipta dan ditinjau
+oleh profesional hukum sebelum digunakan untuk penegakan. Dependensi, font, foto, video, logo,
+aset template, dan materi referensi pihak ketiga tidak termasuk klaim proprietary proyek.
+Lihat [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) dan
+[`docs/INTELLECTUAL-PROPERTY.md`](docs/INTELLECTUAL-PROPERTY.md).
+
 ## Teknologi
 
 - Next.js 16 dengan App Router dan TypeScript
