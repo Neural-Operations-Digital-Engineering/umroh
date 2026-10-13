@@ -4,16 +4,20 @@ Proyek: Risalah Madina Tour
 Repositori: https://github.com/Vhaenzz/umroh
 Tahun publikasi kode proyek: 2026
 
-Pemegang hak cipta:
-  [NAMA PEMEGANG HAK CIPTA — KONFIRMASI DIPERLUKAN]
+Pemegang hak cipta yang dikonfirmasi oleh pemilik proyek:
+  NODE (Neural Operation & Digital Enginering)
 
-Identitas badan usaha yang tercantum di data aplikasi:
+Entitas/brand di bawah NODE yang terkait dengan proyek:
+  - Risalah Madina Tour
+  - Yayasan Pondok Digitalpreneur Abdurrahman Bin Auf Cirebon
+
+Identitas badan usaha yang juga tercantum di data aplikasi:
   PT. Risalah Madina Bunga Tiara
 
 Catatan kepemilikan:
-  Nama badan usaha di atas ditemukan dalam data aplikasi, tetapi belum menjadi bukti
-  pengalihan atau kepemilikan hak cipta. Pemegang hak yang sah, status hubungan kerja/
-  kontraktor, kontribusi pihak lain, dan hak atas aset harus dikonfirmasi secara tertulis.
+  NODE dinyatakan sebagai pemegang kode oleh pemilik proyek. Hubungan hukum NODE dengan
+  entitas/brand di atas, pengalihan hak dari developer atau kontraktor, serta hak atas aset
+  pihak ketiga tetap harus dibuktikan dengan dokumen tertulis.
 
 Material pihak ketiga:
   Dependensi, font, foto, video, ikon, logo, aset default, materi pada example_pages,
@@ -21,5 +25,5 @@ Material pihak ketiga:
   ini. Lihat THIRD_PARTY_NOTICES.md dan docs/INTELLECTUAL-PROPERTY.md.
 
 Pemberitahuan standar untuk file orisinal setelah pemegang hak dikonfirmasi:
-  Copyright (c) 2026 [NAMA PEMEGANG HAK CIPTA]
+  Copyright (c) 2026 NODE (Neural Operation & Digital Enginering)
   All rights reserved. See LICENSE for permitted use.

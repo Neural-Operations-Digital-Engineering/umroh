@@ -8,9 +8,12 @@ penegakan atau penjualan lisensi.
 - Aplikasi menggunakan Next.js 16, React 19, TypeScript, Tailwind CSS, Supabase, dan ESLint.
 - Kode sumber berada di `src/`, konfigurasi build di root, migration database di
   `supabase/migrations/`, dokumentasi di `docs/`, dan aset publik di `public/`.
-- Repositori mencantumkan `PT. Risalah Madina Bunga Tiara` sebagai nama legal pada data aplikasi,
-  tetapi repository tidak memuat dokumen pengalihan hak, perjanjian kerja, atau bukti bahwa
-  badan usaha tersebut adalah pemegang seluruh hak atas kode dan aset.
+- Pemilik proyek mengonfirmasi `NODE (Neural Operation & Digital Enginering)` sebagai pemegang
+  kode, dengan `Risalah Madina Tour` dan `Yayasan Pondok Digitalpreneur Abdurrahman Bin Auf
+  Cirebon` sebagai entitas/brand di bawahnya. Repository belum memuat dokumen pengalihan hak,
+  perjanjian kerja, atau bukti kapasitas hukum yang mendasari struktur tersebut.
+- `PT. Risalah Madina Bunga Tiara` juga tercantum pada data aplikasi. Nama tersebut diperlakukan
+  sebagai identitas bisnis/konten aplikasi, bukan otomatis sebagai pemegang hak cipta.
 - Riwayat Git memberi bukti kronologi pengembangan, tetapi identitas committer bukan dengan
   sendirinya bukti kepemilikan hak cipta.
 - Tidak ditemukan lisensi proyek sebelumnya. `LICENSE` sekarang menetapkan rancangan proprietary,
@@ -41,14 +44,19 @@ sampai provenance-nya diverifikasi. Rincian awal ada di `THIRD_PARTY_NOTICES.md`
 
 Permintaan penggunaan komersial, redistribusi, modifikasi publik, sublicensing, deployment
 untuk klien, atau pembuatan produk turunan harus memuat identitas pemohon, tujuan, wilayah,
-jangka waktu, pengguna, bentuk distribusi, dan aset yang ingin digunakan. Kirim ke alamat
-kontak yang akan diisi pada `LICENSE`. Tidak ada izin yang dianggap diberikan hanya karena
+jangka waktu, pengguna, bentuk distribusi, dan aset yang ingin digunakan. Kirim ke
+`finance.budsteam@gmail.com` atau alamat pengganti yang tercantum pada `LICENSE`. Tidak ada
+izin yang dianggap diberikan hanya karena
 repository dapat dilihat atau di-clone.
 
 ## Checklist sebelum finalisasi
 
-- [ ] Ganti placeholder pemegang hak cipta dan alamat izin.
-- [ ] Konfirmasi apakah pemegang hak adalah individu, PT, atau kombinasi melalui perjanjian.
+- [x] Identitas pemegang kode dikonfirmasi sebagai NODE; verifikasi nama resmi dan kapasitas
+      hukumnya masih diperlukan.
+- [ ] Dokumentasikan hubungan hukum NODE dengan Risalah Madina Tour, yayasan, dan PT yang
+      tercantum dalam data aplikasi.
+- [x] Kontak permohonan izin diisi: `finance.budsteam@gmail.com`.
+- [ ] Konfirmasi domisili hukum dan kewenangan kontak/penandatangan.
 - [ ] Dokumentasikan kontribusi setiap developer dan kontraktor.
 - [ ] Kumpulkan bukti lisensi semua foto, video, font, logo, ikon, dan materi prototipe.
 - [ ] Ganti atau lisensikan video hero pihak ketiga.

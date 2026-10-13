@@ -21,8 +21,10 @@ proprietary dan tidak dirilis sebagai open-source. Penggunaan komersial, redistr
 modifikasi publik, pembuatan produk turunan, atau pemanfaatan untuk pihak lain memerlukan
 izin tertulis. Lihat [`LICENSE`](LICENSE) dan [`COPYRIGHT`](COPYRIGHT).
 
-Lisensi ini adalah rancangan yang harus diisi dengan identitas pemegang hak cipta dan ditinjau
-oleh profesional hukum sebelum digunakan untuk penegakan. Dependensi, font, foto, video, logo,
+Pemegang kode yang dikonfirmasi adalah `NODE (Neural Operation & Digital Enginering)` dengan
+`Risalah Madina Tour` dan `Yayasan Pondok Digitalpreneur Abdurrahman Bin Auf Cirebon` sebagai
+entitas/brand di bawahnya. Lisensi ini tetap harus ditinjau oleh profesional hukum sebelum
+digunakan untuk penegakan. Dependensi, font, foto, video, logo,
 aset template, dan materi referensi pihak ketiga tidak termasuk klaim proprietary proyek.
 Lihat [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) dan
 [`docs/INTELLECTUAL-PROPERTY.md`](docs/INTELLECTUAL-PROPERTY.md).
