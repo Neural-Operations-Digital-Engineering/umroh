@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import type { CompanyProfile } from "@/data/company";
-import { getGeneralWhatsAppUrl } from "@/lib/contact";
+import InquiryDialog from "@/components/InquiryDialog";
 
 /**
  * CTA BANNER SECTION — Section CTA Penutup
@@ -35,15 +35,12 @@ export default function CtaBannerSection({ company }: { company: CompanyProfile 
             <span>Lihat Jadwal Umroh</span>
           </Link>
 
-          <a
-            href={getGeneralWhatsAppUrl(company.phone)}
-            target="_blank"
-            rel="noopener noreferrer"
+          <InquiryDialog
+            href={`https://wa.me/${company.phone.replace(/\D/g, "").replace(/^0/, "62")}?text=${encodeURIComponent("Assalamu'alaikum, saya ingin berkonsultasi mengenai paket Umroh/Haji.")}`}
             id="cta-penutup-lihat-paket"
+            label="Konsultasi WhatsApp"
             className="w-full sm:w-auto px-7 py-3.5 rounded-button border border-white/30 hover:bg-white/10 text-white font-sans font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-200 active:scale-[0.98]"
-          >
-            <span>Konsultasi WhatsApp</span>
-          </a>
+          />
         </div>
 
         {/* Reassurance text */}

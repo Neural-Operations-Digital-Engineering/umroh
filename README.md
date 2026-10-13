@@ -65,6 +65,7 @@ Jangan commit `.env.local` atau kredensial apa pun. Gunakan `.env.example` sebag
    supabase/migrations/002_cms_media.sql
    supabase/migrations/003_enterprise_security_and_inquiries.sql
    supabase/migrations/004_security_hardening.sql
+   supabase/migrations/005_repair_inquiries_schema.sql
    ```
 
 3. Isi `NEXT_PUBLIC_SUPABASE_URL` dan `NEXT_PUBLIC_SUPABASE_ANON_KEY` di `.env.local`.
@@ -77,6 +78,8 @@ Jangan commit `.env.local` atau kredensial apa pun. Gunakan `.env.example` sebag
    ```
 
 6. Jalankan aplikasi dan buka [`/admin/login`](http://localhost:3000/admin/login).
+
+Jika CMS menampilkan `Could not find the table 'public.cms_inquiries' in the schema cache`, jalankan migration `005_repair_inquiries_schema.sql` di Supabase SQL Editor. Migration ini aman dijalankan ulang, membuat tabel inquiry bila belum ada, memperbaiki policy, dan meminta PostgREST memuat ulang schema cache.
 
 Role `admin` dapat mengelola seluruh data dan melakukan reset. Role `editor` dapat mengubah konten serta mengunggah media. Data inquiry dibaca dari dashboard setelah pengunjung mengirim form konsultasi.
 

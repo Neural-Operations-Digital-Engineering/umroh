@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { CompanyProfile } from "@/data/company";
 import { getFaqItems, type FaqItem } from "@/data/faq";
 import { getGeneralWhatsAppUrl } from "@/lib/contact";
+import InquiryDialog from "@/components/InquiryDialog";
 
 export default function FaqSection({
   company,
@@ -179,14 +180,11 @@ export default function FaqSection({
                   Tim customer care Risalah Madina Tour siap menjawab pertanyaan Anda secara langsung.
                 </p>
                 <div className="space-y-2 pt-1">
-                  <a
+                  <InquiryDialog
                     href={whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    label="Tanya via WhatsApp"
                     className="w-full min-h-11 inline-flex items-center justify-center rounded-button bg-gold-accent hover:bg-gold-hover text-slate-dark text-xs font-bold transition-colors shadow-xs"
-                  >
-                    Tanya via WhatsApp
-                  </a>
+                  />
                   <a
                     href={`tel:${company.phone.replace(/\D/g, "")}`}
                     className="w-full min-h-11 inline-flex items-center justify-center rounded-button border border-teal-primary text-teal-primary hover:bg-teal-primary hover:text-white text-xs font-bold transition-colors"

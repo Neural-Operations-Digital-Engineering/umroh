@@ -3,8 +3,11 @@ import React, { useState, useMemo, useEffect } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import PackageCard from "@/components/PackageCard";
+import InquiryDialog from "@/components/InquiryDialog";
 import { Package, FilterState } from "@/types/package";
 import { parseDepartureDate } from "@/lib/package";
+import { companyProfile } from "@/data/company";
+import { getGeneralWhatsAppUrl } from "@/lib/contact";
 
 interface PackageCatalogViewProps {
   initialPackages: Package[];
@@ -633,14 +636,11 @@ export default function PackageCatalogView({
               <p className="text-[11px] text-slate-muted leading-relaxed mb-2">
                 Butuh tanggal khusus atau rombongan keluarga?
               </p>
-              <a
-                href="https://wa.me/6281272230999?text=Assalamu'alaikum%20Admin%20Risalah%20Madina%20Tour,%20saya%20ingin%20konsultasi%20paket%20ibadah%20custom"
-                target="_blank"
-                rel="noopener noreferrer"
+              <InquiryDialog
+                href={getGeneralWhatsAppUrl(companyProfile.phone)}
+                label="Konsultasi CS WhatsApp (0812-7223-0999)"
                 className="w-full py-2 px-3 rounded-button bg-warm-bg hover:bg-emerald-50 text-emerald-800 border border-emerald-300 text-xs font-bold inline-flex items-center justify-center gap-1.5 transition-colors"
-              >
-                <span>Konsultasi CS WhatsApp (0812-7223-0999)</span>
-              </a>
+              />
             </div>
           </aside>
 
@@ -686,14 +686,11 @@ export default function PackageCatalogView({
                   >
                     Reset Filter Pencarian
                   </button>
-                  <a
-                    href="https://wa.me/6281272230999?text=Assalamu'alaikum%20Admin%20Risalah%20Madina%20Tour,%20saya%20mencari%20jadwal%20keberangkatan%20khusus"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <InquiryDialog
+                    href={getGeneralWhatsAppUrl(companyProfile.phone)}
+                    label="Tanya Admin WhatsApp"
                     className="px-4 py-2.5 rounded-button border border-warm-border bg-warm-bg text-slate-dark font-sans text-xs font-bold hover:bg-warm-muted transition-all"
-                  >
-                    Tanya Admin WhatsApp
-                  </a>
+                  />
                 </div>
               </div>
             )}

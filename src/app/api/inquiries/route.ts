@@ -18,7 +18,7 @@ function text(value: unknown, maxLength: number) {
 
 export async function POST(request: NextRequest) {
   if (!isSupabaseConfigured || !supabaseUrl || !supabaseAnonKey) {
-    return NextResponse.json({ stored: false, reason: "Supabase belum dikonfigurasi." }, { status: 202 });
+    return NextResponse.json({ stored: false, error: "Inquiry belum dapat disimpan karena Supabase belum dikonfigurasi." }, { status: 503 });
   }
 
   const body = (await request.json()) as Record<string, unknown>;
@@ -36,7 +36,13 @@ export async function POST(request: NextRequest) {
     user_agent: request.headers.get("user-agent")?.slice(0, 500) || null,
   });
 
-  if (error) return NextResponse.json({ error: "Inquiry belum dapat disimpan." }, { status: 503 });
+  if (error) {
+    const missingTable = /cms_inquiries|schema cache|relation/i.test(error.message);
+    return NextResponse.json(
+      { error: missingTable ? "Tabel inquiry belum aktif. Jalankan migration Supabase 003/005 terlebih dahulu." : "Inquiry belum dapat disimpan." },
+      { status: 503 }
+    );
+  }
   return NextResponse.json({ stored: true }, { status: 201 });
 }
 
@@ -51,6 +57,12 @@ export async function GET(request: NextRequest) {
     .order("created_at", { ascending: false })
     .limit(100);
 
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  if (error) {
+    const missingTable = /cms_inquiries|schema cache|relation/i.test(error.message);
+    return NextResponse.json(
+      { error: missingTable ? "Tabel inquiry belum aktif. Jalankan migration Supabase 003/005 terlebih dahulu." : "Inquiry belum dapat dimuat." },
+      { status: 503 }
+    );
+  }
   return NextResponse.json({ inquiries: data || [] });
 }

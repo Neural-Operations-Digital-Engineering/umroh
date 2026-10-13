@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { CompanyProfile } from "@/data/company";
-import { getGeneralWhatsAppUrl } from "@/lib/contact";
+import InquiryDialog from "@/components/InquiryDialog";
 
 export function HowItWorksSection() {
   const steps = [
@@ -136,14 +136,11 @@ export function HajiOverviewSection({ company }: { company: CompanyProfile }) {
                 <span className="min-w-0 break-words text-right font-bold text-teal-primary">6-7 Tahun</span>
               </div>
             </div>
-            <a
-              href={getGeneralWhatsAppUrl(company.phone)}
-              target="_blank"
-              rel="noopener noreferrer"
+            <InquiryDialog
+              href={`https://wa.me/${company.phone.replace(/\D/g, "").replace(/^0/, "62")}?text=${encodeURIComponent("Assalamu'alaikum, saya ingin berkonsultasi mengenai program Haji Khusus.")}`}
+              label="Konsultasi Porsi Haji Khusus"
               className="inline-flex min-h-11 w-full items-center justify-center whitespace-normal rounded-button bg-teal-primary px-3 text-center text-xs font-bold leading-4 text-white transition-colors hover:bg-teal-900"
-            >
-              Konsultasi Porsi Haji Khusus
-            </a>
+            />
           </div>
         </div>
       </div>

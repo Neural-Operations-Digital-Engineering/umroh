@@ -64,5 +64,6 @@ Jalankan berurutan di Supabase SQL Editor:
 2. `supabase/migrations/002_cms_media.sql`
 3. `supabase/migrations/003_enterprise_security_and_inquiries.sql`
 4. `supabase/migrations/004_security_hardening.sql`
+5. `supabase/migrations/005_repair_inquiries_schema.sql` — jalankan jika tabel inquiry belum ada atau schema cache PostgREST tertinggal.
 
 Setelah itu buat user di Supabase Auth, lalu masukkan UUID-nya ke `cms_members` sebagai `admin` atau `editor`.

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { CompanyProfile } from "@/data/company";
 import { getGeneralWhatsAppUrl } from "@/lib/contact";
+import InquiryDialog from "@/components/InquiryDialog";
 
 /**
  * HEADER GLOBAL COMPONENT
@@ -121,17 +122,16 @@ export default function Header({ company }: { company: CompanyProfile }) {
 
           {/* Desktop CTA Button */}
           <div className="hidden lg:flex items-center gap-3">
-            <Link
+            <InquiryDialog
               href={getGeneralWhatsAppUrl(company.phone)}
-              target="_blank"
-              rel="noopener noreferrer"
+              label="Konsultasi"
               className="flex items-center gap-2 border border-gold-accent bg-gold-accent px-4 py-2.5 font-sans text-xs font-semibold text-slate-dark shadow-[0_6px_16px_rgba(102,125,44,0.16)] transition-all duration-200 hover:bg-gold-hover"
             >
               <svg className="w-3.5 h-3.5 text-slate-dark fill-current" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.12.553 4.111 1.523 5.842l-1.615 5.9 6.046-1.587c1.668.91 3.57 1.435 5.597 1.435 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z" />
               </svg>
               <span>Konsultasi</span>
-            </Link>
+            </InquiryDialog>
           </div>
 
           {/* Tablet & Mobile Hamburger Button (<=1023px) */}
@@ -270,17 +270,16 @@ export default function Header({ company }: { company: CompanyProfile }) {
 
           {/* Bottom CTA Block */}
           <div className="p-5 border-t border-warm-border bg-warm-surface space-y-3">
-            <Link
+            <InquiryDialog
               href={getGeneralWhatsAppUrl(company.phone)}
-              target="_blank"
-              rel="noopener noreferrer"
+              label="Konsultasi via WhatsApp"
               className="w-full min-h-12 px-5 py-3 rounded-button bg-teal-primary text-white font-sans text-sm font-semibold shadow-card flex items-center justify-center gap-2"
             >
               <svg className="w-4 h-4 text-emerald-400 fill-current" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.12.553 4.111 1.523 5.842l-1.615 5.9 6.046-1.587c1.668.91 3.57 1.435 5.597 1.435 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z" />
               </svg>
               <span>Konsultasi via WhatsApp</span>
-            </Link>
+            </InquiryDialog>
 
             <div className="text-center text-[11px] text-slate-caption">
               Tim kami siap membantu memilih jadwal yang sesuai.

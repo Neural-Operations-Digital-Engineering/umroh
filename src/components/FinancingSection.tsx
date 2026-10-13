@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import type { CompanyProfile } from "@/data/company";
 import { getGeneralWhatsAppUrl } from "@/lib/contact";
+import InquiryDialog from "@/components/InquiryDialog";
 
 export default function FinancingSection({
   company,
@@ -115,14 +116,11 @@ export default function FinancingSection({
               <p className="text-xs text-white/80 leading-relaxed font-sans">
                 Konsultan kami siap membantu menghitungkan simulasi keberangkatan sesuai kemampuan tabungan bulanan keluarga Anda.
               </p>
-              <a
+              <InquiryDialog
                 href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                label="Konsultasi Tabungan via WhatsApp"
                 className="inline-flex min-h-11 w-full items-center justify-center rounded-button bg-gold-accent hover:bg-gold-hover px-4 py-2.5 text-xs font-bold text-slate-dark transition-colors shadow-xs"
-              >
-                Konsultasi Tabungan via WhatsApp
-              </a>
+              />
             </div>
 
           </div>
