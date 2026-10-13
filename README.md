@@ -12,7 +12,7 @@ Website publik dan CMS untuk Risalah Madina Tour, biro perjalanan haji dan umroh
 - Autentikasi Supabase untuk area admin dengan role `admin` dan `editor`.
 - Cache dan invalidasi route setelah perubahan data CMS.
 - Metadata SEO, sitemap, robots, canonical URL, Open Graph, dan structured data untuk halaman paket.
-- Fallback ke data lokal jika Supabase belum dikonfigurasi.
+- Fail-closed di production jika Supabase belum dikonfigurasi atau tidak tersedia.
 
 ## Teknologi
 
@@ -50,7 +50,6 @@ npm run start    # menjalankan hasil production build
 | `NEXT_PUBLIC_SITE_URL` | URL publik situs untuk metadata dan sitemap. |
 | `NEXT_PUBLIC_SUPABASE_URL` | URL project Supabase. |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Anon key dari Supabase Project Settings → API. |
-| `CMS_ADMIN_TOKEN` | Token fallback untuk penyimpanan CMS lokal jika Supabase belum digunakan. Gunakan nilai acak yang panjang. |
 | `NEXT_PUBLIC_HERO_VIDEO_URL` | URL video hero self-hosted. Opsional; fallback ke URL media dari CMS. |
 
 Jangan commit `.env.local` atau kredensial apa pun. Gunakan `.env.example` sebagai acuan.
@@ -66,6 +65,7 @@ Jangan commit `.env.local` atau kredensial apa pun. Gunakan `.env.example` sebag
    supabase/migrations/003_enterprise_security_and_inquiries.sql
    supabase/migrations/004_security_hardening.sql
    supabase/migrations/005_repair_inquiries_schema.sql
+   supabase/migrations/006_security_and_retention.sql
    ```
 
 3. Isi `NEXT_PUBLIC_SUPABASE_URL` dan `NEXT_PUBLIC_SUPABASE_ANON_KEY` di `.env.local`.
@@ -83,7 +83,9 @@ Jika CMS menampilkan `Could not find the table 'public.cms_inquiries' in the sch
 
 Role `admin` dapat mengelola seluruh data dan melakukan reset. Role `editor` dapat mengubah konten serta mengunggah media. Data inquiry dibaca dari dashboard setelah pengunjung mengirim form konsultasi.
 
-Tanpa konfigurasi Supabase, situs tetap dapat dijalankan menggunakan data lokal dari [`content/site-data.json`](content/site-data.json). Untuk menyimpan perubahan melalui fallback lokal, isi `CMS_ADMIN_TOKEN`.
+Untuk production, Supabase adalah sumber data tunggal. Jika Supabase belum dikonfigurasi atau query gagal, aplikasi mengembalikan error dan tidak menampilkan seed lama maupun menulis file saat request GET. Pada development, aplikasi dapat memakai seed in-memory dari `src/lib/cms/default-data.ts`.
+
+Inquiry berisi data kontak calon jemaah dan ditahan maksimal 24 bulan. Jalankan `public.purge_old_cms_inquiries(730)` melalui scheduler tepercaya (misalnya Supabase Cron) untuk menjalankan pembersihan berkala.
 
 ## Route penting
 
@@ -109,7 +111,6 @@ Tanpa konfigurasi Supabase, situs tetap dapat dijalankan menggunakan data lokal 
 src/app/                 route publik, admin, dan API
 src/components/          komponen UI dan CMS
 src/lib/                 akses data, Supabase, kontak, dan structured data
-content/site-data.json   fallback konten lokal
 supabase/migrations/     schema, policy, media, inquiry, dan hardening
 docs/                    arsitektur dan catatan QA
 DESIGN.md                arah visual dan prinsip desain

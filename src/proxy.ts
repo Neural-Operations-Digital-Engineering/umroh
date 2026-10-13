@@ -5,10 +5,6 @@ export async function proxy(request: NextRequest) {
   return await updateSupabaseSession(request);
 }
 
-export async function middleware(request: NextRequest) {
-  return await updateSupabaseSession(request);
-}
-
 export const config = {
   matcher: ["/admin", "/admin/:path*"],
 };

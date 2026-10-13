@@ -7,12 +7,12 @@ values (
   'cms-media',
   true,
   8388608,
-  array['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/svg+xml']
+  array['image/jpeg', 'image/png', 'image/webp', 'image/gif']
 )
 on conflict (id) do update set
   public = true,
   file_size_limit = 8388608,
-  allowed_mime_types = array['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/svg+xml'];
+  allowed_mime_types = array['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
 
 
 drop policy if exists "public can read cms media" on storage.objects;

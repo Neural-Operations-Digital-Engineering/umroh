@@ -5,7 +5,7 @@
 update storage.buckets
 set
   file_size_limit = 8388608,
-  allowed_mime_types = array['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/svg+xml']
+  allowed_mime_types = array['image/jpeg', 'image/png', 'image/webp', 'image/gif']
 where id = 'cms-media';
 
 -- 2. Perketat policy insert anon pada cms_inquiries (hanya boleh status 'new' dan batasi semua panjang teks)

@@ -44,7 +44,10 @@ export async function getSupabaseSiteData(): Promise<SiteData | null> {
     .select("company, packages, updated_at")
     .eq("id", true)
     .maybeSingle();
-  if (error || !data || !data.company || !Array.isArray(data.packages)) return null;
+  if (error) throw new Error(`CMS data Supabase gagal dimuat: ${error.message}`);
+  if (!data || !data.company || !Array.isArray(data.packages)) {
+    throw new Error("Row cms_site_data belum tersedia atau formatnya tidak valid.");
+  }
   return {
     company: data.company as SiteData["company"],
     packages: data.packages as SiteData["packages"],
@@ -69,47 +72,47 @@ export async function authorizeSupabase(accessToken: string): Promise<SupabaseAu
 export async function writeSupabaseSiteData(
   data: SiteData,
   auth: SupabaseAuthContext,
-  expectedUpdatedAt?: string
+  expectedUpdatedAt: string
 ): Promise<SupabaseWriteResult> {
   const { client, user } = auth;
 
-  // Optimistic concurrency control (409 Conflict check)
-  if (expectedUpdatedAt) {
-    const { data: current, error: checkError } = await client
-      .from("cms_site_data")
-      .select("updated_at")
-      .eq("id", true)
-      .maybeSingle();
-
-    if (!checkError && current?.updated_at) {
-      const currentMs = new Date(current.updated_at).getTime();
-      const expectedMs = new Date(expectedUpdatedAt).getTime();
-      // If server timestamp is newer than expected by more than 1 second
-      if (!Number.isNaN(currentMs) && !Number.isNaN(expectedMs) && Math.abs(currentMs - expectedMs) > 1000) {
-        return {
-          success: false,
-          conflict: true,
-          currentUpdatedAt: current.updated_at,
-          message: "Data telah diperbarui oleh pengguna lain. Silakan muat ulang halaman untuk memperbarui sebelum menyimpan.",
-        };
-      }
-    }
+  if (!expectedUpdatedAt || Number.isNaN(new Date(expectedUpdatedAt).getTime())) {
+    return {
+      success: false,
+      conflict: true,
+      message: "Versi data wajib dikirim untuk mencegah perubahan editor tertimpa.",
+    };
   }
 
   const newUpdatedAt = new Date().toISOString();
-  const { error } = await client.from("cms_site_data").upsert(
-    {
-      id: true,
+  const { data: updatedRows, error } = await client
+    .from("cms_site_data")
+    .update({
       company: data.company,
       packages: data.packages,
       updated_at: newUpdatedAt,
       updated_by: user.id,
-    },
-    { onConflict: "id" }
-  );
+    })
+    .eq("id", true)
+    .eq("updated_at", expectedUpdatedAt)
+    .select("updated_at");
 
   if (error) {
     return { success: false, conflict: false, message: error.message };
+  }
+
+  if (!updatedRows?.length) {
+    const { data: current } = await client
+      .from("cms_site_data")
+      .select("updated_at")
+      .eq("id", true)
+      .maybeSingle();
+    return {
+      success: false,
+      conflict: true,
+      currentUpdatedAt: current?.updated_at as string | undefined,
+      message: "Data telah diperbarui oleh pengguna lain. Silakan muat ulang halaman untuk memperbarui sebelum menyimpan.",
+    };
   }
 
   return {

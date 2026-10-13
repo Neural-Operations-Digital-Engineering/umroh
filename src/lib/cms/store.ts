@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { cache } from "react";
 import { unstable_cache } from "next/cache";
@@ -6,13 +6,16 @@ import { getDefaultSiteData } from "@/lib/cms/default-data";
 import type { SiteData } from "@/lib/cms/types";
 import { getSupabaseSiteData, isSupabaseConfigured } from "@/lib/supabase/server";
 
-const contentDirectory = path.join(process.cwd(), "content");
-const contentPath = path.join(contentDirectory, "site-data.json");
+const contentPath = path.join(process.cwd(), "content", "site-data.json");
 export const SITE_DATA_CACHE_TAG = "cms-site-data";
 
 // unstable_cache: persists across requests with a 5-minute TTL (CDN/ISR layer).
 const getCachedSupabaseSiteData = unstable_cache(
-  async () => getSupabaseSiteData(),
+  async () => {
+    const data = await getSupabaseSiteData();
+    if (!data) throw new Error("CMS data Supabase tidak tersedia.");
+    return data;
+  },
   ["cms-site-data"],
   { tags: [SITE_DATA_CACHE_TAG], revalidate: 300 },
 );
@@ -28,8 +31,13 @@ function isSiteData(value: unknown): value is SiteData {
 // issue two independent fetches to Supabase (or two fs reads) per page load.
 export const getSiteData: () => Promise<SiteData> = cache(async () => {
   if (isSupabaseConfigured) {
-    const remoteData = await getCachedSupabaseSiteData();
-    if (remoteData) return remoteData;
+    try {
+      return await getCachedSupabaseSiteData();
+    } catch (error) {
+      if (process.env.NODE_ENV === "production") throw error;
+    }
+  } else if (process.env.NODE_ENV === "production") {
+    throw new Error("Supabase wajib dikonfigurasi di production untuk membaca data CMS.");
   }
 
   try {
@@ -37,20 +45,8 @@ export const getSiteData: () => Promise<SiteData> = cache(async () => {
     const parsed: unknown = JSON.parse(raw);
     if (isSiteData(parsed)) return parsed;
   } catch {
-    // First request seeds from the checked-in default and writes the local store.
+    // Local development can use the in-memory seed, but a request never writes to disk.
   }
 
-  const seed = getDefaultSiteData();
-  await writeSiteData(seed);
-  return seed;
+  return getDefaultSiteData();
 });
-
-export async function writeSiteData(data: SiteData): Promise<SiteData> {
-  await mkdir(contentDirectory, { recursive: true });
-  await writeFile(contentPath, `${JSON.stringify(data, null, 2)}\n`, "utf8");
-  return data;
-}
-
-export function getContentPath() {
-  return contentPath;
-}

@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { getSiteData } from "@/lib/cms/store";
 import { getPackageWhatsAppUrl } from "@/lib/contact";
 import { getAbsoluteUrl } from "@/lib/site-url";
-import { getBreadcrumbSchema, getProductSchema } from "@/lib/structured-data";
+import { getBreadcrumbSchema, getProductSchema, serializeJsonLd } from "@/lib/structured-data";
 import SharePackageButton from "@/components/SharePackageButton";
 import InquiryDialog from "@/components/InquiryDialog";
 
@@ -65,8 +65,8 @@ export default async function HajiDetailPage({ params }: PageProps) {
 
   return (
     <main className="bg-warm-bg min-h-screen py-6 sm:py-10 pb-28 lg:pb-16 font-sans">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(productSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         

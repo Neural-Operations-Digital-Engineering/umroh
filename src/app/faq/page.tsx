@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getSiteData } from "@/lib/cms/store";
 import { getAbsoluteUrl } from "@/lib/site-url";
-import { getBreadcrumbSchema, getFaqSchema } from "@/lib/structured-data";
+import { getBreadcrumbSchema, getFaqSchema, serializeJsonLd } from "@/lib/structured-data";
 import FaqSection from "@/components/FaqSection";
 import { getFaqItems } from "@/data/faq";
 
@@ -37,11 +37,11 @@ export default async function FaqPage() {
     <main>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqSchema) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
       />
       <FaqSection company={company} isHeadingH1={true} />
     </main>

@@ -32,6 +32,7 @@ export default function InquiryDialog({ href, packageId, packageName, label, cla
         headers: { "Content-Type": "application/json" },
         keepalive: true,
         body: JSON.stringify({
+          website: new FormData(event.currentTarget).get("website"),
           packageId: packageId || null,
           packageName: packageName || null,
           contactName: name,
@@ -78,6 +79,7 @@ export default function InquiryDialog({ href, packageId, packageName, label, cla
               <button type="button" className="min-h-11 min-w-11 rounded-button border border-warm-border text-xl text-slate-body" aria-label="Tutup formulir inquiry" onClick={() => setOpen(false)}>×</button>
             </div>
             <form className="mt-5 space-y-4" onSubmit={submit}>
+              <label className="sr-only" aria-hidden="true">Website<input name="website" tabIndex={-1} autoComplete="off" /></label>
               <label className="block text-sm font-semibold text-teal-primary">Nama <span className="font-normal text-red-700">*</span><input required className="mt-2 min-h-11 w-full rounded-button border border-warm-border bg-white px-3 py-2.5 text-sm outline-none focus:border-teal-primary" value={name} onChange={(event) => setName(event.target.value)} autoComplete="name" /></label>
               <label className="block text-sm font-semibold text-teal-primary">Nomor WhatsApp <span className="font-normal text-red-700">*</span><input required className="mt-2 min-h-11 w-full rounded-button border border-warm-border bg-white px-3 py-2.5 text-sm outline-none focus:border-teal-primary" value={phone} onChange={(event) => setPhone(event.target.value)} inputMode="tel" autoComplete="tel" /></label>
               <label className="block text-sm font-semibold text-teal-primary">Pertanyaan / kebutuhan <span className="font-normal text-slate-muted">(opsional)</span><textarea className="mt-2 min-h-24 w-full rounded-button border border-warm-border bg-white px-3 py-2.5 text-sm outline-none focus:border-teal-primary" value={message} onChange={(event) => setMessage(event.target.value)} /></label>

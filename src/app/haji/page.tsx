@@ -4,7 +4,7 @@ import PackageCatalogView from "@/components/PackageCatalogView";
 import { HajiOverviewSection } from "@/components/HomepageStaticSections";
 import { getSiteData } from "@/lib/cms/store";
 import { getAbsoluteUrl } from "@/lib/site-url";
-import { getBreadcrumbSchema } from "@/lib/structured-data";
+import { getBreadcrumbSchema, serializeJsonLd } from "@/lib/structured-data";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { company } = await getSiteData();
@@ -35,7 +35,7 @@ export default async function HajiCatalogPage() {
     <main>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
       />
       <HajiOverviewSection company={company} />
       <PackageCatalogView

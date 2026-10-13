@@ -2,6 +2,10 @@ import type { CompanyProfile } from "@/data/company";
 import type { Package } from "@/types/package";
 import { getAbsoluteUrl, getSiteUrl } from "./site-url";
 
+export function serializeJsonLd(value: unknown) {
+  return JSON.stringify(value).replace(/</g, "\\u003c");
+}
+
 export function getOrganizationSchema(company: CompanyProfile) {
   const siteUrl = getSiteUrl();
   return {

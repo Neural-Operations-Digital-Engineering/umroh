@@ -590,10 +590,7 @@ export default function CmsDashboard() {
   const [data, setData] = useState<SiteData | null>(null);
   const [tab, setTab] = useState<Tab>("packages");
   const [selectedPackageId, setSelectedPackageId] = useState<string | null>(null);
-  const [token, setToken] = useState("");
   const [sessionToken, setSessionToken] = useState("");
-  const [authEmail, setAuthEmail] = useState("");
-  const [authPassword, setAuthPassword] = useState("");
   const [authUser, setAuthUser] = useState("");
   const [busy, setBusy] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -709,13 +706,11 @@ export default function CmsDashboard() {
     setMessage("");
     setError("");
     try {
-      window.localStorage.setItem("cms-admin-token", token);
-      const authorizationToken = sessionToken || token;
       const response = await fetch("/api/cms", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          ...(authorizationToken ? { Authorization: `Bearer ${authorizationToken}` } : {}),
+          ...(sessionToken ? { Authorization: `Bearer ${sessionToken}` } : {}),
         },
         body: JSON.stringify(data),
       });
@@ -733,7 +728,7 @@ export default function CmsDashboard() {
       setMessage(
         isSupabaseConfigured
           ? "Perubahan tersimpan ke Supabase dan akan tampil global."
-          : "Perubahan tersimpan ke server lokal."
+          : "Supabase belum dikonfigurasi. Perubahan belum disimpan."
       );
     } catch (saveError) {
       setError(saveError instanceof Error ? saveError.message : "Perubahan tidak dapat disimpan.");
@@ -748,14 +743,13 @@ export default function CmsDashboard() {
     setMessage("");
     setError("");
     try {
-      const authorizationToken = sessionToken || token;
       const response = await fetch("/api/cms", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          ...(authorizationToken ? { Authorization: `Bearer ${authorizationToken}` } : {}),
+          ...(sessionToken ? { Authorization: `Bearer ${sessionToken}` } : {}),
         },
-        body: JSON.stringify({ reset: true }),
+        body: JSON.stringify({ reset: true, updated_at: data?.updated_at }),
       });
       const result = (await response.json()) as SiteData & { error?: string };
       if (!response.ok) {
@@ -770,23 +764,6 @@ export default function CmsDashboard() {
     } finally {
       setSaving(false);
     }
-  }
-
-  async function signIn() {
-    if (!supabase) return;
-    setError("");
-    const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
-      email: authEmail,
-      password: authPassword,
-    });
-    if (authError || !authData.session) {
-      setError(authError?.message || "Login Supabase gagal.");
-      return;
-    }
-    setSessionToken(authData.session.access_token);
-    setAuthUser(authData.session.user.email || authEmail);
-    setAuthPassword("");
-    setMessage("Login Supabase berhasil.");
   }
 
   async function signOut() {
@@ -914,13 +891,13 @@ export default function CmsDashboard() {
                 className={`w-2 h-2 rounded-full ${isSupabaseConfigured ? "bg-emerald-400 animate-pulse" : "bg-amber-400"}`}
               />
               <strong className="text-white text-[11px]">
-                {isSupabaseConfigured ? "Supabase Cloud" : "Penyimpanan Lokal"}
+                {isSupabaseConfigured ? "Supabase Cloud" : "CMS belum aktif"}
               </strong>
             </div>
             <p className="text-[11px] leading-relaxed">
               {isSupabaseConfigured
                 ? "Data tersinkronisasi otomatis secara global."
-                : "Data disimpan lokal pada server ini."}
+                : "Konfigurasikan Supabase untuk membaca dan menyimpan data CMS."}
             </p>
           </div>
         </aside>
@@ -1584,20 +1561,8 @@ export default function CmsDashboard() {
                 <p className="mt-2 text-xs leading-relaxed text-amber-900/80">
                   {isSupabaseConfigured
                     ? "Supabase aktif: Perubahan data tersimpan secara terpusat di cloud database PostgreSQL Supabase."
-                    : "Penyimpanan lokal aktif: Data disimpan di berkas JSON filesystem server lokal."}
+                    : "Supabase belum dikonfigurasi: CMS dikunci agar tidak menyimpan data tanpa database terpusat."}
                 </p>
-                {!isSupabaseConfigured && (
-                  <label className="mt-4 block">
-                    <span className={labelClass}>Token Admin Lokal (Opsional)</span>
-                    <input
-                      className={inputClass}
-                      type="password"
-                      value={token}
-                      onChange={(event) => setToken(event.target.value)}
-                      placeholder="CMS_ADMIN_TOKEN"
-                    />
-                  </label>
-                )}
               </div>
             </div>
           )}

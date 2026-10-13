@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getSiteData } from "@/lib/cms/store";
 import { getAbsoluteUrl } from "@/lib/site-url";
-import { getBreadcrumbSchema } from "@/lib/structured-data";
+import { getBreadcrumbSchema, serializeJsonLd } from "@/lib/structured-data";
 import { AboutPageContent } from "@/components/SiteContentPages";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -32,7 +32,7 @@ export default async function TentangPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
       />
       <AboutPageContent company={company} />
     </>

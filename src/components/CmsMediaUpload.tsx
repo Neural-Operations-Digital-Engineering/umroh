@@ -17,7 +17,8 @@ export default function CmsMediaUpload({ label, value = "", folder, supabase, on
 
   async function upload(file: File) {
     setError("");
-    if (!file.type.startsWith("image/")) {
+    const allowedTypes = ["image/jpeg", "image/png", "image/webp", "image/gif"];
+    if (!allowedTypes.includes(file.type)) {
       setError("Pilih file gambar (JPG, PNG, WebP, atau GIF).");
       return;
     }
@@ -54,7 +55,7 @@ export default function CmsMediaUpload({ label, value = "", folder, supabase, on
         <div className="flex flex-wrap items-center gap-2">
           <label className="inline-flex min-h-10 cursor-pointer items-center rounded-button bg-teal-primary px-3 py-2 text-xs font-bold text-white hover:bg-teal-900">
             {uploading ? "Mengunggah…" : "Upload gambar"}
-            <input type="file" accept="image/*" className="sr-only" disabled={uploading} onChange={(event) => { const file = event.target.files?.[0]; if (file) void upload(file); event.currentTarget.value = ""; }} />
+            <input type="file" accept="image/jpeg,image/png,image/webp,image/gif" className="sr-only" disabled={uploading} onChange={(event) => { const file = event.target.files?.[0]; if (file) void upload(file); event.currentTarget.value = ""; }} />
           </label>
           {value && <button type="button" onClick={() => onChange("")} className="min-h-10 rounded-button border border-warm-border px-3 py-2 text-xs font-bold text-red-700 hover:border-red-200">Hapus gambar</button>}
         </div>

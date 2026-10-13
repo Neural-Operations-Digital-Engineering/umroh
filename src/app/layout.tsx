@@ -7,7 +7,7 @@ import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import AnalyticsScript from "@/components/AnalyticsScript";
 import { getSiteData } from "@/lib/cms/store";
 import { getSiteUrl } from "@/lib/site-url";
-import { getOrganizationSchema } from "@/lib/structured-data";
+import { getOrganizationSchema, serializeJsonLd } from "@/lib/structured-data";
 import "./globals.css";
 
 export const revalidate = 300;
@@ -117,7 +117,7 @@ export default async function RootLayout({
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(organizationSchema) }}
         />
       </head>
       <body
