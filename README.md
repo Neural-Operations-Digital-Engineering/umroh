@@ -21,9 +21,11 @@ proprietary dan tidak dirilis sebagai open-source. Penggunaan komersial, redistr
 modifikasi publik, pembuatan produk turunan, atau pemanfaatan untuk pihak lain memerlukan
 izin tertulis. Lihat [`LICENSE`](LICENSE) dan [`COPYRIGHT`](COPYRIGHT).
 
-Pemegang kode yang dikonfirmasi adalah `NODE (Neural Operation & Digital Enginering)` dengan
-`Risalah Madina Tour` dan `Yayasan Pondok Digitalpreneur Abdurrahman Bin Auf Cirebon` sebagai
-entitas/brand di bawahnya. Lisensi ini tetap harus ditinjau oleh profesional hukum sebelum
+Pemegang utama/pengelola kode adalah `NODE (Neural Operation & Digital Enginering)`. `Risalah
+Madina Tour` (RMT) menggunakan situs untuk penjualan jasa umroh dan travel, sedangkan `Yayasan
+Pondok Digitalpreneur Abdurrahman Bin Auf Cirebon` (ABA) menjalankan subunit/cabang bisnis RMT.
+Ketiga pihak memiliki hak sesuai kontribusi dan materi masing-masing, dengan NODE sebagai pihak
+utama dan Pemberi Lisensi. Lisensi ini tetap harus ditinjau oleh profesional hukum sebelum
 digunakan untuk penegakan. Dependensi, font, foto, video, logo,
 aset template, dan materi referensi pihak ketiga tidak termasuk klaim proprietary proyek.
 Lihat [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) dan

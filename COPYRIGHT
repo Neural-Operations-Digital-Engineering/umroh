@@ -1,23 +1,37 @@
 PEMBERITAHUAN HAK CIPTA
 
-Proyek: Risalah Madina Tour
+Proyek: Risalah Madina Tour (RMT)
 Repositori: https://github.com/Vhaenzz/umroh
-Tahun publikasi kode proyek: 2026
+Tanggal publikasi pertama: 15 September 2026
 
 Pemegang hak cipta yang dikonfirmasi oleh pemilik proyek:
   NODE (Neural Operation & Digital Enginering)
 
-Entitas/brand di bawah NODE yang terkait dengan proyek:
-  - Risalah Madina Tour
-  - Yayasan Pondok Digitalpreneur Abdurrahman Bin Auf Cirebon
+Pihak yang memiliki hak sesuai kontribusi dan materi masing-masing:
+  - NODE (studio boutique; pemegang utama/pengelola proyek)
+  - Risalah Madina Tour (RMT; badan usaha pengguna situs untuk penjualan jasa umroh dan travel)
+  - Yayasan Pondok Digitalpreneur Abdurrahman Bin Auf Cirebon (ABA; penyedia media dan
+    pengelola subunit/cabang bisnis RMT)
+
+Author dan Web Developer:
+  NODE — Muhammad Nizar al-Faris
+
+Alamat NODE:
+  Jl. Mulya 2, RT.005/RW.006, Karyamulya, Kec. Kesambi,
+  Kota Cirebon, Jawa Barat 45131
+
+Kontak lisensi resmi:
+  finance.budsteam@gmail.com
 
 Identitas badan usaha yang juga tercantum di data aplikasi:
   PT. Risalah Madina Bunga Tiara
 
 Catatan kepemilikan:
-  NODE dinyatakan sebagai pemegang kode oleh pemilik proyek. Hubungan hukum NODE dengan
-  entitas/brand di atas, pengalihan hak dari developer atau kontraktor, serta hak atas aset
-  pihak ketiga tetap harus dibuktikan dengan dokumen tertulis.
+  Hubungan proyek berada pada NODE sebagai author/pengembang dan ABA/RMT sebagai pihak yang
+  menyediakan media serta menggunakan situs untuk meng-online-kan bisnis yang sebelumnya
+  berjalan secara offline. NODE ditempatkan sebagai pihak dengan kedudukan utama, tetapi
+  pembagian hak setiap pihak, pengalihan hak dari developer/kontraktor, serta hak atas aset
+  tetap harus dibuktikan dengan dokumen tertulis.
 
 Material pihak ketiga:
   Dependensi, font, foto, video, ikon, logo, aset default, materi pada example_pages,
@@ -25,5 +39,5 @@ Material pihak ketiga:
   ini. Lihat THIRD_PARTY_NOTICES.md dan docs/INTELLECTUAL-PROPERTY.md.
 
 Pemberitahuan standar untuk file orisinal setelah pemegang hak dikonfirmasi:
-  Copyright (c) 2026 NODE (Neural Operation & Digital Enginering)
+  Copyright (c) 2026 NODE (Neural Operation & Digital Enginering), RMT, and ABA as applicable
   All rights reserved. See LICENSE for permitted use.

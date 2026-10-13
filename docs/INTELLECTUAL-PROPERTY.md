@@ -8,10 +8,14 @@ penegakan atau penjualan lisensi.
 - Aplikasi menggunakan Next.js 16, React 19, TypeScript, Tailwind CSS, Supabase, dan ESLint.
 - Kode sumber berada di `src/`, konfigurasi build di root, migration database di
   `supabase/migrations/`, dokumentasi di `docs/`, dan aset publik di `public/`.
-- Pemilik proyek mengonfirmasi `NODE (Neural Operation & Digital Enginering)` sebagai pemegang
-  kode, dengan `Risalah Madina Tour` dan `Yayasan Pondok Digitalpreneur Abdurrahman Bin Auf
-  Cirebon` sebagai entitas/brand di bawahnya. Repository belum memuat dokumen pengalihan hak,
-  perjanjian kerja, atau bukti kapasitas hukum yang mendasari struktur tersebut.
+- Pemilik proyek mengonfirmasi `NODE (Neural Operation & Digital Enginering)` sebagai studio
+  boutique, author, web developer, dan pemegang utama/pengelola proyek.
+- `Risalah Madina Tour` (RMT) adalah badan usaha pengguna situs untuk penjualan jasa umroh dan
+  travel. `Yayasan Pondok Digitalpreneur Abdurrahman Bin Auf Cirebon` (ABA) menjalankan subunit
+  atau cabang bisnis RMT serta menyediakan media untuk proyek. Ketiga pihak dinyatakan memiliki
+  hak sesuai kontribusi dan materi masing-masing; pembagian rinci masih harus dibuktikan.
+- Tanggal publikasi pertama diberikan sebagai 15 September 2026. Author dan Web Developer
+  yang dicatat adalah `Muhammad Nizar al-Faris`.
 - `PT. Risalah Madina Bunga Tiara` juga tercantum pada data aplikasi. Nama tersebut diperlakukan
   sebagai identitas bisnis/konten aplikasi, bukan otomatis sebagai pemegang hak cipta.
 - Riwayat Git memberi bukti kronologi pengembangan, tetapi identitas committer bukan dengan
@@ -40,6 +44,21 @@ sampai provenance-nya diverifikasi. Rincian awal ada di `THIRD_PARTY_NOTICES.md`
    yang mengumpulkan data tanpa persetujuan. Minifikasi produksi hanya merupakan optimasi dan
    bukan pengganti perlindungan hukum.
 
+## Ringkasan izin yang direncanakan
+
+- Hak atas Material Berlisensi bersifat eksklusif bagi NODE, RMT, dan ABA sesuai pembagian hak
+  yang sah; NODE menjadi Pemberi Lisensi dan titik komunikasi utama.
+- Izin umum dimaksudkan berlaku seumur hidup/tanpa batas waktu selama hak atas Material
+  Berlisensi masih dilindungi, tetapi tetap terbatas, tidak dapat dialihkan, dan dapat
+  dihentikan karena pelanggaran.
+- Evaluasi, pendidikan, penelitian, dan penggunaan sebagai template terbatas diperbolehkan
+  sepanjang tidak menyalin substansial kode/konten orisinal dan mencantumkan atribusi di kode
+  serta secara terlihat pada situs.
+- Penggunaan komersial, deployment untuk klien, redistribusi, atau penggunaan turunan
+  memerlukan izin eksplisit tertulis melalui `finance.budsteam@gmail.com`.
+- Pelanggaran diberi kesempatan perbaikan selama 14 hari kalender sejak pemberitahuan tertulis
+  diterima; izin dapat dihentikan jika pelanggaran tidak diperbaiki.
+
 ## Prosedur permintaan izin
 
 Permintaan penggunaan komersial, redistribusi, modifikasi publik, sublicensing, deployment
@@ -51,15 +70,18 @@ repository dapat dilihat atau di-clone.
 
 ## Checklist sebelum finalisasi
 
-- [x] Identitas pemegang kode dikonfirmasi sebagai NODE; verifikasi nama resmi dan kapasitas
+- [x] Identitas dan alamat NODE diisi; verifikasi nama resmi, bentuk badan usaha, dan kapasitas
       hukumnya masih diperlukan.
-- [ ] Dokumentasikan hubungan hukum NODE dengan Risalah Madina Tour, yayasan, dan PT yang
-      tercantum dalam data aplikasi.
+- [x] Relasi NODE–RMT–ABA dan peran masing-masing dicatat berdasarkan keterangan pemilik proyek.
+- [ ] Dokumentasikan pembagian hak ketiga pihak melalui perjanjian tertulis.
+- [x] Tanggal publikasi pertama dikonfirmasi: 15 September 2026.
+- [x] Nama author dan Web Developer dikonfirmasi: Muhammad Nizar al-Faris.
 - [x] Kontak permohonan izin diisi: `finance.budsteam@gmail.com`.
 - [ ] Konfirmasi domisili hukum dan kewenangan kontak/penandatangan.
 - [ ] Dokumentasikan kontribusi setiap developer dan kontraktor.
 - [ ] Kumpulkan bukti lisensi semua foto, video, font, logo, ikon, dan materi prototipe.
-- [ ] Ganti atau lisensikan video hero pihak ketiga.
+- [ ] Ganti seluruh aset pihak ketiga yang belum memiliki bukti lisensi; aset tetap dikecualikan
+      dari klaim proprietary sampai penggantian selesai.
 - [ ] Jalankan pemindaian lisensi transitive dependencies sebelum source/binary distribution.
 - [ ] Tinjau klausul termination, liability, forum, dan hukum oleh advokat Indonesia.
 - [ ] Pertimbangkan pencatatan ciptaan dan/atau lisensi melalui kanal resmi DJKI bila relevan.

@@ -1,11 +1,14 @@
 RISALAH MADINA TOUR — LISENSI PERANGKAT LUNAK PROPRIETARI
 Versi 1.0 — Draf untuk pemeriksaan hukum
 
-Hak Cipta © 2026 NODE (Neural Operation & Digital Enginering). Seluruh hak dilindungi.
+Hak Cipta © 2026 NODE (Neural Operation & Digital Enginering), Risalah Madina Tour (RMT),
+dan Yayasan Pondok Digitalpreneur Abdurrahman Bin Auf Cirebon (ABA), sesuai kontribusi dan
+perjanjian tertulis masing-masing. NODE berkedudukan sebagai pemegang utama/pengelola dan
+Pemberi Lisensi. Seluruh hak dilindungi.
 
 PENTING: Dokumen ini adalah rancangan lisensi khusus, bukan nasihat hukum. Konfirmasi ejaan
-nama resmi, kapasitas hukum NODE, alamat kontak, dan domisili hukum sebelum lisensi ini
-digunakan sebagai dokumen final.
+nama resmi, tahun publikasi, kapasitas hukum NODE, kewenangan perwakilan, dan pembagian hak
+antar pihak sebelum lisensi ini digunakan sebagai dokumen final.
 
 1. RUANG LINGKUP
 
@@ -13,9 +16,11 @@ digunakan sebagai dokumen final.
 konfigurasi khusus proyek, dokumentasi, desain antarmuka, teks, dan aset orisinal yang
 secara sah dimiliki atau dikendalikan oleh Pemegang Hak Cipta dalam repositori ini.
 
-Risalah Madina Tour dan Yayasan Pondok Digitalpreneur Abdurrahman Bin Auf Cirebon adalah
-entitas/brand yang dinyatakan berada di bawah NODE untuk konteks proyek ini. Status hubungan
-hukum, pengalihan hak, dan kewenangan masing-masing tetap perlu didokumentasikan.
+NODE adalah studio boutique dan pemegang utama/pengelola hak proyek. RMT adalah badan usaha
+yang menggunakan situs ini untuk penjualan jasa umroh dan travel. ABA adalah yayasan yang
+menjalankan subunit atau cabang bisnis RMT. Untuk lisensi ini, ketiganya disebut sebagai
+Pemegang Hak sesuai kontribusi dan materi yang dimiliki masing-masing; pembagian hak yang
+lebih rinci harus didukung perjanjian tertulis.
 
 Material Berlisensi tidak mencakup: (a) perangkat lunak pihak ketiga dan dependensinya;
 (b) font, foto, video, ikon, logo, merek, atau materi lain milik pihak ketiga; (c) materi
@@ -26,22 +31,36 @@ lisensi atau izin pemiliknya masing-masing.
 
 2. KEPEMILIKAN
 
-Kepemilikan hak cipta atas Material Berlisensi tetap berada pada Pemegang Hak Cipta.
-Pemberian izin terbatas dalam lisensi ini tidak mengalihkan hak cipta, hak moral, merek,
-rahasia dagang, atau hak kekayaan intelektual lainnya. Tidak ada ketentuan dalam lisensi
-ini yang mengklaim kepemilikan atas Material Pihak Ketiga.
+Kepemilikan hak cipta atas Material Berlisensi tetap berada pada NODE sebagai pemegang
+utama/pengelola proyek, serta RMT dan ABA sejauh hak tersebut berasal dari kontribusi,
+materi, atau perjanjian yang sah. Pemberian izin terbatas dalam lisensi ini tidak mengalihkan
+hak cipta, hak moral, merek, rahasia dagang, atau hak kekayaan intelektual lainnya. Tidak ada
+ketentuan dalam lisensi ini yang mengklaim kepemilikan atas Material Pihak Ketiga.
+
+NODE berwenang menjadi Pemberi Lisensi dan titik komunikasi utama berdasarkan struktur proyek
+yang diberikan oleh pemilik proyek. Kewenangan tersebut harus didukung dokumen internal atau
+perjanjian tertulis apabila lisensi ini digunakan untuk penegakan atau transaksi komersial.
 
 3. IZIN TERBATAS
 
-Tanpa perjanjian tertulis lain, setiap penerima memperoleh izin yang terbatas, pribadi,
-tidak eksklusif, tidak dapat dialihkan, tidak dapat disublicensikan, dan dapat dihentikan
-untuk:
+Hak eksklusif atas Material Berlisensi tetap berada pada Pemegang Hak. Tanpa perjanjian
+tertulis lain, setiap penerima hanya memperoleh izin yang terbatas, pribadi, tidak eksklusif,
+tidak dapat dialihkan, tidak dapat disublicensikan, berlaku global, dan dapat dihentikan.
+Izin ini dimaksudkan berlaku seumur hidup/tanpa batas waktu selama hak atas Material
+Berlisensi masih dilindungi dan sejauh tidak dihentikan sesuai lisensi ini atau hukum yang
+berlaku.
+
+Izin terbatas tersebut meliputi:
 
   a. membaca dan mengevaluasi Material Berlisensi;
   b. menjalankan salinan lokal secara pribadi untuk evaluasi, pendidikan, atau penelitian
      nonkomersial; dan
   c. membuat perubahan lokal yang tidak dipublikasikan dan tidak diberikan kepada pihak lain
-     untuk tujuan evaluasi, pendidikan, atau penelitian nonkomersial.
+     untuk tujuan evaluasi, pendidikan, atau penelitian nonkomersial; dan
+  d. memakai Material Berlisensi sebagai referensi atau template terbatas, sepanjang tidak
+     menyalin secara substansial kode atau konten orisinal, tidak mengklaim keaslian karya
+     Pemegang Hak, dan mencantumkan atribusi pada kode serta secara terlihat pada situs yang
+     dihasilkan.
 
 Penggunaan situs yang telah dipublikasikan melalui peramban, semata-mata sebagai pengguna
 akhir, tidak memberikan hak untuk memperoleh atau menggunakan kode sumbernya.
@@ -54,9 +73,11 @@ dilarang:
   a. menyalin, memperbanyak, menerbitkan ulang, menjual, menyewakan, meminjamkan, atau
      mendistribusikan Material Berlisensi atau bagian substansialnya;
   b. menyediakan Material Berlisensi sebagai layanan, template, starter kit, produk,
-     repositori, atau komponen untuk pihak lain;
+     repositori, atau komponen untuk pihak lain, kecuali penggunaan template terbatas yang
+     memenuhi bagian 3(d) dan tidak bersifat komersial tanpa izin tertulis;
   c. menggunakan Material Berlisensi sebagai dasar produk, situs, aplikasi, atau proyek
-     turunan untuk diri sendiri atau pihak lain;
+     turunan dengan menyalin secara substansial kode atau konten orisinal untuk diri sendiri
+     atau pihak lain;
   d. memodifikasi lalu mempublikasikan, menjual, melisensikan, mensublicensikan, atau
      mendistribusikan hasil modifikasi;
   e. menghapus atau mengubah pemberitahuan hak cipta, atribusi, watermark, atau penanda
@@ -73,19 +94,28 @@ hukum yang berlaku.
 
 Penggunaan komersial, penggunaan oleh badan usaha, penggunaan untuk klien, deployment
 untuk pihak lain, redistribusi, pembuatan karya turunan, atau integrasi ke produk lain
-memerlukan izin tertulis atau perjanjian lisensi komersial terpisah dari Pemegang Hak Cipta.
+memerlukan izin eksplisit tertulis atau perjanjian lisensi komersial terpisah dari Pemegang
+Hak. Izin dimintakan melalui alamat resmi berikut.
 Perjanjian tersebut dapat menetapkan ruang lingkup, wilayah, masa berlaku, biaya, royalti,
 dukungan, kewajiban atribusi, serta hak audit. Permohonan izin dikirim ke:
 
   finance.budsteam@gmail.com
 
+Alamat Pemberi Lisensi:
+  Jl. Mulya 2, RT.005/RW.006, Karyamulya, Kec. Kesambi,
+  Kota Cirebon, Jawa Barat 45131
+
 6. PENGAKHIRAN
 
-Izin dalam lisensi ini berakhir otomatis apabila penerima melanggar ketentuannya. Apabila
-pelanggaran dapat diperbaiki, Pemegang Hak Cipta dapat memberikan masa perbaikan tertulis
-selama 14 hari, tanpa mengurangi hak untuk meminta penghentian segera jika pelanggaran
-menimbulkan kerugian atau tidak dapat diperbaiki. Setelah pengakhiran, penerima wajib
-menghentikan penggunaan dan menghapus salinan Material Berlisensi yang berada dalam
+Apabila penerima melanggar ketentuan lisensi ini, Pemberi Lisensi berhak mengirimkan
+pemberitahuan tertulis yang menjelaskan bentuk pelanggaran dan tindakan perbaikan yang
+diperlukan. Penerima diberikan waktu 14 (empat belas) hari kalender sejak pemberitahuan
+diterima untuk memperbaiki pelanggaran.
+
+Apabila pelanggaran tidak diperbaiki dalam jangka waktu tersebut, izin penggunaan dapat
+dihentikan sesuai lisensi ini dan hukum yang berlaku. Penghentian izin tidak menghapus
+tanggung jawab atas pelanggaran yang telah terjadi sebelumnya. Setelah pengakhiran, penerima
+wajib menghentikan penggunaan dan menghapus salinan Material Berlisensi yang berada dalam
 penguasaannya, kecuali penyimpanan yang diwajibkan hukum.
 
 7. TIDAK ADA JAMINAN
@@ -106,11 +136,12 @@ hukum.
 
 9. HUKUM DAN PENYELESAIAN SENGKETA
 
-Lisensi ini dimaksudkan untuk ditafsirkan berdasarkan hukum Republik Indonesia. Setiap
-ketentuan mengenai forum, domisili, mediasi, arbitrase, atau pengadilan harus dikonfirmasi
-dan disesuaikan oleh profesional hukum dengan domisili Pemegang Hak Cipta serta keadaan
-transaksi yang sebenarnya. Tidak ada bagian lisensi ini yang menjanjikan bahwa suatu upaya
-hukum tertentu pasti tersedia atau pasti dapat ditegakkan.
+Lisensi ini diatur dan ditafsirkan berdasarkan hukum yang berlaku di Republik Indonesia,
+termasuk peraturan mengenai hak cipta dan kekayaan intelektual yang relevan. Setiap sengketa
+terlebih dahulu diupayakan penyelesaiannya melalui musyawarah. Apabila tidak tercapai
+kesepakatan, sengketa dapat diajukan kepada pengadilan atau forum penyelesaian sengketa lain
+yang berwenang berdasarkan hukum Republik Indonesia. Forum dan domisili yang lebih spesifik
+tetap harus dikonfirmasi oleh profesional hukum.
 
 10. KETENTUAN LAIN
 
@@ -122,3 +153,7 @@ termasuk Material Berlisensi.
 Dengan menggunakan, menyalin, atau memodifikasi Material Berlisensi, penerima menyatakan
 telah membaca dan menyetujui ketentuan ini sejauh hukum mengizinkannya. Jika penerima tidak
 menyetujui ketentuan ini, penerima tidak boleh menggunakan Material Berlisensi.
+
+Korespondensi resmi mengenai permintaan izin, dugaan pelanggaran, dan penegakan hak cipta
+dikirim ke finance.budsteam@gmail.com. Penggunaan alamat ini tidak dengan sendirinya
+mengubah kepemilikan hak cipta atau membuktikan bahwa pemberitahuan telah diterima secara sah.
