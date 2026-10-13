@@ -53,7 +53,7 @@ export default function FeaturedPackagesSection({ packages }: { packages: Packag
               key={tab.id}
               type="button"
               onClick={() => setActiveTab(tab.id)}
-              className={`min-h-10 px-4 py-2 rounded-button text-xs font-semibold whitespace-nowrap transition-all shrink-0 ${
+              className={`min-h-10 px-4 py-2 rounded-button text-xs font-semibold whitespace-nowrap transition-[background-color,border-color,color,box-shadow] shrink-0 ${
                 activeTab === tab.id
                   ? "bg-teal-primary text-white shadow-xs font-bold"
                   : "bg-warm-surface text-slate-body border border-warm-border hover:bg-warm-muted"

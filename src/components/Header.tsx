@@ -28,11 +28,22 @@ export default function Header({ company }: { company: CompanyProfile }) {
 
   // Detect scroll for subtle shadow adjustment
   useEffect(() => {
+    let frameId: number | null = null;
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      if (frameId !== null) return;
+      frameId = window.requestAnimationFrame(() => {
+        const nextIsScrolled = window.scrollY > 10;
+        setIsScrolled((current) => (current === nextIsScrolled ? current : nextIsScrolled));
+        frameId = null;
+      });
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (frameId !== null) window.cancelAnimationFrame(frameId);
+    };
   }, []);
 
   // Prevent background scroll when mobile menu is open
@@ -55,9 +66,9 @@ export default function Header({ company }: { company: CompanyProfile }) {
   return (
     <>
       <header
-        className={`sticky top-0 z-40 w-full transition-all duration-300 border-b border-[#dcd7cc] ${
+        className={`sticky top-0 z-40 w-full border-b border-[#dcd7cc] transition-[background-color,box-shadow] duration-300 ${
           isScrolled
-            ? "bg-[#f5f1e9]/95 shadow-[0_10px_30px_rgba(30,41,35,0.08)] backdrop-blur-md"
+            ? "bg-[#f5f1e9] shadow-[0_10px_30px_rgba(30,41,35,0.08)]"
             : "bg-[#f5f1e9]"
         }`}
       >
@@ -67,7 +78,7 @@ export default function Header({ company }: { company: CompanyProfile }) {
             <span className="text-teal-primary">Pendampingan ibadah yang tenang dan terukur</span>
           </div>
         </div>
-        <div className={`mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 ${isScrolled ? "py-2.5" : "py-3"}`}>
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
           {/* Logo Section */}
           <Link
             href="/"
@@ -173,7 +184,7 @@ export default function Header({ company }: { company: CompanyProfile }) {
       >
         {/* Backdrop overlay */}
         <div
-          className={`absolute inset-0 bg-slate-dark/60 backdrop-blur-sm transition-opacity duration-300 ${
+          className={`absolute inset-0 bg-slate-dark/60 transition-opacity duration-300 ${
             isMobileMenuOpen ? "opacity-100" : "opacity-0"
           }`}
           onClick={() => setIsMobileMenuOpen(false)}

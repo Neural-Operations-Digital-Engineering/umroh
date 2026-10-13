@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function TestimonialsSection({ company }: { company: import("@/data/company").CompanyProfile }) {
   return (
-    <section id="dokumentasi" className="scroll-mt-24 border-t border-warm-border bg-warm-surface py-12 sm:py-16">
+    <section id="dokumentasi" className="deferred-section scroll-mt-24 border-t border-warm-border bg-warm-surface py-12 sm:py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-8 max-w-2xl">
           <p className="mb-2 text-xs font-bold uppercase tracking-[0.14em] text-gold-hover">Dokumentasi perjalanan</p>

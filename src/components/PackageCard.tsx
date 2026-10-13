@@ -98,7 +98,7 @@ function PackageCardInner({
       <article
         className={`bg-warm-surface rounded-card border ${
           compareSelected ? "border-gold-accent ring-2 ring-gold-accent/20" : "border-warm-border"
-        } shadow-card overflow-hidden hover:shadow-elevated transition-all duration-200 flex flex-col md:flex-row items-stretch group relative`}
+        } shadow-card overflow-hidden hover:shadow-elevated transition-[border-color,box-shadow,transform] duration-200 flex flex-col md:flex-row items-stretch group relative`}
         aria-label={`Paket: ${pkg.name}`}
       >
         {/* Left thumbnail */}
@@ -194,7 +194,7 @@ function PackageCardInner({
                 <button
                   type="button"
                   onClick={() => onToggleCompare(pkg)}
-                  className={`min-h-10 px-3 py-2 rounded-button text-xs font-bold font-sans transition-all flex items-center gap-1.5 ${
+                  className={`min-h-10 px-3 py-2 rounded-button text-xs font-bold font-sans transition-[background-color,border-color,color,box-shadow] flex items-center gap-1.5 ${
                     compareSelected
                       ? "bg-teal-primary text-white shadow-xs"
                       : "bg-warm-bg border border-warm-border text-slate-body hover:border-teal-primary"
@@ -222,7 +222,7 @@ function PackageCardInner({
               <Link
                 href={`/${pkg.isHaji ? "haji" : "umroh"}/${pkg.slug}`}
                 id={`detail-list-${pkg.id}`}
-                className="min-h-10 px-4 py-2 rounded-button bg-gold-accent hover:bg-gold-hover text-slate-dark text-xs font-bold transition-all shadow-card flex items-center justify-center"
+                className="min-h-10 px-4 py-2 rounded-button bg-gold-accent hover:bg-gold-hover text-slate-dark text-xs font-bold transition-[background-color,color,box-shadow] shadow-card flex items-center justify-center"
               >
                 <span>Lihat Detail</span>
               </Link>
@@ -240,7 +240,7 @@ function PackageCardInner({
     <article
       className={`bg-warm-surface rounded-card border ${
         compareSelected ? "border-gold-accent ring-2 ring-gold-accent/20" : "border-warm-border"
-      } shadow-card overflow-hidden flex flex-col hover:-translate-y-0.5 hover:shadow-elevated transition-all duration-200 group relative`}
+      } shadow-card overflow-hidden flex flex-col hover:-translate-y-0.5 hover:shadow-elevated transition-[border-color,box-shadow,transform] duration-200 group relative`}
       aria-label={`Paket: ${pkg.name}`}
     >
       {/* ── Card Header: Thumbnail + Status + Badges ── */}
@@ -360,7 +360,7 @@ function PackageCardInner({
               <button
                 type="button"
                 onClick={() => onToggleCompare(pkg)}
-                className={`px-2.5 py-1.5 rounded-button text-[11px] font-bold font-sans transition-all flex items-center gap-1 border ${
+                className={`px-2.5 py-1.5 rounded-button text-[11px] font-bold font-sans transition-[background-color,border-color,color] flex items-center gap-1 border ${
                   compareSelected
                     ? "bg-teal-primary text-white border-teal-primary shadow-xs"
                     : "bg-warm-bg text-slate-muted border-warm-border hover:border-teal-primary/60 hover:text-teal-primary"
@@ -378,7 +378,7 @@ function PackageCardInner({
               href={waUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="col-span-1 min-h-11 rounded-button border border-emerald-300 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 active:scale-95 transition-all flex items-center justify-center"
+                className="col-span-1 min-h-11 rounded-button border border-emerald-300 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 active:scale-95 transition-[background-color,color,transform] flex items-center justify-center"
               title="Konsultasi WhatsApp untuk paket ini"
               aria-label={`Konsultasi WhatsApp tentang ${pkg.name}`}
             >
@@ -390,7 +390,7 @@ function PackageCardInner({
             <Link
               href={`/${pkg.isHaji ? "haji" : "umroh"}/${pkg.slug}`}
               id={`detail-${pkg.id}`}
-              className="col-span-4 min-h-11 rounded-button bg-gold-accent hover:bg-gold-hover active:scale-[0.98] text-slate-dark text-xs font-bold transition-all shadow-card flex items-center justify-center"
+              className="col-span-4 min-h-11 rounded-button bg-gold-accent hover:bg-gold-hover active:scale-[0.98] text-slate-dark text-xs font-bold transition-[background-color,color,transform,box-shadow] shadow-card flex items-center justify-center"
             >
               <span>Lihat Detail Paket</span>
             </Link>

@@ -147,19 +147,20 @@ body {
 }
 
 .morph-panel {
-  background: rgba(255, 253, 248, 0.78);
+  background: rgba(255, 253, 248, 0.96);
   border: 1px solid rgba(255, 255, 255, 0.68);
   box-shadow: 0 1.2rem 3rem rgba(8, 38, 29, 0.14);
-  -webkit-backdrop-filter: blur(18px) saturate(115%);
-  backdrop-filter: blur(18px) saturate(115%);
 }
 
 .morph-panel-dark {
   background: rgba(6, 44, 34, 0.84);
   border: 1px solid rgba(255, 255, 255, 0.17);
   box-shadow: 0 1.2rem 3rem rgba(4, 28, 22, 0.24);
-  -webkit-backdrop-filter: blur(16px) saturate(120%);
-  backdrop-filter: blur(16px) saturate(120%);
+}
+
+.deferred-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 540px;
 }
 
 .site-hero {

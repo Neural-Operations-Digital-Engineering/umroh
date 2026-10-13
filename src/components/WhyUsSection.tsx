@@ -70,7 +70,7 @@ const features = [
 
 export default function WhyUsSection() {
   return (
-    <section className="py-12 sm:py-16 bg-warm-surface border-t border-warm-border">
+    <section className="deferred-section py-12 sm:py-16 bg-warm-surface border-t border-warm-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* ── Section Header ── */}

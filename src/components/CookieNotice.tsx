@@ -32,7 +32,7 @@ export default function CookieNotice() {
       aria-label="Pemberitahuan Privasi & Cookie"
       className="fixed bottom-4 left-4 max-w-[calc(100vw-5.5rem)] sm:max-w-xs z-30 animate-in slide-in-from-bottom-2 fade-in duration-300 font-sans pointer-events-auto"
     >
-      <div className="bg-slate-dark/95 backdrop-blur-md text-white border border-white/15 p-3 sm:p-3.5 rounded-2xl shadow-elevated text-xs space-y-2">
+      <div className="bg-slate-dark text-white border border-white/15 p-3 sm:p-3.5 rounded-2xl shadow-elevated text-xs space-y-2">
         <div className="flex items-start justify-between gap-2">
           <span className="font-bold text-gold-accent flex items-center gap-1.5 text-[11px] sm:text-xs">
             <svg className="w-3.5 h-3.5 text-gold-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">

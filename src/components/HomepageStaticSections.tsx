@@ -11,7 +11,7 @@ export function HowItWorksSection() {
   ];
 
   return (
-    <section className="border-t border-warm-border bg-[#fffdf8] py-12 font-sans sm:py-16">
+    <section className="deferred-section border-t border-warm-border bg-[#fffdf8] py-12 font-sans sm:py-16">
       <div className="mx-auto max-w-7xl space-y-8 px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
           <div>
@@ -60,7 +60,7 @@ export function LegalityTeaser({ company }: { company: CompanyProfile }) {
   ];
 
   return (
-    <section className="border-t border-warm-border bg-warm-bg py-12 font-sans sm:py-16">
+    <section className="deferred-section border-t border-warm-border bg-warm-bg py-12 font-sans sm:py-16">
       <div className="mx-auto max-w-7xl space-y-8 px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
           <div>

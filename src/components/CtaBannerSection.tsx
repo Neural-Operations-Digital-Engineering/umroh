@@ -10,7 +10,7 @@ import { getGeneralWhatsAppUrl } from "@/lib/contact";
 
 export default function CtaBannerSection({ company }: { company: CompanyProfile }) {
   return (
-    <section className="py-14 sm:py-20 bg-teal-primary text-white relative overflow-hidden">
+    <section className="deferred-section py-14 sm:py-20 bg-teal-primary text-white relative overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <p className="mb-4 text-xs font-bold uppercase tracking-[0.14em] text-gold-accent">Langkah awal ibadah</p>
         

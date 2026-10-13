@@ -39,7 +39,7 @@ export default function FaqSection({
   };
 
   return (
-    <section id="faq" className="site-shell scroll-mt-24 border-t border-warm-border py-10 font-sans sm:py-16">
+    <section id="faq" className="deferred-section site-shell scroll-mt-24 border-t border-warm-border py-10 font-sans sm:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
         {/* Breadcrumb if standalone page */}

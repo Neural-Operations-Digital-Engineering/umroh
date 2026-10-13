@@ -78,7 +78,7 @@ export default function DestinationShowcaseSection({ company }: { company: Compa
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[460px] sm:min-h-[540px] lg:min-h-[600px] w-full bg-[#0b1015] text-white overflow-hidden py-10 sm:py-14 my-8 sm:my-12 flex items-center"
+      className="deferred-section relative min-h-[460px] sm:min-h-[540px] lg:min-h-[600px] w-full bg-[#0b1015] text-white overflow-hidden py-10 sm:py-14 my-8 sm:my-12 flex items-center"
       aria-label="Eksplorasi Destinasi Wisata Halal & Umroh Plus"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
@@ -96,7 +96,7 @@ export default function DestinationShowcaseSection({ company }: { company: Compa
         return (
           <div
             key={dest.id}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            className={`absolute inset-0 transition-[opacity,transform] duration-1000 ease-in-out ${
               isActive ? "opacity-100 scale-100" : "opacity-0 scale-105 pointer-events-none"
             }`}
             style={{ transitionProperty: "opacity, transform" }}
@@ -124,7 +124,7 @@ export default function DestinationShowcaseSection({ company }: { company: Compa
             key={dest.id}
             type="button"
             onClick={() => setCurrent(i)}
-            className={`relative z-10 w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+            className={`relative z-10 w-2.5 h-2.5 rounded-full transition-[background-color,box-shadow,transform] duration-300 ${
               i === current
                 ? "bg-white scale-150 ring-4 ring-white/30"
                 : "bg-white/40 hover:bg-white/80"
@@ -155,7 +155,7 @@ export default function DestinationShowcaseSection({ company }: { company: Compa
                   key={dest.id}
                   type="button"
                   onClick={() => setCurrent(i)}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                  className={`h-1.5 rounded-full transition-[background-color,width] duration-300 ${
                     i === current ? "w-6 bg-white" : "w-2 bg-white/30"
                   }`}
                   aria-label={`Pilih ${dest.title}`}
@@ -167,7 +167,7 @@ export default function DestinationShowcaseSection({ company }: { company: Compa
           {/* ── Right Carousel Cards Column ── */}
           <div className="min-w-0 lg:col-span-7 overflow-hidden">
             <div
-              className="flex gap-4 sm:gap-6 transition-transform duration-700 ease-in-out py-2"
+              className="flex gap-4 py-2 transition-transform duration-700 ease-in-out sm:gap-6"
               style={{
                 transform: `translateX(-${current * 280}px)`,
               }}
@@ -179,7 +179,7 @@ export default function DestinationShowcaseSection({ company }: { company: Compa
                     type="button"
                     key={item.id}
                     onClick={() => setCurrent(index)}
-                    className={`w-[260px] sm:w-[320px] shrink-0 cursor-pointer text-left transition-all duration-500 ${
+                    className={`w-[260px] sm:w-[320px] shrink-0 cursor-pointer text-left transition-[opacity,transform] duration-500 ${
                       isActive ? "scale-100 opacity-100" : "scale-95 opacity-50 hover:opacity-80"
                     }`}
                   >
@@ -192,7 +192,7 @@ export default function DestinationShowcaseSection({ company }: { company: Compa
                         {destinations.map((_, dotIdx) => (
                           <span
                             key={dotIdx}
-                            className={`w-1 h-1 rounded-full transition-all ${
+                            className={`h-1 w-1 rounded-full transition-[background-color,width] ${
                               dotIdx === index ? "bg-white w-2" : "bg-white/30"
                             }`}
                           />
@@ -202,7 +202,7 @@ export default function DestinationShowcaseSection({ company }: { company: Compa
 
                     {/* Image Card Container */}
                     <div
-                      className={`relative h-[260px] sm:h-[340px] w-full rounded-card overflow-hidden border transition-all duration-500 shadow-elevated ${
+                      className={`relative h-[260px] sm:h-[340px] w-full rounded-card overflow-hidden border transition-[border-color,box-shadow] duration-500 shadow-elevated ${
                         isActive
                           ? "border-white/50 ring-2 ring-white/20 shadow-white/10"
                           : "border-white/15"
