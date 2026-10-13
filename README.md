@@ -21,7 +21,7 @@ proprietary dan tidak dirilis sebagai open-source. Penggunaan komersial, redistr
 modifikasi publik, pembuatan produk turunan, atau pemanfaatan untuk pihak lain memerlukan
 izin tertulis. Lihat [`LICENSE`](LICENSE) dan [`COPYRIGHT`](COPYRIGHT).
 
-Pemegang utama/pengelola kode adalah `NODE (Neural Operation & Digital Enginering)`. `Risalah
+Pemegang utama/pengelola kode adalah `NODE (Neural Operations & Digital Engineering)`. `Risalah
 Madina Tour` (RMT) menggunakan situs untuk penjualan jasa umroh dan travel, sedangkan `Yayasan
 Pondok Digitalpreneur Abdurrahman Bin Auf Cirebon` (ABA) menjalankan subunit/cabang bisnis RMT.
 Ketiga pihak memiliki hak sesuai kontribusi dan materi masing-masing, dengan NODE sebagai pihak

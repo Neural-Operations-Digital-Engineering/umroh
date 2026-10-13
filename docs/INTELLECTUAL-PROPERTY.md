@@ -8,7 +8,7 @@ penegakan atau penjualan lisensi.
 - Aplikasi menggunakan Next.js 16, React 19, TypeScript, Tailwind CSS, Supabase, dan ESLint.
 - Kode sumber berada di `src/`, konfigurasi build di root, migration database di
   `supabase/migrations/`, dokumentasi di `docs/`, dan aset publik di `public/`.
-- Pemilik proyek mengonfirmasi `NODE (Neural Operation & Digital Enginering)` sebagai studio
+- Pemilik proyek mengonfirmasi `NODE (Neural Operations & Digital Engineering)` sebagai studio
   boutique, author, web developer, dan pemegang utama/pengelola proyek.
 - `Risalah Madina Tour` (RMT) adalah badan usaha pengguna situs untuk penjualan jasa umroh dan
   travel. `Yayasan Pondok Digitalpreneur Abdurrahman Bin Auf Cirebon` (ABA) menjalankan subunit
