@@ -21,17 +21,32 @@ export default function DestinationShowcaseSection({ company }: { company: Compa
 
   const [current, setCurrent] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const sectionRef = useRef<HTMLElement | null>(null);
   const touchStartX = useRef<number | null>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInView(entry.isIntersecting),
+      { rootMargin: "160px 0px", threshold: 0.01 }
+    );
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, []);
 
   // Let visitors keep a destination still once they start interacting with it.
   useEffect(() => {
-    if (!destinations.length || isPaused) return;
+    if (!destinations.length || isPaused || !isInView) return;
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % destinations.length);
     }, 6000);
 
     return () => clearInterval(timer);
-  }, [destinations.length, isPaused]);
+  }, [destinations.length, isInView, isPaused]);
 
   const activeDest = destinations[current] || destinations[0] || {
     id: "turki",
@@ -62,6 +77,7 @@ export default function DestinationShowcaseSection({ company }: { company: Compa
 
   return (
     <section
+      ref={sectionRef}
       className="relative min-h-[460px] sm:min-h-[540px] lg:min-h-[600px] w-full bg-[#0b1015] text-white overflow-hidden py-10 sm:py-14 my-8 sm:my-12 flex items-center"
       aria-label="Eksplorasi Destinasi Wisata Halal & Umroh Plus"
       onTouchStart={handleTouchStart}
@@ -90,8 +106,7 @@ export default function DestinationShowcaseSection({ company }: { company: Compa
               alt={`Latar ${dest.title}`}
               fill
               sizes="100vw"
-              priority={idx === 0}
-              loading={idx === 0 ? undefined : "lazy"}
+              loading="lazy"
               className="object-cover object-center"
             />
             {/* Natural Film Vignette */}
@@ -198,7 +213,7 @@ export default function DestinationShowcaseSection({ company }: { company: Compa
                         alt={item.title}
                         fill
                         sizes="(max-width: 640px) 260px, 320px"
-                        loading={index === 0 ? undefined : "lazy"}
+                        loading="lazy"
                         className="object-cover"
                       />
                       <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />

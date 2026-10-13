@@ -1,7 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import PackageCatalogView from "@/components/PackageCatalogView";
-import { HajiOverviewSection } from "@/components/SiteContentPages";
+import { HajiOverviewSection } from "@/components/HomepageStaticSections";
 import { getSiteData } from "@/lib/cms/store";
 import { getAbsoluteUrl } from "@/lib/site-url";
 import { getBreadcrumbSchema } from "@/lib/structured-data";

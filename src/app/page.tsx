@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import HeroSection from "@/components/HeroSection";
 import PackageFinderWidget from "@/components/PackageFinderWidget";
 import TrustBar from "@/components/TrustBar";
+import { HowItWorksSection, LegalityTeaser } from "@/components/HomepageStaticSections";
 import { getSiteData } from "@/lib/cms/store";
 
 // ── Above-the-fold components are imported directly (no dynamic) ──────────────
@@ -38,24 +39,6 @@ const WhyUsSection = dynamic(
   {
     ssr: true,
     loading: () => <div className="min-h-[320px] bg-warm-surface" aria-hidden="true" />,
-  }
-);
-
-// SiteContentPages exports two named components — dynamic handles named exports
-// via a .then() re-export pattern.
-const HowItWorksSection = dynamic(
-  () => import("@/components/SiteContentPages").then((m) => m.HowItWorksSection),
-  {
-    ssr: true,
-    loading: () => <div className="min-h-[320px] bg-warm-bg" aria-hidden="true" />,
-  }
-);
-
-const LegalityTeaser = dynamic(
-  () => import("@/components/SiteContentPages").then((m) => m.LegalityTeaser),
-  {
-    ssr: true,
-    loading: () => <div className="min-h-[260px] bg-warm-bg" aria-hidden="true" />,
   }
 );
 
@@ -120,7 +103,7 @@ export default async function BerandaPage() {
       <WhyUsSection />
 
       {/* 7. Alur Keberangkatan — lazy, SSR */}
-      <HowItWorksSection company={company} />
+      <HowItWorksSection />
 
       {/* 8. Teaser Bukti Legalitas — lazy, SSR */}
       <LegalityTeaser company={company} />

@@ -19,25 +19,6 @@ export default function HeroSection({ company }: { company: CompanyProfile }) {
   const heroHeight = "clamp(430px, 58svh, 560px)";
 
   useEffect(() => {
-    if (!heroVideo) return;
-
-    const isMobile = window.matchMedia("(max-width: 767px)").matches;
-    const nav = navigator as Navigator & { connection?: { saveData?: boolean } };
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (isMobile || nav.connection?.saveData || reducedMotion) return;
-
-    const revealVideo = () => setShowVideo(true);
-    if (typeof requestIdleCallback !== "undefined") {
-      const idleId = requestIdleCallback(revealVideo, { timeout: 2500 });
-      return () => cancelIdleCallback(idleId);
-    }
-
-    const timeoutId = window.setTimeout(revealVideo, 600);
-    return () => window.clearTimeout(timeoutId);
-  }, [heroVideo]);
-
-  useEffect(() => {
     if (!showVideo || !videoRef.current) return;
     videoRef.current.play().catch(() => undefined);
   }, [showVideo]);
@@ -64,6 +45,7 @@ export default function HeroSection({ company }: { company: CompanyProfile }) {
             playsInline
             preload="none"
             disablePictureInPicture
+            poster={heroImage}
             className="absolute inset-0 h-full w-full object-cover opacity-45 mix-blend-screen"
             aria-hidden="true"
           >
@@ -102,6 +84,23 @@ export default function HeroSection({ company }: { company: CompanyProfile }) {
               Konsultasi personal
             </a>
           </div>
+
+          {heroVideo && (
+            <button
+              type="button"
+              onClick={() => {
+                if (showVideo) videoRef.current?.pause();
+                setShowVideo((current) => !current);
+              }}
+              className="mt-4 inline-flex min-h-10 items-center gap-2 border border-white/25 px-3 py-2 text-[11px] font-semibold text-white/75 transition hover:border-white/60 hover:text-white focus-visible:outline-white"
+              aria-pressed={showVideo}
+            >
+              <span className="flex h-5 w-5 items-center justify-center rounded-full border border-current text-[9px]" aria-hidden="true">
+                {showVideo ? "Ⅱ" : "▶"}
+              </span>
+              <span>{showVideo ? "Kembali ke foto" : "Putar suasana video"}</span>
+            </button>
+          )}
 
           <div className="mt-8 grid max-w-2xl grid-cols-2 gap-x-5 gap-y-3 border-t border-white/20 pt-4 sm:grid-cols-4 sm:gap-x-4">
             {trustPillars.map(([title, description]) => (
