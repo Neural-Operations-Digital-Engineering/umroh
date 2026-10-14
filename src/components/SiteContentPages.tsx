@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { CompanyProfile } from "@/data/company";
-import { getGeneralWhatsAppUrl } from "@/lib/contact";
+import InquiryDialog from "@/components/InquiryDialog";
 
 /* ════════════════════════════════════════════════════════════════════════════════
    1. ABOUT PAGE CONTENT (/tentang)
@@ -157,14 +157,13 @@ export function AboutPageContent({ company }: { company: CompanyProfile }) {
                 Kami menyambut silaturahmi calon jemaah dan keluarga di kantor kami untuk konsultasi manasik, pengecekan nomor porsi haji, atau pendaftaran program.
               </p>
               <div className="flex flex-wrap gap-3 pt-1">
-                <a
-                  href={getGeneralWhatsAppUrl(company.phone)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-11 items-center rounded-button bg-gold-accent hover:bg-gold-hover px-4 py-2.5 text-xs font-bold text-slate-dark transition-colors"
-                >
-                  WhatsApp Konsultasi
-                </a>
+                <InquiryDialog
+                  phone={company.phone}
+                  source="service"
+                  sourceLabel="Konsultasi kantor dan manasik"
+                  label="WhatsApp Konsultasi"
+                  className="inline-flex min-h-11 items-center rounded-button bg-gold-accent px-4 py-2.5 text-xs font-bold text-slate-dark transition-colors hover:bg-gold-hover"
+                />
                 <Link
                   href="/umroh"
                   className="inline-flex min-h-11 items-center rounded-button border border-white/30 hover:bg-white/10 px-4 py-2.5 text-xs font-bold text-white transition-colors"
@@ -350,14 +349,13 @@ export function LegalityPageContent({ company }: { company: CompanyProfile }) {
               <p className="text-xs text-white/80 leading-relaxed font-sans">
                 Butuh verifikasi invoice resmi sebelum melakukan pembayaran? Hubungi tim keuangan kami via WhatsApp.
               </p>
-              <a
-                href={getGeneralWhatsAppUrl(company.phone)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-11 w-full items-center justify-center rounded-button bg-gold-accent hover:bg-gold-hover px-4 py-2.5 text-xs font-bold text-slate-dark transition-colors"
-              >
-                Konfirmasi Pembayaran via WhatsApp
-              </a>
+              <InquiryDialog
+                phone={company.phone}
+                source="service"
+                sourceLabel="Verifikasi invoice dan pembayaran"
+                label="Konfirmasi Pembayaran via WhatsApp"
+                className="inline-flex min-h-11 w-full items-center justify-center rounded-button bg-gold-accent px-4 py-2.5 text-xs font-bold text-slate-dark transition-colors hover:bg-gold-hover"
+              />
             </div>
 
           </div>
@@ -528,14 +526,13 @@ export function HajiOverviewSection({ company }: { company: CompanyProfile }) {
               </div>
             </div>
             <div className="pt-2">
-              <a
-                href={getGeneralWhatsAppUrl(company.phone)}
-                target="_blank"
-                rel="noopener noreferrer"
+              <InquiryDialog
+                phone={company.phone}
+                source="service"
+                sourceLabel="Konsultasi porsi Haji Khusus"
+                label="Konsultasi Porsi Haji Khusus"
                 className="inline-flex min-h-11 w-full items-center justify-center whitespace-normal rounded-button bg-teal-primary px-3 text-center text-xs font-bold leading-4 text-white transition-colors hover:bg-teal-900"
-              >
-                Konsultasi Porsi Haji Khusus
-              </a>
+              />
             </div>
           </div>
 

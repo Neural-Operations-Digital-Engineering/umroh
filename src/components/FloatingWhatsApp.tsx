@@ -33,6 +33,9 @@ export default function FloatingWhatsApp({ company }: { company: CompanyProfile 
       {/* WhatsApp Circular Button with 48x48 Touch Target */}
       <InquiryDialog
         href={waUrl}
+        phone={company.phone}
+        source="general"
+        sourceLabel="Konsultasi umum dari tombol WhatsApp"
         label="Hubungi Layanan Jamaah via WhatsApp"
         ariaLabel="Hubungi Layanan Jamaah via WhatsApp"
         className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white flex items-center justify-center shadow-elevated hover:scale-105 active:scale-95 transition-[background-color,transform,box-shadow] duration-200 focus:outline-none focus:ring-4 focus:ring-[#25D366]/40"

@@ -44,6 +44,8 @@ export default function NotFound() {
           Butuh bantuan langsung?{" "}
           <InquiryDialog
             href="https://wa.me/6281272230999?text=Assalamu'alaikum%20Admin%20Risalah%20Madina%20Tour,%20saya%20mencari%20informasi%20paket%20ibadah"
+            source="page"
+            sourceLabel="Bantuan dari halaman tidak ditemukan"
             label="Hubungi Customer Service WhatsApp (0812-7223-0999)"
             className="text-teal-primary font-bold hover:underline"
           />

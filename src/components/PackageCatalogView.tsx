@@ -638,6 +638,9 @@ export default function PackageCatalogView({
               </p>
               <InquiryDialog
                 href={getGeneralWhatsAppUrl(companyProfile.phone)}
+                phone={companyProfile.phone}
+                source="service"
+                sourceLabel="Konsultasi tanggal khusus atau rombongan"
                 label="Konsultasi CS WhatsApp (0812-7223-0999)"
                 className="w-full py-2 px-3 rounded-button bg-warm-bg hover:bg-emerald-50 text-emerald-800 border border-emerald-300 text-xs font-bold inline-flex items-center justify-center gap-1.5 transition-colors"
               />
@@ -688,6 +691,9 @@ export default function PackageCatalogView({
                   </button>
                   <InquiryDialog
                     href={getGeneralWhatsAppUrl(companyProfile.phone)}
+                    phone={companyProfile.phone}
+                    source="general"
+                    sourceLabel="Konsultasi umum dari katalog"
                     label="Tanya Admin WhatsApp"
                     className="px-4 py-2.5 rounded-button border border-warm-border bg-warm-bg text-slate-dark font-sans text-xs font-bold hover:bg-warm-muted transition-all"
                   />

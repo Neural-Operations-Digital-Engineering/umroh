@@ -138,6 +138,9 @@ export function HajiOverviewSection({ company }: { company: CompanyProfile }) {
             </div>
             <InquiryDialog
               href={`https://wa.me/${company.phone.replace(/\D/g, "").replace(/^0/, "62")}?text=${encodeURIComponent("Assalamu'alaikum, saya ingin berkonsultasi mengenai program Haji Khusus.")}`}
+              phone={company.phone}
+              source="service"
+              sourceLabel="Konsultasi program Haji Khusus"
               label="Konsultasi Porsi Haji Khusus"
               className="inline-flex min-h-11 w-full items-center justify-center whitespace-normal rounded-button bg-teal-primary px-3 text-center text-xs font-bold leading-4 text-white transition-colors hover:bg-teal-900"
             />

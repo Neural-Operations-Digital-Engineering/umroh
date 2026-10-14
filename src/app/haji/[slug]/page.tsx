@@ -428,8 +428,14 @@ export default async function HajiDetailPage({ params }: PageProps) {
               <div className="space-y-3 pt-1">
                 <InquiryDialog
                   href={whatsappUrl}
+                  phone={company.phone}
                   packageId={pkg.id}
                   packageName={pkg.name}
+                  packageCategory={pkg.category}
+                  packagePrice={pkg.discountedPrice}
+                  packageHref={`/haji/${pkg.slug}`}
+                  source="package"
+                  sourceLabel="Konsultasi paket haji"
                   label="Konsultasi Haji Khusus"
                   className="w-full min-h-12 px-5 py-3 rounded-button bg-gold-accent hover:bg-gold-hover text-slate-dark font-sans font-bold text-sm shadow-card flex items-center justify-center gap-2 transition-all active:scale-[0.98]"
                 >
@@ -441,8 +447,14 @@ export default async function HajiDetailPage({ params }: PageProps) {
 
                 <InquiryDialog
                   href={whatsappUrl}
+                  phone={company.phone}
                   packageId={pkg.id}
                   packageName={pkg.name}
+                  packageCategory={pkg.category}
+                  packagePrice={pkg.discountedPrice}
+                  packageHref={`/haji/${pkg.slug}`}
+                  source="package"
+                  sourceLabel="Konsultasi paket haji"
                   label="Tanyakan Ketersediaan Porsi"
                   className="w-full min-h-11 px-4 py-2.5 rounded-button border border-teal-primary text-teal-primary hover:bg-teal-primary hover:text-white font-sans font-bold text-xs flex items-center justify-center transition-all"
                 />
@@ -494,8 +506,14 @@ export default async function HajiDetailPage({ params }: PageProps) {
 
         <InquiryDialog
           href={whatsappUrl}
+          phone={company.phone}
           packageId={pkg.id}
           packageName={pkg.name}
+          packageCategory={pkg.category}
+          packagePrice={pkg.discountedPrice}
+          packageHref={`/haji/${pkg.slug}`}
+          source="package"
+          sourceLabel="Konsultasi paket haji"
           label="WhatsApp Konsultasi"
           id="mobile-sticky-cta"
           className="min-h-11 px-5 py-2.5 rounded-button bg-teal-primary text-white font-sans text-xs font-bold shadow-card flex items-center gap-2 shrink-0 active:scale-[0.98]"

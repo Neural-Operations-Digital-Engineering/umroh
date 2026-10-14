@@ -9,6 +9,12 @@ interface Inquiry {
   contact_phone: string | null;
   message: string | null;
   source_path: string;
+  context: {
+    source?: string;
+    label?: string;
+    pagePath?: string;
+    package?: { category?: string; price?: string; href?: string };
+  } | null;
   status: string;
   created_at: string;
 }
@@ -43,7 +49,7 @@ export default function InquiryManager({ sessionToken }: { sessionToken: string 
     <div className="space-y-6">
       <div className="mx-auto max-w-6xl">
         <p className="max-w-2xl text-sm leading-6 text-slate-body">
-          Kontak dan pertanyaan yang diisi sebelum calon jemaah diarahkan ke WhatsApp.
+          Kontak, konteks, dan pertanyaan yang diisi sebelum calon jemaah membuka WhatsApp.
         </p>
 
         {busy && <p className="mt-8 text-sm text-slate-muted">Memuat inquiry…</p>}
@@ -60,8 +66,16 @@ export default function InquiryManager({ sessionToken }: { sessionToken: string 
                   <tr key={item.id} className="align-top">
                     <td className="whitespace-nowrap px-4 py-4 text-xs text-slate-muted">{new Date(item.created_at).toLocaleString("id-ID")}</td>
                     <td className="px-4 py-4"><p className="font-bold text-teal-primary">{item.contact_name || "Tanpa nama"}</p>{item.contact_phone && <p className="mt-1 text-xs text-slate-muted">{item.contact_phone}</p>}</td>
-                    <td className="max-w-[220px] px-4 py-4 text-xs font-semibold text-teal-primary">{item.package_name || "Konsultasi umum"}</td>
-                    <td className="max-w-[260px] px-4 py-4 text-xs leading-5 text-slate-body">{item.message || "Tidak ada pertanyaan tambahan."}<span className="mt-1 block text-[11px] text-slate-caption">Dari {item.source_path}</span></td>
+                    <td className="max-w-[220px] px-4 py-4 text-xs font-semibold text-teal-primary">
+                      {item.package_name || "Konsultasi umum"}
+                      {item.context?.package?.category && <span className="mt-1 block font-normal text-slate-muted">{item.context.package.category}</span>}
+                      {item.context?.package?.price && <span className="mt-1 block font-normal text-slate-muted">{item.context.package.price}</span>}
+                    </td>
+                    <td className="max-w-[260px] px-4 py-4 text-xs leading-5 text-slate-body">
+                      <span className="font-semibold text-teal-primary">{item.context?.label || "Konsultasi umum"}</span>
+                      <span className="mt-1 block">{item.message || "Tidak ada pertanyaan tambahan."}</span>
+                      <span className="mt-1 block text-[11px] text-slate-caption">Dari {item.source_path}</span>
+                    </td>
                     <td className="px-4 py-4"><span className="rounded-badge bg-gold-light px-2 py-1 text-[11px] font-bold text-teal-primary">{item.status}</span></td>
                   </tr>
                 ))}

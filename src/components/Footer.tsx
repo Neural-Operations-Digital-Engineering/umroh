@@ -93,6 +93,9 @@ export default function Footer({ company }: { company: CompanyProfile }) {
             <div className="pt-1 space-y-1.5">
               <InquiryDialog
                 href={waUrl}
+                phone={company.phone}
+                source="general"
+                sourceLabel="Konsultasi umum dari footer"
                 label={`WhatsApp: ${company.phone}`}
                 className="inline-flex items-center gap-2 text-gold-accent hover:text-white transition-colors font-semibold"
               >

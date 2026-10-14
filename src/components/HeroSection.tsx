@@ -77,6 +77,9 @@ export default function HeroSection({ company }: { company: CompanyProfile }) {
             </a>
             <InquiryDialog
               href={`https://wa.me/${company.phone.replace(/\D/g, "").replace(/^0/, "62")}?text=${encodeURIComponent("Assalamu'alaikum Admin Risalah Madina Tour, saya ingin berkonsultasi mengenai jadwal paket Umroh / Haji.")}`}
+              phone={company.phone}
+              source="general"
+              sourceLabel="Konsultasi umum dari halaman utama"
               id="hero-cta-whatsapp"
               label="Konsultasi personal"
               className="inline-flex min-h-11 items-center justify-center border border-white/30 px-5 py-2.5 text-xs font-semibold text-white transition hover:border-white hover:bg-white/10 sm:text-sm"

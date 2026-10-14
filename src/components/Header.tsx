@@ -124,6 +124,9 @@ export default function Header({ company }: { company: CompanyProfile }) {
           <div className="hidden lg:flex items-center gap-3">
             <InquiryDialog
               href={getGeneralWhatsAppUrl(company.phone)}
+              phone={company.phone}
+              source="general"
+              sourceLabel="Konsultasi umum dari navigasi"
               label="Konsultasi"
               className="flex items-center gap-2 border border-gold-accent bg-gold-accent px-4 py-2.5 font-sans text-xs font-semibold text-slate-dark shadow-[0_6px_16px_rgba(102,125,44,0.16)] transition-all duration-200 hover:bg-gold-hover"
             >
@@ -272,6 +275,9 @@ export default function Header({ company }: { company: CompanyProfile }) {
           <div className="p-5 border-t border-warm-border bg-warm-surface space-y-3">
             <InquiryDialog
               href={getGeneralWhatsAppUrl(company.phone)}
+              phone={company.phone}
+              source="general"
+              sourceLabel="Konsultasi umum dari menu"
               label="Konsultasi via WhatsApp"
               className="w-full min-h-12 px-5 py-3 rounded-button bg-teal-primary text-white font-sans text-sm font-semibold shadow-card flex items-center justify-center gap-2"
             >

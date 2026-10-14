@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Package, StatusType } from "@/types/package";
 import { getPackageLifecycle } from "@/lib/package";
 import { companyProfile } from "@/data/company";
+import { getPackageWhatsAppUrl } from "@/lib/contact";
 import InquiryDialog from "@/components/InquiryDialog";
 
 
@@ -82,12 +83,8 @@ function PackageCardInner({
     ? new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(lowestRoomPrice)
     : pkg.discountedPrice;
 
-  // WhatsApp link generator using verified official company phone
-  const waNumber = companyProfile.phone.replace(/\D/g, "").replace(/^0/, "62");
-  const waText = encodeURIComponent(
-    `Assalamu'alaikum Admin Risalah Madina Tour, saya ingin menanyakan informasi & ketersediaan paket: *${pkg.name}* (Keberangkatan: ${pkg.departureDate}, Durasi: ${pkg.duration}).`
-  );
-  const waUrl = `https://wa.me/${waNumber}?text=${waText}`;
+  const packageHref = `/${pkg.isHaji ? "haji" : "umroh"}/${pkg.slug}`;
+  const waUrl = getPackageWhatsAppUrl(companyProfile.phone, pkg);
 
 
 
@@ -103,7 +100,7 @@ function PackageCardInner({
         aria-label={`Paket: ${pkg.name}`}
       >
         {/* Left thumbnail */}
-        <div className="relative w-full md:w-64 h-44 md:h-auto shrink-0 overflow-hidden bg-teal-primary">
+        <div className="relative w-full md:w-64 h-40 md:h-auto shrink-0 overflow-hidden bg-teal-primary">
           <Image
             src={packageImage}
             alt={`Dokumentasi ${pkg.name}`}
@@ -209,8 +206,14 @@ function PackageCardInner({
 
               <InquiryDialog
                 href={waUrl}
+                phone={companyProfile.phone}
                 packageId={pkg.id}
                 packageName={pkg.name}
+                packageCategory={pkg.category}
+                packagePrice={displayPrice}
+                packageHref={packageHref}
+                source="package"
+                sourceLabel="Konsultasi paket dari katalog"
                 label="Tanya WhatsApp untuk paket ini"
                 ariaLabel={`Tanya WhatsApp tentang ${pkg.name}`}
                 className="min-h-10 p-2.5 rounded-button border border-emerald-300 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition-colors flex items-center justify-center"
@@ -245,7 +248,7 @@ function PackageCardInner({
       aria-label={`Paket: ${pkg.name}`}
     >
       {/* ── Card Header: Thumbnail + Status + Badges ── */}
-      <div className="relative h-44 overflow-hidden bg-teal-primary p-3.5 flex flex-col justify-between">
+      <div className="relative h-36 sm:h-40 overflow-hidden bg-teal-primary p-3.5 flex flex-col justify-between">
         <Image
           src={packageImage}
           alt={`Dokumentasi ${pkg.name}`}
@@ -304,7 +307,7 @@ function PackageCardInner({
         </div>
 
         {/* ── Key Specifications (Visible on BOTH mobile & desktop) ── */}
-        <div className="bg-warm-bg rounded-button p-3 border border-warm-border/60 space-y-2 mb-4 text-xs font-sans">
+        <div className="grid grid-cols-2 gap-2 bg-warm-bg rounded-button p-3 border border-warm-border/60 mb-4 text-xs font-sans">
           <div className="flex items-center justify-between gap-2">
             <span className="text-slate-muted flex items-center gap-1.5">
               <svg className="w-3.5 h-3.5 text-teal-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -377,8 +380,14 @@ function PackageCardInner({
           <div className="grid grid-cols-5 gap-2">
             <InquiryDialog
               href={waUrl}
+              phone={companyProfile.phone}
               packageId={pkg.id}
               packageName={pkg.name}
+              packageCategory={pkg.category}
+              packagePrice={displayPrice}
+              packageHref={packageHref}
+              source="package"
+              sourceLabel="Konsultasi paket dari katalog"
               label="Konsultasi WhatsApp untuk paket ini"
               ariaLabel={`Konsultasi WhatsApp tentang ${pkg.name}`}
               className="col-span-1 min-h-11 rounded-button border border-emerald-300 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 active:scale-95 transition-[background-color,color,transform] flex items-center justify-center"

@@ -37,6 +37,9 @@ export default function CtaBannerSection({ company }: { company: CompanyProfile 
 
           <InquiryDialog
             href={`https://wa.me/${company.phone.replace(/\D/g, "").replace(/^0/, "62")}?text=${encodeURIComponent("Assalamu'alaikum, saya ingin berkonsultasi mengenai paket Umroh/Haji.")}`}
+            phone={company.phone}
+            source="general"
+            sourceLabel="Konsultasi umum dari ajakan penutup"
             id="cta-penutup-lihat-paket"
             label="Konsultasi WhatsApp"
             className="w-full sm:w-auto px-7 py-3.5 rounded-button border border-white/30 hover:bg-white/10 text-white font-sans font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-200 active:scale-[0.98]"

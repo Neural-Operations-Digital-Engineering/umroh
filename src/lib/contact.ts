@@ -1,4 +1,5 @@
 import type { Package } from "@/types/package";
+import { buildInquiryMessage, getWhatsAppUrl, type InquiryContext } from "@/lib/inquiry";
 
 export function getWhatsAppNumber(phone: string) {
   const digits = phone.replace(/\D/g, "");
@@ -6,18 +7,21 @@ export function getWhatsAppNumber(phone: string) {
 }
 
 export function getPackageWhatsAppUrl(phone: string, pkg: Package) {
-  const message = [
-    "Assalamu'alaikum, saya ingin bertanya mengenai:",
-    "",
-    pkg.name,
-    `Keberangkatan: ${pkg.departureDate}`,
-    `Durasi: ${pkg.duration}`,
-    "",
-    "Saya ingin mengetahui ketersediaan dan proses pendaftarannya.",
-  ].join("\n");
-  return `https://wa.me/${getWhatsAppNumber(phone)}?text=${encodeURIComponent(message)}`;
+  const context: InquiryContext = {
+    source: "package",
+    label: "Konsultasi paket",
+    pagePath: `/paket/${pkg.slug}`,
+    package: {
+      id: pkg.id,
+      name: pkg.name,
+      category: pkg.category,
+      price: pkg.discountedPrice,
+      href: `/${pkg.isHaji ? "haji" : "umroh"}/${pkg.slug}`,
+    },
+  };
+  return getWhatsAppUrl(phone, buildInquiryMessage({ form: { name: "", phone: "", message: "" }, context }));
 }
 
 export function getGeneralWhatsAppUrl(phone: string) {
-  return `https://wa.me/${getWhatsAppNumber(phone)}?text=${encodeURIComponent("Assalamu'alaikum, saya ingin berkonsultasi mengenai paket Umroh/Haji.")}`;
+  return getWhatsAppUrl(phone, "Assalamu'alaikum, saya ingin berkonsultasi mengenai paket Umroh/Haji.");
 }
