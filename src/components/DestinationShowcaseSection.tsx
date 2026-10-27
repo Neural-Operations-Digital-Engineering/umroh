@@ -23,6 +23,8 @@ export default function DestinationShowcaseSection({ company }: { company: Compa
   const [isPaused, setIsPaused] = useState(false);
   const [isInView, setIsInView] = useState(false);
   const sectionRef = useRef<HTMLElement | null>(null);
+  const railRef = useRef<HTMLDivElement | null>(null);
+  const didMount = useRef(false);
   const touchStartX = useRef<number | null>(null);
 
   useEffect(() => {
@@ -47,6 +49,20 @@ export default function DestinationShowcaseSection({ company }: { company: Compa
 
     return () => clearInterval(timer);
   }, [destinations.length, isInView, isPaused]);
+
+  // Geser carousel kartu secara horizontal saja. Jangan pakai scrollIntoView:
+  // dia ikut menggulung halaman secara vertikal dan menarik user balik ke section ini.
+  useEffect(() => {
+    if (!didMount.current) {
+      didMount.current = true;
+      return;
+    }
+    const rail = railRef.current;
+    const card = rail?.children[current] as HTMLElement | undefined;
+    if (!rail || !card) return;
+    const delta = card.getBoundingClientRect().left - rail.getBoundingClientRect().left;
+    rail.scrollTo({ left: rail.scrollLeft + delta, behavior: "smooth" });
+  }, [current]);
 
   const activeDest = destinations[current] || destinations[0] || {
     id: "turki",
@@ -168,12 +184,7 @@ export default function DestinationShowcaseSection({ company }: { company: Compa
           <div className="min-w-0 lg:col-span-7 overflow-hidden">
             <div
               className="flex gap-4 py-2 sm:gap-6 overflow-x-auto scrollbar-none scroll-smooth snap-x snap-mandatory"
-              ref={(el) => {
-                if (!el) return;
-                // Scroll active card into view without pixel offset hardcode
-                const activeCard = el.children[current] as HTMLElement | undefined;
-                activeCard?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
-              }}
+              ref={railRef}
             >
               {destinations.map((item, index) => {
                 const isActive = index === current;
