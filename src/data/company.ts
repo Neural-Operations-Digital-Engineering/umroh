@@ -99,6 +99,7 @@ export const companyProfile = {
     umrahDp: "Rp 5.000.000 (sudah termasuk perlengkapan)",
     hajjDp: "USD 5.000 (sudah termasuk biaya admin USD 500)",
     note: "DP tidak dapat dikembalikan, namun dapat diwariskan.",
+    hajjWaitingYears: "6-7 Tahun", // Acuan masa tunggu porsi Haji Khusus; perbarui bila kebijakan Kemenag berubah
     options: [
       "Bayar cash atau lunas",
       "Berangkat dulu, bayar belakangan",
@@ -125,7 +126,7 @@ export const companyProfile = {
   equipment: ["Koper bagasi", "Koper kabin", "Kain ihram / mukena", "Tas punggung", "Slayer", "Buku doa", "Sabuk / ikat pinggang"],
   media: {
     heroUrl: "/images/minaret-hero.jpg",
-    heroVideoUrl: "https://ventour-wp.s3.ap-southeast-3.amazonaws.com/wp-content/uploads/2026/04/30054426/REVISI-VIDEO-WEBSITE-IT_2.mp4",
+    heroVideoUrl: "", // TODO: ganti dengan URL video perjalanan RMT sendiri setelah tersedia
     aboutUrl: "/images/kaaba-courtyard.png",
     documentationUrls: [
       "/images/destinations/turki.jpg",

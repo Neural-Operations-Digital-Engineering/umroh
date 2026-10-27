@@ -67,13 +67,13 @@ export default function Header({ company }: { company: CompanyProfile }) {
   return (
     <>
       <header
-        className={`sticky top-0 z-40 w-full border-b border-[#dcd7cc] transition-[background-color,box-shadow] duration-300 ${
+        className={`sticky top-0 z-40 w-full border-b border-warm-border transition-[background-color,box-shadow] duration-300 ${
           isScrolled
-            ? "bg-[#f5f1e9] shadow-[0_10px_30px_rgba(30,41,35,0.08)]"
-            : "bg-[#f5f1e9]"
+            ? "bg-warm-bg shadow-[0_10px_30px_rgba(30,41,35,0.08)]"
+            : "bg-warm-bg"
         }`}
       >
-        <div className="hidden border-b border-[#dcd7cc]/80 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#66716b] md:block">
+        <div className="hidden border-b border-warm-border/80 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-muted md:block">
           <div className="mx-auto flex max-w-7xl items-center justify-between">
             <span>Jawa Barat · Indonesia</span>
             <span className="text-teal-primary">Pendampingan ibadah yang tenang dan terukur</span>
@@ -195,7 +195,7 @@ export default function Header({ company }: { company: CompanyProfile }) {
 
         {/* Drawer Content Panel */}
         <div
-          className={`absolute top-0 right-0 flex h-full w-full max-w-sm flex-col justify-between border-l border-warm-border bg-[#f5f1e9] shadow-elevated transition-transform duration-300 ease-out ${
+          className={`absolute top-0 right-0 flex h-full w-full max-w-sm flex-col justify-between border-l border-warm-border bg-warm-bg shadow-elevated transition-transform duration-300 ease-out ${
             isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >

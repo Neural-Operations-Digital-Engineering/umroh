@@ -41,7 +41,7 @@ export async function generateMetadata(): Promise<Metadata> {
       template: `%s | ${company.brandName}`,
     },
     description:
-      "Biro perjalanan ibadah Umroh dan Haji Khusus berizin resmi Kemenag RI (PPIU No. 91204028510220002). Transparansi biaya, kepastian jadwal, akomodasi hotel dekat masjid, dan bimbingan ibadah terpercaya.",
+      "Biro perjalanan ibadah Umroh dan Haji Khusus berizin resmi Kemenag RI (PPIU No. 91204028510220002). Transparansi biaya, kepastian jadwal, akomodasi hotel terverifikasi, dan bimbingan ibadah terpercaya.",
     keywords: [
       "Umroh 2026",
       "Paket Umroh Murah Cirebon",
@@ -71,7 +71,7 @@ export async function generateMetadata(): Promise<Metadata> {
       url: siteUrl,
       title: `${company.brandName} | Paket Umroh & Haji Khusus Resmi Kemenag`,
       description:
-        "Biro perjalanan ibadah Umroh dan Haji Khusus berizin resmi Kemenag RI (PPIU No. 91204028510220002). Transparansi biaya, kepastian jadwal, akomodasi hotel dekat masjid, dan bimbingan ibadah terpercaya.",
+        "Biro perjalanan ibadah Umroh dan Haji Khusus berizin resmi Kemenag RI (PPIU No. 91204028510220002). Transparansi biaya, kepastian jadwal, akomodasi hotel terverifikasi, dan bimbingan ibadah terpercaya.",
       siteName: company.brandName,
       images: [
         {

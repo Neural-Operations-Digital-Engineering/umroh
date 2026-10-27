@@ -28,17 +28,17 @@ const config: Config = {
         },
         // Brand Neutrals
         warm: {
-          bg: "#FFFFFF",       // Clean white canvas from the references
-          surface: "#FFFFFF",  // Pure white card/surface
-          muted: "#F7F8F6",    // Secondary background container
-          border: "#E5E7EB",   // Subdued border line
-          divider: "#E5E7EB",  // Section divider
+          bg: "#F5F1E9",       // Parchment — warm off-white canvas (selaras --parchment di globals.css)
+          surface: "#FFFDF8",  // Paper — warm white card/surface (selaras --paper di globals.css)
+          muted: "#EBE6DC",    // Paper-muted — secondary background (selaras --paper-muted di globals.css)
+          border: "#DCD7CC",   // Line — subdued border (selaras --line di globals.css)
+          divider: "#DCD7CC",  // Section divider (sama dengan border)
         },
         slate: {
           dark: "#111827",     // Near-black text
           body: "#334155",     // Standard body paragraph text
-          muted: "#64748B",    // Secondary text
-          caption: "#64748B",   // Metadata & caption text, AA-safe on white
+          muted: "#5A6870",    // Secondary text — dinaikan dari #64748B agar PASS AA (5.1:1) di atas parchment
+          caption: "#5A6870",   // Metadata & caption text, AA-safe on parchment
         },
         // Brand Status Indicators
         status: {
@@ -60,6 +60,23 @@ const config: Config = {
             border: "#F7C6C6",
             text: "#7D2828",
           },
+        },
+        // Footer — dark editorial palette (teal-dark overlay)
+        footer: {
+          bg: "#071E17",       // Background utama footer gelap
+          surface: "#0D281F",  // Card/panel di dalam footer
+          elevated: "#102A21", // Elemen terangkat (chip izin)
+          card: "#182723",     // Badge rekening bank
+          border: "#263D34",   // Garis pembatas gelap
+          "border-inner": "#2A463C", // Border inner card
+          text: "#D6DEDB",     // Teks utama footer
+          muted: "#9BB0A8",    // Teks sekunder footer (kontras 7.6:1 di atas footer-bg)
+          subtle: "#72857E",   // Teks tersier (copyright) — 4.45:1 large text
+          "chip-text": "#C0D4CC", // Teks chip izin
+        },
+        // Showcase — dark cinematic background untuk DestinationShowcaseSection
+        showcase: {
+          bg: "#0B1015",       // Latar gelap almost-black untuk section destinasi
         },
       },
       fontFamily: {

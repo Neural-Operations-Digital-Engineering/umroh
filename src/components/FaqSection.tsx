@@ -3,7 +3,7 @@
 import React, { useMemo, useState } from "react";
 import Link from "next/link";
 import type { CompanyProfile } from "@/data/company";
-import { getFaqItems, type FaqItem } from "@/data/faq";
+import { getFaqItems } from "@/data/faq";
 import { getGeneralWhatsAppUrl } from "@/lib/contact";
 import InquiryDialog from "@/components/InquiryDialog";
 

@@ -85,7 +85,7 @@ export default function WhyUsSection() {
         </div>
 
         {/* ── 4-Point Feature Grid: 2 kolom desktop / 1 mobile ── */}
-        <div className="mobile-rail sm:grid-cols-2 gap-4 lg:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
           {features.map((f) => (
             <div
               key={f.id}

@@ -20,11 +20,11 @@ export default function Footer({ company }: { company: CompanyProfile }) {
   if (pathname.startsWith("/admin")) return null;
 
   return (
-    <footer className="relative overflow-hidden border-t border-[#263d34] bg-[#071e17] pt-14 pb-10 font-sans text-[#d6dedb]">
+    <footer className="relative overflow-hidden border-t border-footer-border bg-footer-bg pt-14 pb-10 font-sans text-footer-text">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         
         {/* ── Top Row: Brand & Official Trust Badges ── */}
-        <div className="grid grid-cols-1 items-start gap-8 border-b border-[#263d34] pb-10 lg:grid-cols-12">
+        <div className="grid grid-cols-1 items-start gap-8 border-b border-footer-border pb-10 lg:grid-cols-12">
           
           {/* Brand & Mission (5 Cols) */}
           <div className="lg:col-span-5 space-y-4">
@@ -42,12 +42,12 @@ export default function Footer({ company }: { company: CompanyProfile }) {
               </div>
             </Link>
 
-            <p className="max-w-md text-xs leading-relaxed text-[#9bb0a8]">
+            <p className="max-w-md text-xs leading-relaxed text-footer-muted">
               Membimbing ibadah ke Tanah Suci dengan kepastian jadwal, akomodasi hotel yang terverifikasi, transparansi rincian biaya, dan pendampingan muthowwif berkompeten.
             </p>
 
             {/* Official Certification Chip */}
-            <div className="inline-flex items-center gap-2 rounded-button border border-[#2a463c] bg-[#102a21] px-3 py-1.5 text-xs text-[#c0d4cc]">
+            <div className="inline-flex items-center gap-2 rounded-button border border-footer-border-inner bg-footer-elevated px-3 py-1.5 text-xs text-footer-chip-text">
               <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0" />
               <span>Izin Resmi PPIU Kemenag RI: <strong className="text-white font-mono">{company.legal.ppiu}</strong></span>
             </div>
@@ -59,7 +59,7 @@ export default function Footer({ company }: { company: CompanyProfile }) {
               <span className="text-[11px] font-bold uppercase tracking-wider text-white">
                 Katalog Program
               </span>
-              <ul className="space-y-2 text-[#9bb0a8]">
+              <ul className="space-y-2 text-footer-muted">
                 <li><Link href="/umroh" className="hover:text-white transition-colors">Paket Umroh Reguler</Link></li>
                 <li><Link href="/umroh" className="hover:text-white transition-colors">Umroh Plus (Thaif / Turki)</Link></li>
                 <li><Link href="/haji" className="hover:text-white transition-colors">Haji Khusus &amp; Furoda</Link></li>
@@ -71,7 +71,7 @@ export default function Footer({ company }: { company: CompanyProfile }) {
               <span className="text-[11px] font-bold uppercase tracking-wider text-white">
                 Informasi
               </span>
-              <ul className="space-y-2 text-[#9bb0a8]">
+              <ul className="space-y-2 text-footer-muted">
                 <li><Link href="/tentang" className="hover:text-white transition-colors">Tentang Kami</Link></li>
                 <li><Link href="/legalitas" className="hover:text-white transition-colors">Legalitas &amp; Izin Usaha</Link></li>
                 <li><Link href="/dokumentasi" className="hover:text-white transition-colors">Galeri Perjalanan</Link></li>
@@ -86,7 +86,7 @@ export default function Footer({ company }: { company: CompanyProfile }) {
               Kantor &amp; Kontak Resmi
             </span>
             
-            <p className="text-[#9bb0a8] leading-relaxed">
+            <p className="text-footer-muted leading-relaxed">
               {company.address}
             </p>
 
@@ -105,7 +105,7 @@ export default function Footer({ company }: { company: CompanyProfile }) {
                 <span>WhatsApp: {company.phone}</span>
               </InquiryDialog>
 
-              <p className="text-[#9bb0a8]">
+              <p className="text-footer-muted">
                 Email: <a href={`mailto:${company.email}`} className="hover:text-white transition-colors">{company.email}</a>
               </p>
             </div>
@@ -114,19 +114,19 @@ export default function Footer({ company }: { company: CompanyProfile }) {
         </div>
 
         {/* ── Official Bank Account Notice (Anti-Fraud Security Strip) ── */}
-        <div className="flex flex-col items-start justify-between gap-4 rounded-card border border-[#2a463c] bg-[#0d281f] p-4 text-xs sm:p-5 md:flex-row md:items-center">
+        <div className="flex flex-col items-start justify-between gap-4 rounded-card border border-footer-border-inner bg-footer-surface p-4 text-xs sm:p-5 md:flex-row md:items-center">
           <div>
             <span className="text-[10px] font-bold uppercase tracking-wider text-amber-400 block mb-0.5">
               Himbauan Keamanan Pembayaran
             </span>
-            <p className="text-[#9bb0a8] max-w-2xl text-[11px] sm:text-xs">
+            <p className="text-footer-muted max-w-2xl text-[11px] sm:text-xs">
               Seluruh pembayaran pendaftaran dan pelunasan hanya ditransfer ke rekening resmi an. <strong className="text-white">{company.legalName}</strong>. Kami tidak pernah menggunakan rekening pribadi.
             </p>
           </div>
 
           <div className="flex flex-wrap gap-2 shrink-0">
             {company.bankAccounts.map((bank) => (
-              <span key={bank.bank} className="px-2.5 py-1 rounded-badge bg-[#182723] border border-[#273d37] text-[11px] text-white">
+              <span key={bank.bank} className="px-2.5 py-1 rounded-badge bg-footer-card border border-footer-border text-[11px] text-white">
                 <span className="text-gold-accent font-semibold">{bank.bank}:</span> <span className="font-mono">{bank.account}</span>
               </span>
             ))}
@@ -134,7 +134,7 @@ export default function Footer({ company }: { company: CompanyProfile }) {
         </div>
 
         {/* ── Bottom Bar: Copyright & Attribution ── */}
-        <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#72857e]">
+        <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-footer-subtle">
           <p>© {currentYear} {company.brandName} ({company.legalName}). Seluruh hak cipta dilindungi.</p>
           <div className="flex flex-wrap items-center gap-3 sm:gap-4">
             <Link href="/legalitas" className="hover:text-white transition-colors">Legalitas</Link>

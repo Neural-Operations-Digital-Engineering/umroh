@@ -78,7 +78,7 @@ export default function DestinationShowcaseSection({ company }: { company: Compa
   return (
     <section
       ref={sectionRef}
-      className="deferred-section relative min-h-[460px] sm:min-h-[540px] lg:min-h-[600px] w-full bg-[#0b1015] text-white overflow-hidden py-10 sm:py-14 my-8 sm:my-12 flex items-center"
+      className="deferred-section relative min-h-[460px] sm:min-h-[540px] lg:min-h-[600px] w-full bg-showcase-bg text-white overflow-hidden py-10 sm:py-14 my-8 sm:my-12 flex items-center"
       aria-label="Eksplorasi Destinasi Wisata Halal & Umroh Plus"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
@@ -167,9 +167,12 @@ export default function DestinationShowcaseSection({ company }: { company: Compa
           {/* ── Right Carousel Cards Column ── */}
           <div className="min-w-0 lg:col-span-7 overflow-hidden">
             <div
-              className="flex gap-4 py-2 transition-transform duration-700 ease-in-out sm:gap-6"
-              style={{
-                transform: `translateX(-${current * 280}px)`,
+              className="flex gap-4 py-2 sm:gap-6 overflow-x-auto scrollbar-none scroll-smooth snap-x snap-mandatory"
+              ref={(el) => {
+                if (!el) return;
+                // Scroll active card into view without pixel offset hardcode
+                const activeCard = el.children[current] as HTMLElement | undefined;
+                activeCard?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
               }}
             >
               {destinations.map((item, index) => {
@@ -179,7 +182,7 @@ export default function DestinationShowcaseSection({ company }: { company: Compa
                     type="button"
                     key={item.id}
                     onClick={() => setCurrent(index)}
-                    className={`w-[260px] sm:w-[320px] shrink-0 cursor-pointer text-left transition-[opacity,transform] duration-500 ${
+                    className={`w-[260px] sm:w-[320px] shrink-0 snap-start cursor-pointer text-left transition-[opacity,transform] duration-500 ${
                       isActive ? "scale-100 opacity-100" : "scale-95 opacity-50 hover:opacity-80"
                     }`}
                   >
