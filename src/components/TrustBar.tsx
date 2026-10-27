@@ -75,7 +75,7 @@ const getTrustItems = (company: CompanyProfile) => [
 export default function TrustBar({ company }: { company: CompanyProfile }) {
   const trustItems = getTrustItems(company);
   return (
-    <div className="border-y border-[#214b3d] bg-teal-deep py-5 text-white sm:py-6">
+    <div className="border-y border-teal-700/60 bg-teal-deep py-5 text-white sm:py-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ── Desktop: flex row dengan dividers ── */}

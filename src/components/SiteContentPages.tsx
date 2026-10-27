@@ -30,7 +30,7 @@ export function AboutPageContent({ company }: { company: CompanyProfile }) {
               Izin PPIU &amp; PIHK Resmi Kemenag
             </span>
             <span className="rounded-badge bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-800 border border-emerald-200">
-              Terakreditasi A KAN
+              Akreditasi {company.certification.accreditation} KAN
             </span>
           </div>
 
@@ -115,7 +115,7 @@ export function AboutPageContent({ company }: { company: CompanyProfile }) {
                 Dewan Pembimbing Ibadah &amp; Kepemimpinan
               </h2>
               <p className="text-xs sm:text-sm text-slate-body leading-relaxed">
-                Dipimpin oleh para asatidz dan profesional yang berpengalaman puluhan tahun dalam melayani perjalanan ibadah jemaah ke Tanah Suci.
+                Dipimpin oleh dokter spesialis dan profesional berpengalaman yang mendampingi jemaah ke Tanah Suci.
               </p>
             </div>
 
@@ -228,7 +228,7 @@ export function LegalityPageContent({ company }: { company: CompanyProfile }) {
               Terdaftar Resmi di SISKOPATUH Kemenag RI
             </span>
             <span className="rounded-badge bg-gold-light px-3 py-1 text-xs font-bold text-teal-primary border border-gold-border">
-              Akreditasi A
+              Akreditasi {company.certification.accreditation} KAN
             </span>
           </div>
 
@@ -522,7 +522,7 @@ export function HajiOverviewSection({ company }: { company: CompanyProfile }) {
               </div>
               <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,auto)] items-start gap-3 text-slate-body">
                 <span className="text-slate-muted">Masa Tunggu Acuan:</span>
-                <span className="min-w-0 break-words text-right font-bold text-teal-primary">6-7 Tahun</span>
+                <span className="min-w-0 break-words text-right font-bold text-teal-primary">{company.financing.hajjWaitingYears}</span>
               </div>
             </div>
             <div className="pt-2">
@@ -545,7 +545,7 @@ export function HajiOverviewSection({ company }: { company: CompanyProfile }) {
 /* ════════════════════════════════════════════════════════════════════════════════
    5. HOW IT WORKS SECTION
    ════════════════════════════════════════════════════════════════════════════════ */
-export function HowItWorksSection({ company }: { company: CompanyProfile }) {
+export function HowItWorksSection() {
   const steps = [
     { num: "01", title: "Pilih Jadwal & Paket", desc: "Tentukan bulan keberangkatan, tipe kamar, serta durasi perjalanan yang sesuai kebutuhan keluarga." },
     { num: "02", title: "Konsultasi & Verifikasi", desc: "Hubungi konsultan kami untuk memastikan ketersediaan seat tiket dan kelengkapan berkas paspor." },

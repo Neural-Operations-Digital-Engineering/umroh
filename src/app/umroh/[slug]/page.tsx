@@ -163,7 +163,7 @@ export default async function PackageDetailPage({ params }: PageProps) {
                         <p className="font-serif font-bold text-lg leading-snug">
                           {galleryItems[0].label}
                         </p>
-                        <p className="text-gold-accent text-xs font-semibold mt-1">
+                        <p className="text-white/80 text-xs font-semibold mt-1">
                           {galleryItems[0].tag}
                         </p>
                       </div>
@@ -175,7 +175,7 @@ export default async function PackageDetailPage({ params }: PageProps) {
 
                   {/* Thumbnail Samping */}
                   <div className="sm:col-span-5 grid grid-cols-2 sm:grid-cols-1 gap-3">
-                    {galleryItems.slice(1, 3).map((item, idx) => (
+                    {galleryItems.slice(1, 3).map((item) => (
                       <div
                         key={item.id}
                         className="relative rounded-card overflow-hidden border border-warm-border bg-warm-surface shadow-card h-36 sm:h-auto sm:aspect-16/9"
@@ -194,7 +194,7 @@ export default async function PackageDetailPage({ params }: PageProps) {
                           <p className="font-serif font-bold text-xs sm:text-sm truncate">
                             {item.label}
                           </p>
-                          <p className="text-[10px] text-gold-accent font-semibold truncate">
+                          <p className="text-[10px] text-white/80 font-semibold truncate">
                             {item.tag}
                           </p>
                         </div>

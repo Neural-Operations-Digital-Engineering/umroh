@@ -30,7 +30,7 @@ const DestinationShowcaseSection = dynamic(
   () => import("@/components/DestinationShowcaseSection"),
   {
     ssr: true,
-    loading: () => <div className="min-h-[540px] bg-[#0b1015]" aria-hidden="true" />,
+    loading: () => <div className="min-h-[540px] bg-showcase-bg" aria-hidden="true" />,
   }
 );
 

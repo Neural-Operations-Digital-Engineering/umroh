@@ -133,7 +133,7 @@ export function HajiOverviewSection({ company }: { company: CompanyProfile }) {
               </div>
               <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,auto)] items-start gap-3 text-slate-body">
                 <span className="text-slate-muted">Masa Tunggu Acuan:</span>
-                <span className="min-w-0 break-words text-right font-bold text-teal-primary">6-7 Tahun</span>
+                <span className="min-w-0 break-words text-right font-bold text-teal-primary">{company.financing.hajjWaitingYears}</span>
               </div>
             </div>
             <InquiryDialog
