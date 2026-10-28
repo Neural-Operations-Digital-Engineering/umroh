@@ -71,7 +71,7 @@ export function AboutPageContent({ company }: { company: CompanyProfile }) {
             </div>
 
             {/* 5 Pasti Umrah Framework */}
-            <div className="content-panel space-y-4 p-6">
+            <div className="content-panel space-y-5 p-6">
               <div className="border-b border-warm-border pb-3">
                 <span className="text-xs font-bold uppercase tracking-[0.14em] text-gold-hover font-sans block mb-1">
                   Standar Kementerian Agama RI
@@ -81,21 +81,21 @@ export function AboutPageContent({ company }: { company: CompanyProfile }) {
                 </h2>
               </div>
 
-              <div className="space-y-3">
+              <div className="grid gap-3">
                 {[
-                  { title: "1. Pasti Travelnya Berizin", desc: `SK PPIU No. ${company.legal.ppiu} dan SK PIHK No. ${company.legal.pihk}.` },
-                  { title: "2. Pasti Jadwal & Tiketnya", desc: "Tiket penerbangan PP telah terkonfirmasi sebelum jemaah berangkat." },
-                  { title: "3. Pasti Harganya", desc: "Transparansi penuh komponen biaya tanpa biaya terselubung di tanah suci." },
-                  { title: "4. Pasti Hotel & Akomodasinya", desc: "Hotel di ring 1 Makkah dan Madinah dengan fasilitas sesuai kontrak." },
-                  { title: "5. Pasti Visanya", desc: "Proses visa resmi Arab Saudi diproses tepat waktu sebelum jadwal manasik." },
+                  { num: "01", title: "Pasti Travelnya Berizin", desc: `SK PPIU No. ${company.legal.ppiu} dan SK PIHK No. ${company.legal.pihk}.` },
+                  { num: "02", title: "Pasti Jadwal & Tiketnya", desc: "Tiket penerbangan PP telah terkonfirmasi sebelum jemaah berangkat." },
+                  { num: "03", title: "Pasti Harganya", desc: "Transparansi penuh komponen biaya tanpa biaya terselubung di tanah suci." },
+                  { num: "04", title: "Pasti Hotel & Akomodasinya", desc: "Hotel di ring 1 Makkah dan Madinah dengan fasilitas sesuai kontrak." },
+                  { num: "05", title: "Pasti Visanya", desc: "Proses visa resmi Arab Saudi diproses tepat waktu sebelum jadwal manasik." },
                 ].map((item) => (
-                  <div key={item.title} className="flex gap-3 items-start">
-                    <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">
-                      ✓
+                  <div key={item.title} className="flex gap-3.5 items-start p-3 rounded-button bg-warm-bg border border-warm-border/70 hover:border-teal-primary/30 transition-colors">
+                    <span className="font-mono text-xl sm:text-2xl font-bold text-teal-primary/45 leading-none shrink-0 w-8 pt-0.5">
+                      {item.num}
                     </span>
                     <div>
                       <p className="text-xs sm:text-sm font-bold text-teal-primary">{item.title}</p>
-                      <p className="text-xs text-slate-body leading-relaxed">{item.desc}</p>
+                      <p className="text-xs text-slate-body leading-relaxed mt-0.5">{item.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -127,7 +127,7 @@ export function AboutPageContent({ company }: { company: CompanyProfile }) {
                 >
                   <div className="space-y-2">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-full bg-teal-primary/10 border border-teal-primary/20 flex items-center justify-center text-teal-primary font-serif font-bold text-base shrink-0">
+                      <div className="w-12 h-12 rounded-full bg-teal-primary text-white flex items-center justify-center font-serif font-bold text-base shadow-xs shrink-0">
                         {leader.name.split(" ").slice(0, 2).map((part) => part[0]).join("")}
                       </div>
                       <div>
@@ -374,12 +374,12 @@ export function DocumentationPageContent({ company }: { company: CompanyProfile 
   const [filter, setFilter] = useState<string>("all");
 
   const documentationItems = [
-    { src: "/images/destinations/mekkah.jpg", alt: "Jemaah Umroh di Pelataran Ka'bah Makkah", title: "Thawaf di Masjidil Haram", category: "makkah", caption: "Dokumentasi pelaksanaan ibadah thawaf jemaah di pelataran Ka'bah Makkah Al Mukarramah." },
-    { src: "/images/destinations/turki.jpg", alt: "Wisata Halal Sejarah Islam Istanbul Turki", title: "Wisata Halal Turki", category: "ziarah", caption: "Napak tilas kejayaan Kesultanan Utsmaniyah di Blue Mosque dan Hagia Sophia Istanbul." },
-    { src: "/images/destinations/dubai.jpg", alt: "City Tour Dubai City", title: "City Tour Dubai & Desert Safari", category: "ziarah", caption: "Program transit dan city tour modern dengan fasilitas akomodasi eksklusif." },
-    { src: "/images/destinations/al-ula.jpg", alt: "Situs Sejarah Peradaban Al Ula Arab Saudi", title: "Situs Bersejarah Al Ula", category: "ziarah", caption: "Eksplorasi jejak sejarah peradaban masa lalu di Madain Saleh dan bebatuan Al Ula." },
-    { src: "/images/destinations/thaif.jpg", alt: "Ziarah Perbukitan Sejuk Kota Thaif", title: "Ziarah Sejarah Kota Thaif", category: "ziarah", caption: "Menikmati kesejukan pegunungan Thaif, naik kereta gantung, dan ziarah Masjid Abdullah bin Abbas." },
-    { src: "/images/destinations/mesir.jpg", alt: "Jejak Sejarah Para Nabi di Mesir & Piramida", title: "Jejak Sejarah Mesir Kuno", category: "ziarah", caption: "Menelusuri sejarah Nabi Musa AS, Sungai Nil, dan keajaiban Piramida Giza Mesir." },
+    { src: "/images/destinations/mekkah.jpg", alt: "Jemaah Umroh di Pelataran Ka'bah Makkah", title: "Thawaf di Masjidil Haram", category: "makkah", caption: "Dokumentasi pelaksanaan ibadah thawaf jemaah di pelataran Ka'bah Makkah Al Mukarramah.", aspect: "aspect-4/3" },
+    { src: "/images/destinations/turki.jpg", alt: "Wisata Halal Sejarah Islam Istanbul Turki", title: "Wisata Halal Turki", category: "ziarah", caption: "Napak tilas kejayaan Kesultanan Utsmaniyah di Blue Mosque dan Hagia Sophia Istanbul.", aspect: "aspect-3/4" },
+    { src: "/images/destinations/dubai.jpg", alt: "City Tour Dubai City", title: "City Tour Dubai & Desert Safari", category: "ziarah", caption: "Program transit dan city tour modern dengan fasilitas akomodasi eksklusif.", aspect: "aspect-4/3" },
+    { src: "/images/destinations/al-ula.jpg", alt: "Situs Sejarah Peradaban Al Ula Arab Saudi", title: "Situs Bersejarah Al Ula", category: "ziarah", caption: "Eksplorasi jejak sejarah peradaban masa lalu di Madain Saleh dan bebatuan Al Ula.", aspect: "aspect-4/3" },
+    { src: "/images/destinations/thaif.jpg", alt: "Ziarah Perbukitan Sejuk Kota Thaif", title: "Ziarah Sejarah Kota Thaif", category: "ziarah", caption: "Menikmati kesejukan pegunungan Thaif, naik kereta gantung, dan ziarah Masjid Abdullah bin Abbas.", aspect: "aspect-3/4" },
+    { src: "/images/destinations/mesir.jpg", alt: "Jejak Sejarah Para Nabi di Mesir & Piramida", title: "Jejak Sejarah Mesir Kuno", category: "ziarah", caption: "Menelusuri sejarah Nabi Musa AS, Sungai Nil, dan keajaiban Piramida Giza Mesir.", aspect: "aspect-4/3" },
   ];
 
   const filteredItems = filter === "all" ? documentationItems : documentationItems.filter(item => item.category === filter);
@@ -449,29 +449,42 @@ export function DocumentationPageContent({ company }: { company: CompanyProfile 
           </button>
         </div>
 
-        {/* Responsive Photo Grid (Masonry feel) */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Masonry-inspired Photo Grid — 3 cols desktop, 2 cols tablet, 1 col mobile */}
+        {/* Using CSS columns for true masonry flow */}
+        <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-0">
           {filteredItems.map((item, idx) => (
             <figure
               key={idx}
-              className="overflow-hidden rounded-card border border-warm-border bg-warm-surface shadow-card flex flex-col justify-between"
+              className="break-inside-avoid mb-4 overflow-hidden rounded-card border border-warm-border bg-warm-surface shadow-card group relative"
             >
-              <div className="relative aspect-4/3 w-full bg-teal-900 overflow-hidden">
+              {/* Image container with varying aspect ratio for masonry feel */}
+              <div className={`relative w-full bg-teal-900 overflow-hidden ${item.aspect}`}>
                 <Image
                   src={item.src}
                   alt={item.alt}
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
+                {/* Caption overlay — hover on desktop, always visible on mobile */}
+                <figcaption className="
+                  absolute inset-x-0 bottom-0 
+                  bg-gradient-to-t from-slate-dark/90 via-slate-dark/60 to-transparent 
+                  px-4 pt-8 pb-4
+                  sm:translate-y-full sm:transition-transform sm:duration-300 sm:ease-out
+                  sm:group-hover:translate-y-0
+                ">
+                  <h2 className="font-serif text-sm font-bold text-white leading-snug">{item.title}</h2>
+                  <p className="text-[11px] text-white/80 leading-relaxed mt-1">{item.caption}</p>
+                  <div className="pt-2 text-[10px] uppercase font-bold tracking-wider text-gold-accent">
+                    Dokumentasi Resmi Jemaah
+                  </div>
+                </figcaption>
               </div>
-              <figcaption className="p-5 space-y-1.5">
-                <h2 className="font-serif text-lg font-bold text-teal-primary">{item.title}</h2>
-                <p className="text-xs text-slate-body leading-relaxed">{item.caption}</p>
-                <div className="pt-2 text-[10px] uppercase font-bold tracking-wider text-gold-hover">
-                  Dokumentasi Resmi Jemaah
-                </div>
-              </figcaption>
+              {/* Title always visible below image on desktop (complements hover caption) */}
+              <div className="hidden sm:block px-4 py-3 border-t border-warm-border">
+                <h2 className="font-serif text-sm font-bold text-teal-primary">{item.title}</h2>
+              </div>
             </figure>
           ))}
         </div>

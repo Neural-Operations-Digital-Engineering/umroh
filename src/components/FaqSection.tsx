@@ -76,7 +76,7 @@ export default function FaqSection({
         {compact ? (
           /* COMPACT VIEW FOR HOMEPAGE (Single centered column) */
           <div className="max-w-4xl mx-auto space-y-4">
-            <div className="space-y-3">
+            <div className="space-y-3.5">
               {displayFaqs.map((faq, index) => {
                 const isOpen = openId === faq.id;
                 return (
@@ -84,7 +84,7 @@ export default function FaqSection({
                     key={faq.id}
                     className={`faq-panel overflow-hidden border transition-all duration-200 ${
                       isOpen
-                        ? "border-teal-primary/30 bg-warm-bg shadow-xs"
+                        ? "border-teal-primary/40 bg-warm-surface shadow-xs"
                         : "border-warm-border bg-warm-bg hover:border-teal-primary/20"
                     }`}
                   >
@@ -221,11 +221,11 @@ export default function FaqSection({
               </div>
 
               {/* Mobile Category Chips (Visible only on mobile/tablet) */}
-              <div className="flex gap-2 overflow-x-auto pb-1 lg:hidden" aria-label="Pilihan Kategori Mobile">
+              <div className="flex gap-2 overflow-x-auto pb-1.5 lg:hidden" aria-label="Pilihan Kategori Mobile">
                 <button
                   type="button"
                   onClick={() => setCategory("all")}
-                  className={`min-h-11 px-3 py-1.5 rounded-button text-xs font-bold shrink-0 transition-colors ${
+                  className={`min-h-11 px-3.5 py-2 rounded-button text-xs font-bold shrink-0 transition-colors ${
                     category === "all"
                       ? "bg-teal-primary text-white"
                       : "bg-warm-bg border border-warm-border text-slate-body"
@@ -238,7 +238,7 @@ export default function FaqSection({
                     key={cat}
                     type="button"
                     onClick={() => setCategory(cat)}
-                    className={`min-h-11 px-3 py-1.5 rounded-button text-xs font-bold shrink-0 transition-colors ${
+                    className={`min-h-11 px-3.5 py-2 rounded-button text-xs font-bold shrink-0 transition-colors ${
                       category === cat
                         ? "bg-teal-primary text-white"
                         : "bg-warm-bg border border-warm-border text-slate-body"
@@ -267,7 +267,7 @@ export default function FaqSection({
               </div>
 
               {/* Accordion Items List */}
-              <div className="space-y-3">
+              <div className="space-y-3.5">
                 {filteredFaqs.map((faq, index) => {
                   const isOpen = openId === faq.id;
                   return (
@@ -275,7 +275,7 @@ export default function FaqSection({
                       key={faq.id}
                       className={`faq-panel overflow-hidden border transition-all duration-200 ${
                         isOpen
-                          ? "border-teal-primary/40 bg-warm-bg shadow-sm"
+                          ? "border-teal-primary/40 bg-warm-surface shadow-xs"
                           : "border-warm-border bg-warm-bg hover:border-teal-primary/20"
                       }`}
                     >

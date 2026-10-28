@@ -131,7 +131,7 @@ export default function FinancingSection({
             <div className="finance-panel space-y-6 p-6">
               
               {/* Tab Selector */}
-              <div className="flex border-b border-warm-border gap-2" role="tablist" aria-label="Pilihan Tabungan">
+              <div className="flex border-b border-warm-border gap-4" role="tablist" aria-label="Pilihan Tabungan">
                 <button
                   type="button"
                   role="tab"
@@ -143,7 +143,8 @@ export default function FinancingSection({
                       : "border-transparent text-slate-muted hover:text-slate-dark"
                   }`}
                 >
-                  Tabungan Umroh Berencana
+                  <span className="sm:hidden">Umroh</span>
+                  <span className="hidden sm:inline">Tabungan Umroh Berencana</span>
                 </button>
                 <button
                   type="button"
@@ -156,7 +157,8 @@ export default function FinancingSection({
                       : "border-transparent text-slate-muted hover:text-slate-dark"
                   }`}
                 >
-                  Tabungan Haji Khusus (Tenor 72 Bln)
+                  <span className="sm:hidden">Haji Khusus</span>
+                  <span className="hidden sm:inline">Tabungan Haji Khusus (Tenor 72 Bln)</span>
                 </button>
               </div>
 
@@ -165,7 +167,7 @@ export default function FinancingSection({
                 <div className="space-y-4">
                   <div className="flex flex-wrap items-baseline justify-between gap-2">
                     <p className="text-xs text-slate-muted font-sans">
-                      Estimasi acuan biaya: <strong className="text-teal-primary">Rp 32.500.000 / jemaah</strong>
+                      Estimasi acuan biaya: <strong className="text-teal-primary font-mono font-semibold">Rp 32.500.000 / jemaah</strong>
                     </p>
                     <span className="text-[11px] text-gold-hover font-semibold">
                       Akad Wadiah Yad Dhamanah
@@ -185,13 +187,13 @@ export default function FinancingSection({
                         <div className="border-t border-warm-border pt-2 space-y-1">
                           <div>
                             <span className="text-[10px] text-slate-muted block">Setoran Bulanan</span>
-                            <span className="font-serif text-lg font-bold text-teal-primary block">
+                            <span className="font-mono text-base sm:text-lg font-bold text-teal-primary block">
                               {row.monthly}
                             </span>
                           </div>
                           <div>
                             <span className="text-[10px] text-slate-muted block">Setara Harian</span>
-                            <span className="text-xs font-semibold text-slate-body block">
+                            <span className="text-xs font-mono font-semibold text-slate-body block">
                               {row.daily}
                             </span>
                           </div>
@@ -231,15 +233,15 @@ export default function FinancingSection({
                         <div className="space-y-2 text-xs border-t border-warm-border pt-3">
                           <div className="flex justify-between items-center text-slate-body">
                             <span className="text-slate-muted">Deposit Nomor Porsi:</span>
-                            <span className="font-bold text-teal-primary">{row.deposit}</span>
+                            <span className="font-mono font-bold text-teal-primary">{row.deposit}</span>
                           </div>
                           <div className="flex justify-between items-center text-slate-body">
                             <span className="text-slate-muted">Angsuran Bulanan:</span>
-                            <span className="font-bold text-teal-primary">{row.monthly}</span>
+                            <span className="font-mono font-bold text-teal-primary">{row.monthly}</span>
                           </div>
                           <div className="flex justify-between items-center text-slate-body border-t border-warm-border/60 pt-2">
                             <span className="text-slate-muted">Total Tabungan:</span>
-                            <span className="font-bold text-gold-hover text-sm">{row.total}</span>
+                            <span className="font-mono font-bold text-gold-hover text-sm">{row.total}</span>
                           </div>
                         </div>
                       </div>

@@ -61,7 +61,7 @@ export default function HeroSection({ company }: { company: CompanyProfile }) {
       <div className="relative mx-auto flex min-h-[clamp(430px,58svh,560px)] max-w-7xl items-end px-5 pb-7 pt-24 sm:px-8 sm:pb-9 lg:px-12 lg:pb-10">
         <div className="max-w-2xl">
           <p className="eyebrow !text-gold-accent">Umroh &amp; Haji resmi</p>
-          <h1 className="mt-4 max-w-2xl text-balance font-sans text-[clamp(2.35rem,5vw,5rem)] font-bold leading-[0.95] tracking-[-0.06em] text-white">
+          <h1 className="mt-4 max-w-3xl text-balance font-sans text-[clamp(2.8rem,6.5vw,6.2rem)] font-bold leading-[0.93] tracking-[-0.07em] text-white">
             Berangkat dengan tenang. Pulang membawa makna.
           </h1>
           <p className="mt-5 max-w-xl text-sm leading-6 text-white/80 sm:text-base sm:leading-7">
@@ -71,7 +71,7 @@ export default function HeroSection({ company }: { company: CompanyProfile }) {
             <a
               href="#katalog"
               id="hero-cta-katalog"
-              className="inline-flex min-h-11 items-center justify-center border border-gold-accent bg-gold-accent px-5 py-2.5 text-xs font-bold text-slate-dark transition hover:bg-gold-hover sm:text-sm"
+              className="inline-flex min-h-12 items-center justify-center border border-gold-accent bg-gold-accent px-6 py-3 text-sm font-bold text-slate-dark transition hover:bg-gold-hover"
             >
               Lihat paket pilihan
             </a>
@@ -82,36 +82,38 @@ export default function HeroSection({ company }: { company: CompanyProfile }) {
               sourceLabel="Konsultasi umum dari halaman utama"
               id="hero-cta-whatsapp"
               label="Konsultasi personal"
-              className="inline-flex min-h-11 items-center justify-center border border-white/30 px-5 py-2.5 text-xs font-semibold text-white transition hover:border-white hover:bg-white/10 sm:text-sm"
+              className="inline-flex min-h-12 items-center justify-center border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10"
             />
           </div>
 
-          {heroVideo && (
+          <div className="mt-8 grid max-w-2xl grid-cols-2 gap-x-5 gap-y-4 border-t border-white/20 pt-4 sm:grid-cols-4 sm:gap-x-4">
+            {trustPillars.map(([title, description]) => (
+              <div key={title} className="min-w-0">
+                <p className="text-[11px] font-bold uppercase leading-tight tracking-[0.06em] text-white/95 sm:text-xs">{title}</p>
+                <p className="mt-1 text-[11px] leading-4 text-white/65 sm:text-[10px]">{description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {heroVideo && (
+          <div className="mt-6 sm:mt-0 sm:absolute sm:right-6 sm:bottom-8 lg:right-12">
             <button
               type="button"
               onClick={() => {
                 if (showVideo) videoRef.current?.pause();
                 setShowVideo((current) => !current);
               }}
-              className="mt-4 inline-flex min-h-10 items-center gap-2 border border-white/25 px-3 py-2 text-[11px] font-semibold text-white/75 transition hover:border-white/60 hover:text-white focus-visible:outline-white"
+              className="inline-flex min-h-10 items-center gap-2 rounded-full border border-white/25 bg-black/25 px-3.5 py-2 text-xs font-medium text-white/85 backdrop-blur-sm transition hover:border-white/60 hover:text-white hover:bg-black/40 focus-visible:outline-white"
               aria-pressed={showVideo}
             >
-              <span className="flex h-5 w-5 items-center justify-center rounded-full border border-current text-[9px]" aria-hidden="true">
+              <span className="flex h-5 w-5 items-center justify-center rounded-full border border-current text-[10px]" aria-hidden="true">
                 {showVideo ? "Ⅱ" : "▶"}
               </span>
               <span>{showVideo ? "Kembali ke foto" : "Putar suasana video"}</span>
             </button>
-          )}
-
-          <div className="mt-8 grid max-w-2xl grid-cols-2 gap-x-5 gap-y-3 border-t border-white/20 pt-4 sm:grid-cols-4 sm:gap-x-4">
-            {trustPillars.map(([title, description]) => (
-              <div key={title} className="min-w-0">
-                <p className="text-[10px] font-bold uppercase leading-4 tracking-[0.08em] text-white/90 sm:text-[11px]">{title}</p>
-                <p className="mt-1 text-[10px] leading-4 text-white/55">{description}</p>
-              </div>
-            ))}
           </div>
-        </div>
+        )}
 
         <div className="absolute right-5 top-24 hidden w-40 border-l border-white/25 pl-4 text-[10px] leading-5 text-white/65 lg:block xl:right-12">
           <p className="font-bold uppercase tracking-[0.14em] text-gold-accent">Legalitas perjalanan</p>

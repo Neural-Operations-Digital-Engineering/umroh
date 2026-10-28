@@ -8,6 +8,7 @@ import { getAbsoluteUrl } from "@/lib/site-url";
 import { getBreadcrumbSchema, getProductSchema, serializeJsonLd } from "@/lib/structured-data";
 import SharePackageButton from "@/components/SharePackageButton";
 import InquiryDialog from "@/components/InquiryDialog";
+import RoomPricingSelector from "@/components/RoomPricingSelector";
 
 export const revalidate = 300;
 
@@ -134,28 +135,35 @@ export default async function HajiDetailPage({ params }: PageProps) {
             )}
 
             {/* Program Specifications Grid */}
-            <section aria-labelledby="haji-specs" className="rounded-card border border-warm-border bg-warm-surface p-5 sm:p-7 shadow-card space-y-4">
-              <h2 id="haji-specs" className="text-xs font-bold uppercase tracking-[0.14em] text-slate-caption font-sans">
-                Ringkasan Program & Spesifikasi
-              </h2>
-              <dl className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 pt-1">
-                <div className="border-l-2 border-teal-primary/30 pl-3">
-                  <dt className="text-xs text-slate-muted font-sans">Keberangkatan</dt>
-                  <dd className="mt-1 text-sm font-bold text-teal-primary font-sans">{pkg.departureDate}</dd>
-                </div>
-                <div className="border-l-2 border-teal-primary/30 pl-3">
-                  <dt className="text-xs text-slate-muted font-sans">Durasi Ibadah</dt>
-                  <dd className="mt-1 text-sm font-bold text-teal-primary font-sans">{pkg.duration}</dd>
-                </div>
-                <div className="border-l-2 border-teal-primary/30 pl-3">
-                  <dt className="text-xs text-slate-muted font-sans">Maskapai Penerbangan</dt>
-                  <dd className="mt-1 text-sm font-bold text-teal-primary font-sans">{pkg.airline}</dd>
-                </div>
-                <div className="border-l-2 border-teal-primary/30 pl-3">
-                  <dt className="text-xs text-slate-muted font-sans">Kota Embarkasi</dt>
-                  <dd className="mt-1 text-sm font-bold text-teal-primary font-sans">{pkg.departureCity}</dd>
-                </div>
-              </dl>
+            <section aria-labelledby="haji-specs" className="rounded-card border border-warm-border bg-warm-surface p-6 shadow-card space-y-4">
+              <div className="flex items-center justify-between border-b border-warm-border pb-3">
+                <h2 id="haji-specs" className="text-xs font-bold uppercase tracking-[0.12em] text-teal-primary font-sans">
+                  Ringkasan Program &amp; Spesifikasi Haji
+                </h2>
+                <span className="text-[11px] text-slate-caption font-mono">Resmi Kemenag</span>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8">
+                <dl className="divide-y divide-warm-border/70 text-xs sm:text-sm">
+                  <div className="py-2.5 flex items-center justify-between gap-4">
+                    <dt className="text-slate-muted">Keberangkatan</dt>
+                    <dd className="font-semibold text-slate-dark text-right">{pkg.departureDate}</dd>
+                  </div>
+                  <div className="py-2.5 flex items-center justify-between gap-4">
+                    <dt className="text-slate-muted">Durasi Ibadah</dt>
+                    <dd className="font-semibold text-slate-dark text-right">{pkg.duration}</dd>
+                  </div>
+                </dl>
+                <dl className="divide-y divide-warm-border/70 text-xs sm:text-sm">
+                  <div className="py-2.5 flex items-center justify-between gap-4">
+                    <dt className="text-slate-muted">Maskapai Penerbangan</dt>
+                    <dd className="font-semibold text-slate-dark text-right truncate max-w-[200px]" title={pkg.airline}>{pkg.airline}</dd>
+                  </div>
+                  <div className="py-2.5 flex items-center justify-between gap-4">
+                    <dt className="text-slate-muted">Kota Embarkasi</dt>
+                    <dd className="font-semibold text-slate-dark text-right">{pkg.departureCity}</dd>
+                  </div>
+                </dl>
+              </div>
             </section>
 
             {/* Hotel & Akomodasi Makkah & Madinah */}
@@ -196,55 +204,11 @@ export default async function HajiDetailPage({ params }: PageProps) {
 
             {/* Room Options & Pricing */}
             {roomPrices.length > 0 && (
-              <section aria-labelledby="haji-pricing" className="space-y-4">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-gold-hover font-sans mb-1">Pilihan Tipe Kamar</p>
-                  <h2 id="haji-pricing" className="font-serif text-2xl sm:text-3xl font-bold text-teal-primary">
-                    Rincian Biaya per Tipe Kamar
-                  </h2>
-                  <p className="font-sans text-xs sm:text-sm text-slate-muted mt-1 leading-relaxed">
-                    Harga per orang dalam Rupiah atau USD sesuai kurs acuan Kemenag dan asosiasi resmi.
-                  </p>
-                </div>
-
-                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {roomPrices.map((room) => (
-                    <article
-                      key={room.type}
-                      className={`rounded-card border p-5 bg-warm-surface shadow-card transition-colors flex flex-col justify-between ${
-                        room.isPopular ? "border-gold-accent ring-1 ring-gold-accent/40" : "border-warm-border"
-                      }`}
-                    >
-                      <div>
-                        <div className="flex items-start justify-between gap-3 mb-2">
-                          <h3 className="font-serif font-bold text-teal-primary text-lg">
-                            {room.label}
-                          </h3>
-                          {room.isPopular && (
-                            <span className="rounded-badge bg-gold-light px-2 py-0.5 text-[10px] font-bold text-teal-primary border border-gold-border">
-                              Paling Diminati
-                            </span>
-                          )}
-                        </div>
-
-                        <span className="inline-block text-xs font-semibold text-slate-muted mb-3 font-sans">
-                          Kapasitas: {room.capacity}
-                        </span>
-
-                        <p className="font-serif text-2xl font-bold text-teal-primary">
-                          {room.price}
-                        </p>
-                      </div>
-
-                      <div className="mt-4 pt-3 border-t border-warm-border/60">
-                        <p className="text-xs leading-relaxed text-slate-body font-sans">
-                          {room.description}
-                        </p>
-                      </div>
-                    </article>
-                  ))}
-                </div>
-              </section>
+              <RoomPricingSelector
+                roomPrices={roomPrices}
+                phone={company.phone}
+                packageName={pkg.name}
+              />
             )}
 
             {/* Facilities: Included & Excluded */}
@@ -385,11 +349,11 @@ export default async function HajiDetailPage({ params }: PageProps) {
           <aside className="hidden min-w-0 lg:block lg:col-span-4 sticky top-24 space-y-5">
             
             {/* Primary Sticky Booking Card */}
-            <div className="rounded-card border border-warm-border bg-warm-surface p-6 shadow-elevated space-y-5">
+            <div className="rounded-card border-t-4 border-t-teal-primary border-x border-b border-warm-border bg-warm-surface p-6 shadow-elevated space-y-5">
               
               <div>
                 <span className="text-xs uppercase font-bold text-slate-caption block font-sans">
-                  Mulai Dari / Orang
+                  Mulai Dari (Quad / Standar)
                 </span>
                 <span className="font-serif text-3xl font-bold text-teal-primary block mt-1">
                   {pkg.discountedPrice}
@@ -494,7 +458,7 @@ export default async function HajiDetailPage({ params }: PageProps) {
       </div>
 
       {/* STICKY BOTTOM BAR FOR MOBILE */}
-      <div className="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-warm-surface border-t border-warm-border p-3.5 px-4 shadow-elevated flex items-center justify-between gap-3">
+      <div className="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-warm-surface/95 backdrop-blur-md border-t border-warm-border p-3.5 px-4 shadow-elevated flex items-center justify-between gap-3">
         <div className="min-w-0">
           <span className="text-[10px] text-slate-caption block uppercase font-bold font-sans">
             Mulai Dari / Orang

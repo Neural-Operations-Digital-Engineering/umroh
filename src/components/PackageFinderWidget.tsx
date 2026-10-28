@@ -35,17 +35,23 @@ export default function PackageFinderWidget({
         onSubmit={handleSearch}
         className="morph-panel rounded-[1.25rem] p-4 sm:p-6 lg:p-7"
       >
-        <div className="mb-5 flex items-end justify-between gap-4 border-b border-warm-border pb-4">
-          <div><p className="eyebrow">Temukan perjalananmu</p><h2 className="mt-2 font-sans text-lg font-bold tracking-tight text-teal-primary sm:text-xl">Mulai dari jadwal yang paling sesuai</h2></div>
-          <span className="hidden text-right text-[10px] leading-4 text-slate-caption sm:block">Pilih kebutuhanmu,<br />kami bantu sisanya.</span>
+        <div className="mb-5 flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-warm-border pb-4">
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-gold-accent" aria-hidden="true" />
+              <p className="eyebrow">Pencarian Cepat Jadwal</p>
+            </div>
+            <h2 className="mt-1.5 font-sans text-lg font-bold tracking-tight text-teal-primary sm:text-xl">Mulai dari jadwal yang paling sesuai</h2>
+          </div>
+          <span className="text-[11px] leading-4 text-slate-caption sm:text-right sm:text-[10px]">Pilih kebutuhan perjalanan,<br className="hidden sm:inline" />kami bantu siapkan sisanya.</span>
         </div>
-        <div className="grid grid-cols-1 items-end gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
+        <div className="grid grid-cols-1 items-end gap-3.5 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
           
           {/* 1. Bulan Keberangkatan */}
           <div>
             <label
               htmlFor="finder-month"
-              className="mb-1.5 block text-[10px] font-bold uppercase tracking-[0.12em] text-slate-muted"
+              className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.08em] text-slate-muted"
             >
               Bulan Berangkat
             </label>
@@ -68,7 +74,7 @@ export default function PackageFinderWidget({
           <div>
             <label
               htmlFor="finder-type"
-              className="mb-1.5 block text-[10px] font-bold uppercase tracking-[0.12em] text-slate-muted"
+              className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.08em] text-slate-muted"
             >
               Jenis Program
             </label>
@@ -89,7 +95,7 @@ export default function PackageFinderWidget({
           <div>
             <label
               htmlFor="finder-city"
-              className="mb-1.5 block text-[10px] font-bold uppercase tracking-[0.12em] text-slate-muted"
+              className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.08em] text-slate-muted"
             >
               Kota Keberangkatan
             </label>
@@ -112,13 +118,16 @@ export default function PackageFinderWidget({
           <div>
             <button
               type="submit"
-              className="min-h-12 w-full rounded-button border border-gold-accent bg-gold-accent px-5 py-2.5 font-sans text-xs font-bold text-slate-dark shadow-card transition-all hover:bg-gold-hover active:scale-[0.98] sm:text-sm"
+              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-button border border-gold-accent bg-gold-accent px-5 py-2.5 font-sans text-sm font-bold text-slate-dark shadow-card transition-all hover:bg-gold-hover active:scale-[0.98]"
             >
-              <svg className="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24" strokeWidth={2}>
+              <svg className="w-4 h-4 shrink-0 fill-none stroke-current" viewBox="0 0 24 24" strokeWidth={2.2}>
                 <circle cx="11" cy="11" r="8" />
                 <path strokeLinecap="round" d="m21 21-4.35-4.35" />
               </svg>
               <span>Cari Jadwal</span>
+              <svg className="w-4 h-4 shrink-0 fill-none stroke-current" viewBox="0 0 24 24" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="m9 5 7 7-7 7" />
+              </svg>
             </button>
           </div>
 

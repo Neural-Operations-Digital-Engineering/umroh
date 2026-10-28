@@ -9,6 +9,7 @@ import { getAbsoluteUrl } from "@/lib/site-url";
 import { getBreadcrumbSchema, getProductSchema, serializeJsonLd } from "@/lib/structured-data";
 import SharePackageButton from "@/components/SharePackageButton";
 import InquiryDialog from "@/components/InquiryDialog";
+import RoomPricingSelector from "@/components/RoomPricingSelector";
 
 export const revalidate = 300;
 
@@ -205,119 +206,61 @@ export default async function PackageDetailPage({ params }: PageProps) {
               </section>
             )}
 
-            {/* Key Specifications Grid Strip */}
-            <section aria-labelledby="specs-heading" className="bg-warm-surface rounded-card border border-warm-border p-5 sm:p-6 shadow-card">
-              <h2 id="specs-heading" className="text-xs font-bold uppercase tracking-wider text-slate-caption font-sans mb-4">
-                Spesifikasi Keberangkatan &amp; Fasilitas
-              </h2>
+            {/* Key Specifications Definition List */}
+            <section aria-labelledby="specs-heading" className="bg-warm-surface rounded-card border border-warm-border p-6 shadow-card space-y-4">
+              <div className="flex items-center justify-between border-b border-warm-border pb-3">
+                <h2 id="specs-heading" className="text-xs font-bold uppercase tracking-[0.12em] text-teal-primary font-sans">
+                  Spesifikasi Keberangkatan &amp; Fasilitas Utama
+                </h2>
+                <span className="text-[11px] text-slate-caption font-mono">Terkonfirmasi</span>
+              </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
-                <div className="p-3 rounded-button bg-warm-bg border border-warm-border/60">
-                  <span className="text-[11px] text-slate-muted block font-sans">Tanggal Berangkat</span>
-                  <span className="font-sans font-bold text-sm text-teal-primary mt-1 block">
-                    {pkg.departureDate}
-                  </span>
-                  <span className="text-[10px] text-slate-muted block font-mono">Jadwal pasti</span>
-                </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8">
+                <dl className="divide-y divide-warm-border/70 text-xs sm:text-sm">
+                  <div className="py-2.5 flex items-center justify-between gap-4">
+                    <dt className="text-slate-muted">Tanggal Berangkat</dt>
+                    <dd className="font-semibold text-slate-dark text-right">{pkg.departureDate}</dd>
+                  </div>
+                  <div className="py-2.5 flex items-center justify-between gap-4">
+                    <dt className="text-slate-muted">Durasi Paket</dt>
+                    <dd className="font-semibold text-slate-dark text-right">{pkg.duration}</dd>
+                  </div>
+                  <div className="py-2.5 flex items-center justify-between gap-4">
+                    <dt className="text-slate-muted">Penerbangan</dt>
+                    <dd className="font-semibold text-slate-dark text-right truncate max-w-[200px]" title={pkg.airline}>
+                      {pkg.airline} {pkg.flightType ? `(${pkg.flightType})` : ""}
+                    </dd>
+                  </div>
+                </dl>
 
-                <div className="p-3 rounded-button bg-warm-bg border border-warm-border/60">
-                  <span className="text-[11px] text-slate-muted block font-sans">Durasi Paket</span>
-                  <span className="font-sans font-bold text-sm text-teal-primary mt-1 block">
-                    {pkg.duration}
-                  </span>
-                  <span className="text-[10px] text-slate-muted block font-mono">Makkah &amp; Madinah</span>
-                </div>
-
-                <div className="p-3 rounded-button bg-warm-bg border border-warm-border/60">
-                  <span className="text-[11px] text-slate-muted block font-sans">Penerbangan</span>
-                  <span className="font-sans font-bold text-sm text-teal-primary mt-1 block truncate" title={pkg.airline}>
-                    {pkg.airline}
-                  </span>
-                  <span className="text-[10px] text-emerald-700 font-semibold block">{pkg.flightType}</span>
-                </div>
-
-                <div className="p-3 rounded-button bg-warm-bg border border-warm-border/60">
-                  <span className="text-[11px] text-slate-muted block font-sans">Kota Embarkasi</span>
-                  <span className="font-sans font-bold text-sm text-teal-primary mt-1 block">
-                    {pkg.departureCity}
-                  </span>
-                  <span className="text-[10px] text-slate-muted block">Bandara Soetta</span>
-                </div>
-
-                <div className="p-3 rounded-button bg-warm-bg border border-warm-border/60">
-                  <span className="text-[11px] text-slate-muted block font-sans">Hotel Makkah</span>
-                  <span className="font-sans font-bold text-xs text-teal-primary mt-1 block truncate" title={pkg.hotelMakkah}>
-                    {pkg.hotelMakkah}
-                  </span>
-                  <span className="text-[10px] text-slate-muted font-semibold block">Dekat Masjidil Haram</span>
-                </div>
-
-                <div className="p-3 rounded-button bg-warm-bg border border-warm-border/60">
-                  <span className="text-[11px] text-slate-muted block font-sans">Hotel Madinah</span>
-                  <span className="font-sans font-bold text-xs text-teal-primary mt-1 block truncate" title={pkg.hotelMadinah}>
-                    {pkg.hotelMadinah}
-                  </span>
-                  <span className="text-[10px] text-slate-muted font-semibold block">Dekat Masjid Nabawi</span>
-                </div>
+                <dl className="divide-y divide-warm-border/70 text-xs sm:text-sm">
+                  <div className="py-2.5 flex items-center justify-between gap-4">
+                    <dt className="text-slate-muted">Kota Embarkasi</dt>
+                    <dd className="font-semibold text-slate-dark text-right">{pkg.departureCity}</dd>
+                  </div>
+                  <div className="py-2.5 flex items-center justify-between gap-4">
+                    <dt className="text-slate-muted">Hotel Makkah</dt>
+                    <dd className="font-semibold text-slate-dark text-right truncate max-w-[200px]" title={pkg.hotelMakkah}>
+                      {pkg.hotelMakkah}
+                    </dd>
+                  </div>
+                  <div className="py-2.5 flex items-center justify-between gap-4">
+                    <dt className="text-slate-muted">Hotel Madinah</dt>
+                    <dd className="font-semibold text-slate-dark text-right truncate max-w-[200px]" title={pkg.hotelMadinah}>
+                      {pkg.hotelMadinah}
+                    </dd>
+                  </div>
+                </dl>
               </div>
             </section>
 
             {/* Rincian Harga per Tipe Kamar */}
             {roomPrices.length > 0 && (
-              <section aria-labelledby="pricing-heading" className="space-y-4">
-                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-warm-border pb-3">
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-[0.14em] text-gold-hover mb-1">Pilihan Kamar</p>
-                    <h2 id="pricing-heading" className="font-serif text-2xl sm:text-3xl font-bold text-teal-primary">
-                      Rincian Biaya per Tipe Kamar
-                    </h2>
-                  </div>
-                  <p className="text-xs text-slate-muted font-sans">
-                    Biaya per orang (Quad, Triple, Double)
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  {roomPrices.map((room) => (
-                    <div
-                      key={room.type}
-                      className={`rounded-card border p-5 flex flex-col justify-between transition-all bg-warm-surface shadow-card ${
-                        room.isPopular
-                          ? "border-teal-primary ring-2 ring-teal-primary/20"
-                          : "border-warm-border"
-                      }`}
-                    >
-                      <div>
-                        <div className="flex items-center justify-between gap-2 mb-2">
-                          <h3 className="font-serif text-lg font-bold text-teal-primary">
-                            {room.label}
-                          </h3>
-                          <span className="text-[10px] font-sans font-semibold px-2 py-0.5 rounded-badge bg-teal-primary/8 text-teal-primary">
-                            {room.capacity}
-                          </span>
-                        </div>
-
-                        <p className="font-sans text-xs text-slate-body leading-relaxed mb-4">
-                          {room.description}
-                        </p>
-
-                        <div className="p-3 rounded-button bg-warm-bg border border-warm-border mb-3">
-                          <span className="text-[10px] text-slate-caption uppercase font-bold block">
-                            Biaya Paket / Orang
-                          </span>
-                          <span className="font-sans text-xl sm:text-2xl font-bold text-teal-primary block mt-0.5">
-                            {room.price}
-                          </span>
-                        </div>
-                      </div>
-
-                      <p className="text-[11px] text-slate-muted">
-                        Kapasitas &amp; ketersediaan kamar dikonfirmasi saat pendaftaran.
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </section>
+              <RoomPricingSelector
+                roomPrices={roomPrices}
+                phone={company.phone}
+                packageName={pkg.name}
+              />
             )}
 
             {/* Fasilitas Termasuk & Belum Termasuk */}
@@ -424,11 +367,11 @@ export default async function PackageDetailPage({ params }: PageProps) {
           <aside className="hidden min-w-0 lg:block lg:col-span-4 sticky top-24 space-y-5">
             
             {/* Primary Sticky Booking Card */}
-            <div className="rounded-card border border-warm-border bg-warm-surface p-6 shadow-elevated space-y-5">
+            <div className="rounded-card border-t-4 border-t-teal-primary border-x border-b border-warm-border bg-warm-surface p-6 shadow-elevated space-y-5">
               
               <div>
                 <span className="text-xs uppercase font-bold text-slate-caption block font-sans">
-                  Mulai Dari / Orang (Quad)
+                  Mulai Dari (Quad)
                 </span>
                 <span className="font-serif text-3xl font-bold text-teal-primary block mt-1">
                   {pkg.discountedPrice}
@@ -529,7 +472,7 @@ export default async function PackageDetailPage({ params }: PageProps) {
       </div>
 
       {/* ── STICKY BOTTOM BAR FOR MOBILE (Thumb-friendly high conversion) ── */}
-      <div className="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-warm-surface border-t border-warm-border p-3.5 px-4 shadow-elevated flex items-center justify-between gap-3">
+      <div className="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-warm-surface/95 backdrop-blur-md border-t border-warm-border p-3.5 px-4 shadow-elevated flex items-center justify-between gap-3">
         <div className="min-w-0">
           <span className="text-[10px] text-slate-caption block uppercase font-bold font-sans">
             Mulai Dari (Quad)
