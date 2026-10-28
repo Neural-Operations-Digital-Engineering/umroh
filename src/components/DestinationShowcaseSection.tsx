@@ -139,12 +139,12 @@ export default function DestinationShowcaseSection({ company }: { company: Compa
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
           {/* ── Left Descriptive Column ── */}
-          <div className="min-w-0 lg:col-span-5 space-y-4 sm:space-y-6">
-            <h2 className="font-sans text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-none drop-shadow-md">
+          <div className="min-w-0 lg:col-span-5 space-y-4 sm:space-y-6" aria-live="polite">
+            <h2 className="font-sans text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-none drop-shadow-md">
               {activeDest.title}
             </h2>
 
-            <p className="font-sans text-sm sm:text-base text-white/90 leading-relaxed max-w-md font-normal">
+            <p className="font-sans text-sm sm:text-base text-white/90 leading-relaxed max-w-md font-normal transition-opacity duration-300">
               {activeDest.desc}
             </p>
 

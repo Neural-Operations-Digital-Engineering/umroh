@@ -114,13 +114,13 @@ export default function Footer({ company }: { company: CompanyProfile }) {
         </div>
 
         {/* ── Official Bank Account Notice (Anti-Fraud Security Strip) ── */}
-        <div className="flex flex-col items-start justify-between gap-4 rounded-card border border-footer-border-inner bg-footer-surface p-4 text-xs sm:p-5 md:flex-row md:items-center">
+        <div className="flex flex-col items-start justify-between gap-3 rounded-button border border-footer-border-inner bg-footer-surface px-4 py-3 text-xs sm:flex-row sm:items-center">
           <div>
-            <span className="text-[10px] font-bold uppercase tracking-wider text-amber-400 block mb-0.5">
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-amber-400/80 block mb-0.5">
               Himbauan Keamanan Pembayaran
             </span>
-            <p className="text-footer-muted max-w-2xl text-[11px] sm:text-xs">
-              Seluruh pembayaran pendaftaran dan pelunasan hanya ditransfer ke rekening resmi an. <strong className="text-white">{company.legalName}</strong>. Kami tidak pernah menggunakan rekening pribadi.
+            <p className="text-footer-muted max-w-2xl text-[11px]">
+              Seluruh pembayaran hanya ditransfer ke rekening resmi an. <strong className="text-white">{company.legalName}</strong>. Kami tidak pernah menggunakan rekening pribadi.
             </p>
           </div>
 

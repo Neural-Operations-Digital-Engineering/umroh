@@ -92,7 +92,7 @@ export default function TrustBar({ company }: { company: CompanyProfile }) {
                 <p className="font-sans text-[13px] font-bold leading-tight text-white">
                   {item.label}
                 </p>
-                <p className="mt-0.5 font-sans text-[11px] leading-tight text-white/55">
+                <p className="mt-0.5 font-sans text-[11px] leading-tight text-white/65">
                   {item.sublabel}
                 </p>
               </div>
@@ -108,14 +108,14 @@ export default function TrustBar({ company }: { company: CompanyProfile }) {
           {trustItems.map((item) => (
             <div
               key={item.id}
-              className="flex w-[72vw] max-w-60 shrink-0 snap-start flex-col items-center gap-2 px-4 py-3 text-center"
+              className="flex w-[62vw] max-w-52 shrink-0 snap-start flex-col items-center gap-2 px-4 py-3 text-center"
             >
               <div className="text-gold-accent/80">{item.icon}</div>
               <div>
                 <p className="font-sans text-[13px] font-bold leading-tight text-white">
                   {item.label}
                 </p>
-                <p className="mt-0.5 font-sans text-[11px] leading-tight text-white/55">
+                <p className="mt-0.5 font-sans text-[11px] leading-tight text-white/65">
                   {item.sublabel}
                 </p>
               </div>

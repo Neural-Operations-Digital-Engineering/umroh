@@ -174,7 +174,7 @@ function PackageCardInner({
           {/* Bottom row: Pricing and Actions */}
           <div className="mt-4 pt-3 border-t border-warm-border flex flex-wrap items-center justify-between gap-3">
             <div>
-              <span className="text-[10px] uppercase font-bold text-slate-caption block">Mulai dari / orang (Quad)</span>
+              <span className="text-[10px] uppercase font-bold text-slate-caption block">Mulai dari (Quad)</span>
               <div className="flex items-baseline gap-2">
                 <span className={`text-xl font-bold font-sans ${isSoldOut ? "text-slate-muted" : "text-teal-primary"}`}>
                   {displayPrice}
@@ -287,7 +287,7 @@ function PackageCardInner({
       </div>
 
       {/* ── Card Body ── */}
-      <div className="flex-1 flex flex-col p-4 sm:p-5">
+      <div className="flex-1 flex flex-col p-3.5 sm:p-5">
         {/* Category & Title */}
         <div className="mb-3">
           <div className="flex items-center justify-between gap-2 mb-1">
@@ -348,7 +348,7 @@ function PackageCardInner({
           <div className="flex items-end justify-between gap-2">
             <div>
               <span className="text-[10px] uppercase font-bold text-slate-caption block font-sans">
-                Mulai dari / orang (Quad)
+                Mulai dari (Quad)
               </span>
               {pkg.originalPrice && (
                 <span className="text-xs text-slate-caption line-through font-mono block">

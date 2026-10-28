@@ -2,6 +2,7 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import PackageCard from "@/components/PackageCard";
 import InquiryDialog from "@/components/InquiryDialog";
 import { Package, FilterState } from "@/types/package";
@@ -297,7 +298,7 @@ export default function PackageCatalogView({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8">
         
         {/* ── Page Header Banner ── */}
-        <div className="page-intro relative overflow-hidden">
+        <div className="page-intro relative overflow-hidden flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="relative z-10 max-w-3xl">
             <p className="eyebrow mb-3">{badgeLabel}</p>
             <h1 className="editorial-title max-w-4xl">
@@ -307,6 +308,18 @@ export default function PackageCatalogView({
               {subtitle}
             </p>
           </div>
+          {isUmrohCatalog && (
+            <div className="hidden lg:block relative w-48 h-32 rounded-card overflow-hidden shadow-card border border-warm-border shrink-0">
+              <Image
+                src="/images/destinations/mekkah.jpg"
+                alt="Dokumentasi Tanah Suci Makkah"
+                fill
+                sizes="192px"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-teal-primary/10 mix-blend-multiply" />
+            </div>
+          )}
         </div>
 
         {/* ── Quick Filter Pills (Proportional Horizontal Scroll on Mobile) ── */}
@@ -510,7 +523,9 @@ export default function PackageCatalogView({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
           
           {/* ── DESKTOP SIDEBAR FILTER (≥1024px) ── */}
-          <aside className="hidden min-w-0 lg:block lg:col-span-4 bg-warm-surface rounded-card border border-warm-border p-5 shadow-card sticky top-24 space-y-5">
+          <aside className={`hidden min-w-0 lg:block lg:col-span-4 bg-warm-surface rounded-card border border-warm-border p-5 shadow-card sticky top-24 space-y-4 transition-all ${
+            activeFilterCount > 0 ? "border-l-4 border-l-teal-primary" : ""
+          }`}>
             <div className="flex items-center justify-between pb-3 border-b border-warm-border">
               <div className="flex items-center gap-2 font-serif font-bold text-base text-teal-primary">
                 <svg className="w-4 h-4 text-gold-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -524,15 +539,15 @@ export default function PackageCatalogView({
                   onClick={handleResetFilters}
                   className="text-xs text-teal-primary hover:text-gold-hover font-bold font-sans transition-colors"
                 >
-                  Reset
+                  Reset ({activeFilterCount})
                 </button>
               )}
             </div>
 
             {/* 1. Tipe Paket (Scope-Aware) */}
             {typeOptions.length > 1 && (
-              <div className="space-y-1.5">
-                <label className="text-[11px] font-bold uppercase tracking-wider text-slate-caption font-sans block">
+              <div className="space-y-1.5 border-b border-warm-border/60 pb-3.5">
+                <label className="text-xs font-semibold text-slate-muted font-sans block">
                   {isHajiCatalog ? "Program Haji" : "Tipe Paket Umroh"}
                 </label>
                 <div className="space-y-1">
@@ -556,8 +571,8 @@ export default function PackageCatalogView({
             )}
 
             {/* 2. Bulan Keberangkatan */}
-            <div className="space-y-1.5">
-              <label htmlFor="filter-desktop-month" className="text-[11px] font-bold uppercase tracking-wider text-slate-caption font-sans block">
+            <div className="space-y-1.5 border-b border-warm-border/60 pb-3.5">
+              <label htmlFor="filter-desktop-month" className="text-xs font-semibold text-slate-muted font-sans block">
                 Bulan Keberangkatan
               </label>
               <select
@@ -575,8 +590,8 @@ export default function PackageCatalogView({
             </div>
 
             {/* 3. Kota Embarkasi */}
-            <div className="space-y-1.5">
-              <label htmlFor="filter-desktop-city" className="text-[11px] font-bold uppercase tracking-wider text-slate-caption font-sans block">
+            <div className="space-y-1.5 border-b border-warm-border/60 pb-3.5">
+              <label htmlFor="filter-desktop-city" className="text-xs font-semibold text-slate-muted font-sans block">
                 Kota Embarkasi
               </label>
               <select
@@ -594,8 +609,8 @@ export default function PackageCatalogView({
             </div>
 
             {/* 4. Durasi */}
-            <div className="space-y-1.5">
-              <label htmlFor="filter-desktop-duration" className="text-[11px] font-bold uppercase tracking-wider text-slate-caption font-sans block">
+            <div className="space-y-1.5 border-b border-warm-border/60 pb-3.5">
+              <label htmlFor="filter-desktop-duration" className="text-xs font-semibold text-slate-muted font-sans block">
                 Durasi Perjalanan
               </label>
               <select
@@ -613,8 +628,8 @@ export default function PackageCatalogView({
             </div>
 
             {/* 5. Range Harga */}
-            <div className="space-y-1.5">
-              <label htmlFor="filter-desktop-price" className="text-[11px] font-bold uppercase tracking-wider text-slate-caption font-sans block">
+            <div className="space-y-1.5 pb-2">
+              <label htmlFor="filter-desktop-price" className="text-xs font-semibold text-slate-muted font-sans block">
                 Kisaran Biaya
               </label>
               <select
@@ -914,13 +929,23 @@ export default function PackageCatalogView({
           {/* Bottom Sheet Panel */}
           <div className="relative z-10 w-full max-h-[85vh] bg-warm-surface rounded-t-[24px] border-t border-warm-border shadow-elevated flex flex-col animate-in slide-in-from-bottom duration-300">
             
+            {/* Drag Handle Bar */}
+            <div className="pt-3 pb-1 flex justify-center">
+              <div className="w-10 h-1 bg-warm-border rounded-full" aria-hidden="true" />
+            </div>
+
             {/* Header */}
-            <div className="p-4 border-b border-warm-border flex items-center justify-between">
+            <div className="px-4 pb-3 pt-1 border-b border-warm-border flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-4 rounded-full bg-gold-accent" />
                 <h3 id="mobile-filter-title" className="font-serif text-lg font-bold text-teal-primary">
                   Filter Paket Ibadah
                 </h3>
+                {activeFilterCount > 0 && (
+                  <span className="ml-1 px-2 py-0.5 rounded-full bg-teal-primary text-white text-[11px] font-bold">
+                    {activeFilterCount} aktif
+                  </span>
+                )}
               </div>
               <div className="flex items-center gap-2">
                 {activeFilterCount > 0 && (

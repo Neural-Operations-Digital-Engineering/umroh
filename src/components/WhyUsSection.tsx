@@ -84,21 +84,19 @@ export default function WhyUsSection() {
           </p>
         </div>
 
-        {/* ── 4-Point Feature Grid: 2 kolom desktop / 1 mobile ── */}
+        {/* ── 4-Point Feature Grid: 2 editorial pairs with distinct rhythms ── */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
-          {features.map((f) => (
+          {features.slice(0, 2).map((f) => (
             <div
               key={f.id}
-              className="p-5 sm:p-6 rounded-card border border-warm-border bg-warm-bg flex flex-col sm:flex-row items-start gap-4"
+              className="p-5 sm:p-6 rounded-card border-y border-r border-warm-border border-l-4 border-l-teal-primary bg-warm-surface shadow-card flex flex-col sm:flex-row items-start gap-4"
             >
-              {/* Icon Container */}
               <div className="relative shrink-0">
                 <div className="w-12 h-12 rounded-card bg-teal-primary/10 text-teal-primary flex items-center justify-center">
                   {f.icon}
                 </div>
               </div>
 
-              {/* Text content */}
               <div className="flex-1 min-w-0">
                 <h3 className="font-sans text-base sm:text-lg font-bold text-teal-primary mb-1">
                   {f.title}
@@ -106,6 +104,34 @@ export default function WhyUsSection() {
                 <p className="font-sans text-sm text-slate-body leading-relaxed">
                   {f.desc}
                 </p>
+              </div>
+            </div>
+          ))}
+
+          {features.slice(2, 4).map((f, idx) => (
+            <div
+              key={f.id}
+              className="relative overflow-hidden p-5 sm:p-6 rounded-card border border-warm-border bg-warm-bg shadow-card flex flex-col justify-between"
+            >
+              <span
+                className="select-none pointer-events-none absolute right-3 bottom-0 font-mono text-7xl font-bold text-teal-primary/10 leading-none"
+                aria-hidden="true"
+              >
+                0{idx + 3}
+              </span>
+
+              <div className="relative z-10 flex items-start gap-3.5 mb-2">
+                <div className="w-10 h-10 rounded-button bg-gold-accent/20 text-teal-primary flex items-center justify-center shrink-0">
+                  {f.icon}
+                </div>
+                <div>
+                  <h3 className="font-sans text-base sm:text-lg font-bold text-teal-primary">
+                    {f.title}
+                  </h3>
+                  <p className="font-sans text-xs sm:text-sm text-slate-body leading-relaxed mt-1">
+                    {f.desc}
+                  </p>
+                </div>
               </div>
             </div>
           ))}

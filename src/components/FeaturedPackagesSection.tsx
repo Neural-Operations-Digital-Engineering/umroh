@@ -8,12 +8,21 @@ import type { Package } from "@/types/package";
 export default function FeaturedPackagesSection({ packages }: { packages: Package[] }) {
   const [activeTab, setActiveTab] = useState<"all" | "reguler" | "plus" | "khusus">("all");
 
-  const categoryTabs = [
-    { id: "all", label: "Semua Paket" },
-    { id: "reguler", label: "Umroh Reguler" },
-    { id: "plus", label: "Umroh Plus Wisata" },
-    { id: "khusus", label: "Haji Khusus" },
-  ] as const;
+  const counts = useMemo(() => {
+    return {
+      all: packages.length,
+      reguler: packages.filter((p) => !p.isHaji && p.packageType === "reguler").length,
+      plus: packages.filter((p) => !p.isHaji && p.packageType === "plus").length,
+      khusus: packages.filter((p) => p.isHaji || p.packageType === "khusus").length,
+    };
+  }, [packages]);
+
+  const categoryTabs = useMemo(() => [
+    { id: "all" as const, label: "Semua Paket", count: counts.all },
+    { id: "reguler" as const, label: "Umroh Reguler", count: counts.reguler },
+    { id: "plus" as const, label: "Umroh Plus Wisata", count: counts.plus },
+    { id: "khusus" as const, label: "Haji Khusus", count: counts.khusus },
+  ], [counts]);
 
   const filteredList = useMemo(() => {
     if (activeTab === "all") return packages.slice(0, 6);
@@ -37,13 +46,20 @@ export default function FeaturedPackagesSection({ packages }: { packages: Packag
             </p>
           </div>
 
-          <Link
-            href="/umroh"
-            id="see-all-packages"
-            className="hidden sm:inline-flex items-center text-xs font-bold text-teal-primary hover:text-gold-hover transition-colors font-sans whitespace-nowrap"
-          >
-            <span>Buka Katalog Lengkap</span>
-          </Link>
+          <div className="flex items-center sm:flex-col sm:items-end gap-2 sm:gap-1.5 shrink-0">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-teal-primary/10 px-2.5 py-0.5 text-[11px] font-semibold text-teal-primary">
+              <span className="h-1.5 w-1.5 rounded-full bg-teal-primary" aria-hidden="true" />
+              {packages.length} paket siap berangkat
+            </span>
+            <Link
+              href="/umroh"
+              id="see-all-packages"
+              className="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold text-teal-primary hover:text-gold-hover transition-colors font-sans whitespace-nowrap mt-1"
+            >
+              <span>Buka Katalog Lengkap</span>
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
         </div>
 
         {/* ── Category Filter Tabs (Swipeable pills on mobile) ── */}
@@ -59,7 +75,10 @@ export default function FeaturedPackagesSection({ packages }: { packages: Packag
                   : "bg-warm-surface text-slate-body border border-warm-border hover:bg-warm-muted"
               }`}
             >
-              {tab.label}
+              <span>{tab.label}</span>
+              <span className={`ml-1 text-[11px] ${activeTab === tab.id ? "text-white/80" : "text-slate-caption"}`}>
+                ({tab.count})
+              </span>
             </button>
           ))}
         </div>
@@ -68,7 +87,7 @@ export default function FeaturedPackagesSection({ packages }: { packages: Packag
         {filteredList.length > 0 ? (
           <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 overflow-x-auto sm:overflow-visible snap-x snap-mandatory scrollbar-none pb-3 -mx-4 px-4 sm:mx-0 sm:px-0">
             {filteredList.map((pkg) => (
-              <div key={pkg.id} className="min-w-[280px] sm:min-w-0 shrink-0 sm:shrink snap-start w-[85vw] sm:w-auto">
+              <div key={pkg.id} className="min-w-[280px] sm:min-w-0 shrink-0 sm:shrink snap-start w-[78vw] sm:w-auto">
                 <PackageCard pkg={pkg} />
               </div>
             ))}

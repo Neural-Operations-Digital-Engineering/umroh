@@ -108,7 +108,7 @@ export default function Header({ company }: { company: CompanyProfile }) {
                 <Link
                   key={link.name}
                   href={link.href}
-              className={`px-3 py-2 text-xs font-semibold font-sans transition-all duration-200 ${
+                  className={`px-3 py-2.5 text-xs font-semibold font-sans transition-all duration-200 ${
                     isActive
                       ? "text-teal-primary border-b-2 border-gold-accent font-bold"
                       : "text-slate-body hover:text-teal-primary"
@@ -244,28 +244,13 @@ export default function Header({ company }: { company: CompanyProfile }) {
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`flex items-center justify-between px-4 py-3 rounded-button text-sm font-semibold font-sans transition-all duration-200 ${
+                  className={`flex items-center px-4 py-3 rounded-button text-sm font-semibold font-sans transition-all duration-200 ${
                     isActive
-                      ? "bg-teal-primary text-white shadow-sm font-bold"
+                      ? "border-l-4 border-l-gold-accent text-teal-primary bg-warm-surface font-bold pl-3"
                       : "text-slate-body hover:bg-warm-muted hover:text-teal-primary"
                   }`}
                 >
                   <span>{link.name}</span>
-                  <svg
-                    className={`w-4 h-4 ${
-                      isActive ? "text-gold-accent" : "text-slate-caption"
-                    }`}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
                 </Link>
               );
             })}
